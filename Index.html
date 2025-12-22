@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>MoveMasters OS | Titan Alpha</title>
-    <!-- Core Engines -->
+    <title>MoveMasters OS Alpha</title>
+    <!-- M5 Performance Engines -->
     <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
@@ -23,55 +23,43 @@
 
         .glass { 
             background: rgba(255, 255, 255, 0.03); 
-            backdrop-filter: blur(25px); 
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.08); 
+            backdrop-filter: blur(30px); 
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
         }
 
-        .os-blue-text { 
+        .os-blue { 
             background: linear-gradient(to right, #ffffff, #3b82f6, #0ea5e9); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
         }
 
-        .sidebar-item {
-            transition: all 0.2s ease;
-            min-height: 50px;
-        }
-
         .active-node {
             background: #2563eb !important;
-            box-shadow: 0 0 25px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 0 40px rgba(37, 99, 235, 0.5);
             transform: scale(1.02);
             color: white !important;
         }
 
-        /* Prevent iPad text selection during fast tapping */
-        .no-select {
-            -webkit-user-select: none;
-            user-select: none;
-        }
-
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 10px; }
+        .no-select { -webkit-user-select: none; user-select: none; }
     </style>
 </head>
 <body>
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect } = React;
+        const { useState } = React;
 
-        const Icon = ({ name, size = 20 }) => {
+        const Icon = ({ name, size = 22 }) => {
             const paths = {
                 dashboard: "M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z M9 22V12h6v10",
                 calendar: "M3 4h18v18H3z M16 2v4 M8 2v4 M3 10h18",
-                fleet: "M1 3h15v13H1z M16 8h4l3 3v5h-7z M5.5 18.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z M18.5 18.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z",
+                fleet: "M1 3h15v13H1z M16 8h4l3 3v5h-7z",
                 users: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 M9 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8z",
                 quotes: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z",
                 audit: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z",
                 revenue: "M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6",
-                support: "M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z M12 16v.01",
+                support: "M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z",
                 settings: "M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
             };
             return (
@@ -82,7 +70,7 @@
         };
 
         const App = () => {
-            const [activeView, setActiveView] = useState('dashboard');
+            const [view, setView] = useState('dashboard');
             
             const nodes = [
                 { id: 'dashboard', label: 'Dashboard', icon: 'dashboard' },
@@ -97,96 +85,74 @@
             ];
 
             return (
-                <div className="flex h-screen w-screen bg-black overflow-hidden p-4 md:p-6 gap-6 no-select">
-                    {/* 9-BUTTON SIDEBAR */}
-                    <aside className="w-20 md:w-72 glass rounded-[35px] flex flex-col shrink-0 overflow-hidden">
-                        <div className="p-6 md:p-10 flex items-center gap-4 mb-4">
-                            <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-600 rounded-2xl flex items-center justify-center shadow-lg border border-white/10">
-                                <Icon name="fleet" size={24} />
+                <div className="flex h-screen w-screen bg-black overflow-hidden p-6 gap-6 no-select">
+                    {/* SIDEBAR */}
+                    <aside className="w-20 md:w-72 glass rounded-[40px] flex flex-col shrink-0 overflow-hidden">
+                        <div className="p-8 md:p-10 flex items-center gap-4 mb-4">
+                            <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center shadow-lg border border-white/10">
+                                <Icon name="fleet" size={26} />
                             </div>
-                            <span className="hidden md:block font-black text-2xl italic uppercase tracking-tighter os-blue-text leading-none">Alpha OS</span>
+                            <span className="hidden md:block font-black text-2xl italic uppercase tracking-tighter os-blue leading-none">Alpha OS</span>
                         </div>
                         
-                        <nav className="flex-1 px-3 md:px-6 space-y-2 overflow-y-auto pb-6">
+                        <nav className="flex-1 px-4 space-y-2 overflow-y-auto pb-10">
                             {nodes.map((node) => (
                                 <button 
                                     key={node.id}
-                                    onClick={() => setActiveView(node.id)} 
-                                    className={`sidebar-item w-full flex items-center justify-center md:justify-start gap-5 px-4 md:px-6 rounded-[22px] ${activeView === node.id ? 'active-node font-extrabold' : 'text-gray-500 hover:text-white hover:bg-white/5'}`}
+                                    onClick={() => setView(node.id)} 
+                                    className={`w-full flex items-center justify-center md:justify-start gap-6 px-4 py-4 rounded-[22px] transition-all duration-300 ${view === node.id ? 'active-node font-extrabold' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
                                 >
-                                    <Icon name={node.icon} size={20} />
-                                    <span className="hidden md:block text-[11px] uppercase tracking-[0.2em]">{node.label}</span>
+                                    <Icon name={node.icon} size={22} />
+                                    <span className="hidden md:block text-[12px] uppercase tracking-[0.2em]">{node.label}</span>
                                 </button>
                             ))}
                         </nav>
-                        
-                        <div className="p-6 md:p-8 border-t border-white/5 flex items-center justify-center md:justify-start gap-4">
-                            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse shadow-[0_0_10px_#3b82f6]"></div>
-                            <span className="hidden md:block text-[10px] font-black uppercase tracking-[0.4em] text-blue-400 italic">Titan Sync</span>
-                        </div>
                     </aside>
 
-                    {/* MAIN CONTENT ENGINE */}
-                    <main className="flex-1 glass rounded-[35px] p-8 md:p-14 overflow-y-auto relative">
+                    {/* VIEWPORT */}
+                    <main className="flex-1 glass rounded-[40px] p-10 md:p-14 overflow-y-auto relative">
                         <header className="flex justify-between items-end mb-16 relative z-10">
                             <div>
-                                <h1 className="text-4xl md:text-7xl font-black italic uppercase tracking-tighter os-blue-text underline decoration-blue-600/20 underline-offset-[16px]">
-                                    {nodes.find(n => n.id === activeView)?.label}
+                                <h1 className="text-5xl md:text-7xl font-black italic uppercase tracking-tighter os-blue underline decoration-blue-600/20 underline-offset-[16px]">
+                                    {nodes.find(n => n.id === view)?.label}
                                 </h1>
-                                <p className="mt-6 text-[11px] font-black uppercase tracking-[0.6em] text-gray-600 italic">M5 Tablet Build 4.5.0</p>
+                                <p className="mt-6 text-[11px] font-black uppercase tracking-[0.6em] text-gray-600 italic">Command Alpha v4.5.5 | iPad M5</p>
                             </div>
-                            <div className="w-16 h-16 rounded-[24px] bg-blue-600 border border-white/10 shadow-2xl flex items-center justify-center">
-                                <Icon name={nodes.find(n => n.id === activeView)?.icon} size={30} />
+                            <div className="w-16 h-16 rounded-[24px] bg-blue-600 border border-white/10 flex items-center justify-center">
+                                <Icon name={nodes.find(n => n.id === view)?.icon} size={30} />
                             </div>
                         </header>
 
                         <div className="relative z-10">
-                            {activeView === 'dashboard' && (
+                            {view === 'dashboard' ? (
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-in fade-in duration-500">
-                                    <div className="glass p-10 rounded-[45px] border-white/10">
-                                        <p className="text-gray-500 font-black uppercase text-[10px] tracking-widest mb-4 italic">Total Revenue</p>
+                                    <div className="glass p-10 rounded-[50px] border-white/10">
+                                        <p className="text-gray-500 font-black uppercase text-[10px] tracking-widest mb-4 italic">Operational Revenue</p>
                                         <h2 className="text-6xl font-black tracking-tighter leading-none">$142,850</h2>
                                     </div>
-                                    <div className="glass p-10 rounded-[45px] border-white/10">
-                                        <p className="text-gray-500 font-black uppercase text-[10px] tracking-widest mb-4 italic">Lead Accuracy</p>
+                                    <div className="glass p-10 rounded-[50px] border-white/10">
+                                        <p className="text-gray-500 font-black uppercase text-[10px] tracking-widest mb-4 italic">Accuracy Sync</p>
                                         <h2 className="text-6xl font-black tracking-tighter leading-none text-blue-400">99.1%</h2>
                                     </div>
-                                    <div className="glass p-10 rounded-[45px] border-white/10">
-                                        <p className="text-gray-500 font-black uppercase text-[10px] tracking-widest mb-4 italic">Active Fleet</p>
-                                        <h2 className="text-6xl font-black tracking-tighter leading-none italic">12/12</h2>
-                                    </div>
                                 </div>
-                            )}
-
-                            {activeView === 'calendar' && (
-                                <div className="animate-in slide-in-from-right duration-500">
-                                    <div className="flex justify-between items-center mb-10 px-4">
-                                        <h2 className="text-3xl font-black italic uppercase tracking-tighter">December 2025</h2>
-                                    </div>
+                            ) : view === 'calendar' ? (
+                                <div className="glass p-10 rounded-[50px] animate-in slide-in-from-right duration-500">
                                     <div className="grid grid-cols-7 gap-4">
-                                        {['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d => <div key={d} className="text-center text-[10px] font-black text-gray-700 uppercase mb-4 tracking-widest">{d}</div>)}
+                                        {['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d => <div key={d} className="text-center text-[10px] font-black text-gray-700 uppercase mb-6 tracking-widest">{d}</div>)}
                                         {[...Array(31)].map((_, i) => (
-                                            <div key={i} className={`aspect-square glass rounded-[25px] p-5 flex flex-col justify-between transition-all ${i === 21 ? 'bg-blue-600/20 border-blue-500 shadow-xl' : 'hover:border-blue-500/20'}`}>
+                                            <div key={i} className={`aspect-square glass rounded-[30px] p-6 flex flex-col justify-between transition-all ${i === 21 ? 'bg-blue-600/20 border-blue-500 shadow-xl' : 'hover:border-blue-500/10'}`}>
                                                 <span className="text-[12px] font-bold text-gray-600">{i + 1}</span>
-                                                {i === 21 && <div className="text-[8px] bg-blue-600 text-white rounded-lg p-1.5 text-center font-black uppercase italic shadow-lg">Job 402</div>}
+                                                {i === 21 && <div className="text-[8px] bg-blue-600 text-white rounded-lg p-1.5 text-center font-black uppercase italic shadow-lg">Job Node 402</div>}
                                             </div>
                                         ))}
                                     </div>
                                 </div>
-                            )}
-
-                            {activeView !== 'dashboard' && activeView !== 'calendar' && (
-                                <div className="flex flex-col items-center justify-center h-[450px] animate-in fade-in duration-300">
-                                    <div className="w-24 h-24 bg-white/5 rounded-full flex items-center justify-center mb-8 border border-white/10">
-                                        <Icon name={nodes.find(n => n.id === activeView)?.icon} size={40} />
-                                    </div>
-                                    <h2 className="text-2xl font-black uppercase italic tracking-[0.4em] os-blue-text">Accessing {activeView} Node...</h2>
-                                    <p className="text-gray-600 text-[10px] mt-4 font-bold uppercase tracking-[0.5em]">M5 Security Clearance Required</p>
+                            ) : (
+                                <div className="flex flex-col items-center justify-center h-[400px] glass rounded-[50px] border-white/5 opacity-40">
+                                    <h2 className="text-2xl font-black uppercase italic tracking-[0.4em] os-blue">Accessing {view} Node...</h2>
                                 </div>
                             )}
                         </div>
-                        
-                        <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-blue-600/[0.04] blur-[150px] pointer-events-none rounded-full"></div>
                     </main>
                 </div>
             );
@@ -198,6 +164,3 @@
 </body>
 </html>
 
-
-
- 
