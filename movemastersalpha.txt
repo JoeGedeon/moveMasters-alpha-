@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoveMasters OS Alpha</title>
+    <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #000; color: white; margin: 0; overflow: hidden; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .os-blue { background: linear-gradient(to right, #ffffff, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+
+        const App = () => {
+            const [view, setView] = useState('dashboard');
+            return (
+                <div className="flex h-screen w-screen bg-black">
+                    <aside className="w-80 bg-black border-r border-white/5 p-12 flex flex-col">
+                        <div className="flex items-center gap-4 mb-20">
+                            <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-600/20">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M1 3h15v13H1z M16 8h4l3 3v5h-7z"/></svg>
+                            </div>
+                            <span className="font-black text-2xl italic uppercase tracking-tighter os-blue">Alpha OS</span>
+                        </div>
+                        <nav className="space-y-4 flex-1">
+                            <button onClick={() => setView('dashboard')} className={`w-full text-left px-8 py-5 rounded-[25px] transition-all ${view === 'dashboard' ? 'bg-blue-600 font-bold' : 'text-gray-500 hover:text-white'}`}>Command</button>
+                            <button onClick={() => setView('calendar')} className={`w-full text-left px-8 py-5 rounded-[25px] transition-all ${view === 'calendar' ? 'bg-blue-600 font-bold' : 'text-gray-500 hover:text-white'}`}>Schedules</button>
+                        </nav>
+                        <div className="pt-10 border-t border-white/5 flex items-center gap-3">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-blue-400">Node Online</span>
+                        </div>
+                    </aside>
+                    <main className="flex-1 p-20 relative overflow-y-auto">
+                        <h1 className="text-6xl font-black italic uppercase tracking-tighter os-blue mb-16">{view === 'dashboard' ? 'Alpha Dashboard' : 'Fleet Calendar'}</h1>
+                        {view === 'dashboard' ? (
+                            <div className="grid grid-cols-2 gap-8">
+                                <div className="glass p-10 rounded-[40px]">
+                                    <p className="text-gray-500 font-bold uppercase text-[10px] tracking-widest mb-2">Revenue Status</p>
+                                    <h2 className="text-5xl font-black tracking-tight">$142,850</h2>
+                                </div>
+                                <div className="glass p-10 rounded-[40px]">
+                                    <p className="text-gray-500 font-bold uppercase text-[10px] tracking-widest mb-2">Sync Accuracy</p>
+                                    <h2 className="text-5xl font-black tracking-tight">99.1%</h2>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="glass p-10 rounded-[40px] grid grid-cols-7 gap-4">
+                                {[...Array(31)].map((_, i) => (
+                                    <div key={i} className={`h-24 glass rounded-2xl p-4 ${i === 21 ? 'bg-blue-600/20 border-blue-500' : ''}`}>
+                                        <span className="text-xs font-bold text-gray-600">{i + 1}</span>
+                                        {i === 21 && <div className="mt-2 text-[8px] bg-blue-600 p-1 rounded text-center font-bold uppercase">Launch</div>}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </main>
+                </div>
+            );
+        };
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+</html>
+
