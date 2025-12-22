@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>MoveMasters OS | Alpha Titan</title>
+    <title>MoveMasters OS | Intake Engine</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Fira+Code:wght@400;500&display=swap');
@@ -20,7 +20,9 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* 1. CLEAN SCROLLABLE SIDEBAR */
+        .mono { font-family: 'Fira Code', monospace; }
+
+        /* 1. RIGID SCROLLABLE SIDEBAR */
         .sidebar {
             width: 280px;
             background-color: #050505;
@@ -44,7 +46,7 @@
             align-items: center;
             gap: 14px;
             padding: 18px 28px;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
             color: #555;
             cursor: pointer;
@@ -52,29 +54,21 @@
             border-left: 4px solid transparent;
         }
 
-        .nav-btn:hover:not(.active) {
-            background-color: rgba(255, 255, 255, 0.03);
-            color: #fff;
-        }
+        .nav-btn:hover:not(.active) { background-color: rgba(255, 255, 255, 0.03); color: #fff; }
+        .nav-btn.active { background-color: rgba(59, 130, 246, 0.1); color: #60a5fa; border-left-color: #3b82f6; }
 
-        .nav-btn.active {
-            background-color: rgba(59, 130, 246, 0.1);
-            color: #60a5fa;
-            border-left-color: #3b82f6;
-        }
-
-        /* 2. MAIN DASHBOARD AREA */
+        /* 2. MAIN VIEWPORT */
         .main-stage {
             flex-grow: 1;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             background: #000;
-            padding: 50px 70px;
+            padding: 40px 60px;
             position: relative;
         }
 
         .titan-title {
-            font-size: clamp(48px, 10vw, 90px);
+            font-size: clamp(40px, 8vw, 85px);
             font-weight: 900;
             font-style: italic;
             text-transform: uppercase;
@@ -86,112 +80,94 @@
             margin-bottom: 30px;
         }
 
-        /* 3. INDESTRUCTIBLE WALL CALENDAR (TABLE) */
+        /* 3. HARD-CODED TABLE GRID (CALENDAR) */
         .card {
             background: #0d0d0d;
             border: 1px solid #1a1a1a;
-            border-radius: 40px;
-            padding: 35px;
+            border-radius: 35px;
+            padding: 30px;
             width: 100%;
         }
 
-        table {
+        table.calendar {
             width: 100%;
-            table-layout: fixed; /* FORCES 7 EQUAL COLUMNS */
+            table-layout: fixed;
             border-collapse: separate;
-            border-spacing: 8px;
+            border-spacing: 6px;
         }
 
-        th {
-            text-align: center;
-            font-size: 11px;
-            font-weight: 800;
-            color: #333;
-            padding-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-        }
+        th.cal-header { text-align: center; font-size: 10px; font-weight: 800; color: #333; padding-bottom: 15px; text-transform: uppercase; }
 
         .date-tile {
             background: #111;
             border: 1px solid #1a1a1a;
-            border-radius: 18px;
-            height: 100px;
-            padding: 12px;
+            border-radius: 12px;
+            height: 90px;
+            padding: 10px;
             vertical-align: top;
             cursor: pointer;
-            transition: 0.2s;
         }
 
-        .date-tile:hover { border-color: #3b82f6; }
-        .date-tile:active { transform: scale(0.96); }
+        .job-node { width: 100%; height: 4px; background: #3b82f6; border-radius: 10px; margin-top: auto; box-shadow: 0 0 10px #3b82f6; }
 
-        .job-node-marker {
-            width: 100%;
-            height: 5px;
-            background: #3b82f6;
-            border-radius: 10px;
-            margin-top: auto;
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
-        }
-
-        /* 4. NODE EDITOR PANEL */
-        .node-editor {
-            background: #0d0d0d;
-            border: 1px solid #1a1a1a;
-            border-radius: 40px;
-            padding: 40px;
-            margin-top: 40px;
-            border-left: 8px solid #3b82f6;
-        }
-
-        .node-input {
+        /* 4. IN-DEPTH CAPTURE FORMS */
+        .input-node {
             background: #050505;
             border: 1px solid #1a1a1a;
-            padding: 20px;
-            border-radius: 18px;
+            padding: 16px 20px;
+            border-radius: 15px;
             width: 100%;
             color: white;
             font-weight: 700;
-            margin-top: 10px;
             outline: none;
-            font-size: 18px;
+            font-size: 16px;
         }
+        .input-node:focus { border-color: #3b82f6; }
+
+        .form-section-label {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #3b82f6;
+            letter-spacing: 0.3em;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .crm-table { width: 100%; border-collapse: collapse; }
+        .crm-table th { text-align: left; padding: 15px; color: #444; font-size: 11px; text-transform: uppercase; border-bottom: 1px solid #1a1a1a; }
+        .crm-table td { padding: 15px; border-bottom: 1px solid #111; font-size: 14px; font-weight: 600; }
+
+        .btn-sync { background: #3b82f6; color: white; padding: 20px; border-radius: 20px; font-weight: 800; text-transform: uppercase; width: 100%; letter-spacing: 0.1em; transition: 0.2s; }
+        .btn-sync:active { transform: scale(0.98); background: #2563eb; }
 
         .hidden { display: none !important; }
         .no-select { -webkit-user-select: none; user-select: none; }
-        
-        /* Custom scrollbar for sidebar */
-        .sidebar-scroll::-webkit-scrollbar { width: 3px; }
-        .sidebar-scroll::-webkit-scrollbar-thumb { background: #222; border-radius: 10px; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: #222; border-radius: 10px; }
     </style>
 </head>
 <body class="no-select">
 
-    <!-- SIDEBAR: CLEAN & SCROLLABLE -->
+    <!-- SIDEBAR -->
     <aside class="sidebar">
-        <div class="p-10 border-b border-white/5">
-            <h2 class="text-[12px] font-black uppercase tracking-[0.6em] text-blue-500 italic">MoveMasters</h2>
+        <div class="p-8 border-b border-white/5">
+            <h2 class="text-[11px] font-black uppercase tracking-[0.5em] text-blue-500 italic">MoveMasters</h2>
         </div>
-        
         <div class="sidebar-scroll">
             <nav id="nav-list">
-                <div class="nav-btn active" onclick="switchView('Dashboard')">Dashboard</div>
-                <div class="nav-btn" onclick="switchView('Schedules')">Schedules</div>
-                <div class="nav-btn" onclick="switchView('Fleet')">Fleet</div>
-                <div class="nav-btn" onclick="switchView('Customers')">Customers</div>
-                <div class="nav-btn" onclick="switchView('Quotes')">Quotes</div>
-                <div class="nav-btn" onclick="switchView('Audit')">Audit</div>
-                <div class="nav-btn" onclick="switchView('Revenue')">Revenue</div>
-                <div class="nav-btn" onclick="switchView('Support')">Support</div>
-                <div class="nav-btn" onclick="switchView('Settings')">Settings</div>
+                <div class="nav-btn active" onclick="setView('Dashboard')">Dashboard</div>
+                <div class="nav-btn" onclick="setView('Lead Magnet')">Lead Intake</div>
+                <div class="nav-btn" onclick="setView('CRM')">Customer CRM</div>
+                <div class="nav-btn" onclick="setView('Schedules')">Schedules</div>
+                <div class="nav-btn" onclick="setView('Audit')">Audit</div>
+                <div class="nav-btn" onclick="setView('Settings')">Settings</div>
             </nav>
         </div>
-
         <div class="p-10 border-t border-white/5 bg-black/40">
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3">
                 <div class="w-3 h-3 bg-blue-500 rounded-full animate-pulse shadow-[0_0_15px_#3b82f6]"></div>
-                <span class="text-[11px] font-black uppercase text-blue-400 italic">M5 Titanium Hub</span>
+                <span class="text-[10px] font-black uppercase text-blue-400 italic">M5 Titanium Core</span>
             </div>
         </div>
     </aside>
@@ -200,138 +176,177 @@
     <main class="main-stage">
         <h1 id="view-title" class="titan-title">Dashboard</h1>
 
-        <div id="DashboardContainer">
-            
-            <!-- THE WALL CALENDAR (INDESCTRUCTIBLE GRID) -->
+        <!-- VIEW: DASHBOARD -->
+        <div id="DashboardView">
             <div class="card">
-                <div class="flex justify-between items-center mb-12 px-2">
-                    <h2 class="text-4xl font-black italic uppercase text-white" id="month-label">December 2025</h2>
-                    <div class="flex gap-4">
-                        <button onclick="changeMonth(-1)" class="w-14 h-14 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center hover:bg-blue-600 transition-all text-sm">◀</button>
-                        <button onclick="changeMonth(1)" class="w-14 h-14 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center hover:bg-blue-600 transition-all text-sm">▶</button>
+                <div class="flex justify-between items-center mb-8 px-2">
+                    <h3 class="text-3xl font-black italic uppercase text-white" id="month-label">December 2025</h3>
+                    <div class="flex gap-3">
+                        <button onclick="changeMonth(-1)" class="w-12 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center">◀</button>
+                        <button onclick="changeMonth(1)" class="w-12 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center">▶</button>
                     </div>
                 </div>
-
-                <table id="calendar-table">
-                    <thead>
-                        <tr>
-                            <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
-                        </tr>
-                    </thead>
-                    <tbody id="calendar-body">
-                        <!-- Date cells injected by JS -->
-                    </tbody>
+                <table class="calendar">
+                    <thead><tr><th class="cal-header">Sun</th><th class="cal-header">Mon</th><th class="cal-header">Tue</th><th class="cal-header">Wed</th><th class="cal-header">Thu</th><th class="cal-header">Fri</th><th class="cal-header">Sat</th></tr></thead>
+                    <tbody id="calendar-body"></tbody>
                 </table>
             </div>
-
-            <!-- SUMMARY STATS -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-                <div class="card">
-                    <p class="text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-4">Total Node Revenue</p>
-                    <h3 class="text-7xl font-black italic">$142,850</h3>
-                </div>
-                <div class="card">
-                    <p class="text-[11px] font-bold text-blue-500 uppercase tracking-widest mb-4">Sync Integrity</p>
-                    <h3 class="text-7xl font-black italic text-blue-400">99.1%</h3>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+                <div class="card"><p class="text-[11px] font-bold text-gray-600 uppercase mb-2">Total Managed Identity</p><h2 id="stat-leads" class="text-7xl font-black italic">0</h2></div>
+                <div class="card"><p class="text-[11px] font-bold text-blue-500 uppercase mb-2">Synchronized Moves</p><h2 id="stat-moves" class="text-7xl font-black italic text-white">0</h2></div>
             </div>
-
         </div>
 
-        <!-- TILE EDITOR (The "Edible" Logic) -->
-        <div id="EditorContainer" class="hidden">
-            <div class="node-editor">
+        <!-- VIEW: LEAD MAGNET (In-Depth Capture) -->
+        <div id="LeadMagnetView" class="hidden">
+            <div class="card max-w-4xl">
                 <div class="flex justify-between items-center mb-10">
-                    <div>
-                        <h4 class="text-4xl font-black italic uppercase text-white" id="editor-date-text">Date Node</h4>
-                        <p class="text-[11px] font-bold text-blue-500 uppercase tracking-widest mt-2 italic">Modify Appointment Data</p>
-                    </div>
-                    <button onclick="closeEditor()" class="bg-white/5 px-8 py-4 rounded-2xl font-black text-xs hover:text-white">✕ CANCEL</button>
+                    <h3 class="text-4xl font-black italic uppercase">Lead Intake Node</h3>
+                    <div class="px-4 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-[10px] text-blue-400 font-black uppercase">Live Link Active</div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div>
-                        <label class="text-[11px] font-bold text-gray-500 uppercase mb-2 block tracking-widest">Client Identity</label>
-                        <input type="text" id="node-client" class="node-input" placeholder="Sarah Miller">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Column 1: Identity & Logistics -->
+                    <div class="space-y-8">
+                        <div>
+                            <span class="form-section-label">01 // Identity Node</span>
+                            <div class="space-y-4">
+                                <input type="text" id="cap-name" class="input-node" placeholder="Customer Full Name">
+                                <input type="tel" id="cap-phone" class="input-node" placeholder="Primary Phone Number">
+                                <input type="email" id="cap-email" class="input-node" placeholder="Email Address">
+                            </div>
+                        </div>
+                        <div>
+                            <span class="form-section-label">02 // Logistics Node</span>
+                            <div class="grid grid-cols-2 gap-4">
+                                <input type="text" id="cap-from" class="input-node" placeholder="Origin Zip">
+                                <input type="text" id="cap-to" class="input-node" placeholder="Dest Zip">
+                            </div>
+                            <select id="cap-size" class="input-node mt-4 bg-black">
+                                <option value="">Home Size Selection</option>
+                                <option value="Studio">Studio Apartment</option>
+                                <option value="1BR">1 Bedroom Home</option>
+                                <option value="2BR">2 Bedroom Home</option>
+                                <option value="3BR+">3+ Bedroom Estate</option>
+                                <option value="Office">Commercial Office</option>
+                            </select>
+                        </div>
                     </div>
-                    <div>
-                        <label class="text-[11px] font-bold text-gray-500 uppercase mb-2 block tracking-widest">Assigned Truck</label>
-                        <input type="text" id="node-truck" class="node-input" placeholder="Titan-01">
+
+                    <!-- Column 2: Date & Audit -->
+                    <div class="space-y-8">
+                        <div>
+                            <span class="form-section-label">03 // Schedule Node</span>
+                            <input type="date" id="cap-date" class="input-node">
+                        </div>
+                        <div>
+                            <span class="form-section-label">04 // Volume Node (Audit)</span>
+                            <input type="number" id="cap-vol" class="input-node" placeholder="Est. Cubic Feet (ft³)">
+                            <textarea id="cap-special" class="input-node mt-4 h-32 resize-none" placeholder="Specialty Items (Pianos, Safes, Fragiles...)"></textarea>
+                        </div>
+                        <button onclick="saveLead()" class="btn-sync">Synchronize Lead to CRM</button>
                     </div>
                 </div>
-
-                <button onclick="saveNode()" class="mt-12 w-full bg-blue-600 py-6 rounded-2xl font-black uppercase italic tracking-[0.3em] text-sm shadow-2xl hover:bg-blue-500 transition-all">
-                    Synchronize Node
-                </button>
             </div>
         </div>
 
-        <!-- AUDIT VIEW -->
-        <div id="AuditContainer" class="hidden">
-            <div class="card max-w-2xl">
-                <p class="text-[11px] font-black text-blue-400 uppercase tracking-widest mb-10 italic">// Commission Audit Node</p>
-                <div class="space-y-12">
-                    <input type="number" value="450" class="w-full bg-black text-8xl font-black outline-none" id="aud-in" oninput="document.getElementById('aud-res').innerText = '$' + (this.value * 4.5 * 0.12).toFixed(2)">
-                    <div class="pt-12 border-t border-white/5">
-                        <h3 class="text-9xl font-black italic text-blue-400 leading-none" id="aud-res">$243.00</h3>
+        <!-- VIEW: CRM -->
+        <div id="CRMView" class="hidden">
+            <div class="card">
+                <div class="flex justify-between items-center mb-8">
+                    <h3 class="text-3xl font-black italic uppercase">Customer Database</h3>
+                    <div class="flex gap-4">
+                        <input type="text" placeholder="Filter Identity..." class="bg-black border border-white/10 p-3 rounded-xl w-64 text-sm" oninput="filterCRM(this.value)">
                     </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="crm-table">
+                        <thead><tr><th>Name</th><th>Route (From-To)</th><th>Size</th><th>Volume</th><th>Move Date</th><th>Status</th></tr></thead>
+                        <tbody id="crm-body"></tbody>
+                    </table>
                 </div>
             </div>
         </div>
 
-        <div class="absolute top-0 right-0 w-[1200px] h-[1200px] bg-blue-600/[0.02] blur-[200px] pointer-events-none rounded-full"></div>
+        <!-- VIEW: AUDIT -->
+        <div id="AuditView" class="hidden">
+            <div class="card max-w-xl">
+                <h3 class="text-3xl font-black italic uppercase mb-8">Commission Node</h3>
+                <input type="number" value="450" class="text-7xl font-black bg-black outline-none w-full mb-6" oninput="updateAudit(this.value)">
+                <div class="pt-6 border-t border-white/5"><h3 id="aud-res" class="text-8xl font-black text-blue-400">$243.00</h3></div>
+            </div>
+        </div>
     </main>
 
     <script>
-        const app = {
-            currentMonth: new Date(2025, 11, 1),
-            selectedKey: null,
-            jobs: {
-                "2025-12-22": { client: "Sarah Jenkins", truck: "T-01" },
-                "2025-12-24": { client: "Holiday Route", truck: "T-03" }
-            }
+        const titan = {
+            view: 'Dashboard',
+            month: new Date(2025, 11, 1),
+            customers: []
         };
+
+        function setView(id) {
+            titan.view = id;
+            document.getElementById('view-title').innerText = id;
+            
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            const activeBtn = Array.from(document.querySelectorAll('.nav-btn')).find(b => b.innerText.includes(id));
+            if(activeBtn) activeBtn.classList.add('active');
+
+            ['DashboardView', 'LeadMagnetView', 'CRMView', 'AuditView'].forEach(v => document.getElementById(v).classList.add('hidden'));
+            const viewKey = id.replace(' ', '') + 'View';
+            document.getElementById(viewKey).classList.remove('hidden');
+
+            if(id === 'Dashboard') renderCalendar();
+            if(id === 'CRM') renderCRM();
+            updateStats();
+        }
+
+        function saveLead() {
+            const data = {
+                name: document.getElementById('cap-name').value,
+                phone: document.getElementById('cap-phone').value,
+                email: document.getElementById('cap-email').value,
+                route: document.getElementById('cap-from').value + ' ➔ ' + document.getElementById('cap-to').value,
+                size: document.getElementById('cap-size').value,
+                date: document.getElementById('cap-date').value,
+                vol: document.getElementById('cap-vol').value,
+                special: document.getElementById('cap-special').value,
+                status: document.getElementById('cap-date').value ? 'Synchronized' : 'Lead'
+            };
+
+            if(!data.name) return;
+            titan.customers.unshift(data);
+            
+            // Clear inputs
+            ['cap-name','cap-phone','cap-email','cap-from','cap-to','cap-size','cap-date','cap-vol','cap-special'].forEach(i => document.getElementById(i).value = '');
+            
+            setView('CRM');
+        }
 
         function renderCalendar() {
             const body = document.getElementById('calendar-body');
-            const year = app.currentMonth.getFullYear();
-            const month = app.currentMonth.getMonth();
+            const year = titan.month.getFullYear();
+            const month = titan.month.getMonth();
             const firstDay = new Date(year, month, 1).getDay();
             const daysInMonth = new Date(year, month + 1, 0).getDate();
-            const label = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(app.currentMonth);
-
-            document.getElementById('month-label').innerText = label;
+            
+            document.getElementById('month-label').innerText = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(titan.month);
             body.innerHTML = '';
-
+            
             let date = 1;
             for (let i = 0; i < 6; i++) {
                 let row = document.createElement('tr');
                 for (let j = 0; j < 7; j++) {
                     let cell = document.createElement('td');
                     cell.className = 'date-tile';
-                    
-                    if (i === 0 && j < firstDay) {
-                        cell.style.background = 'transparent';
-                        cell.style.border = 'none';
-                    } else if (date > daysInMonth) {
-                        cell.style.background = 'transparent';
-                        cell.style.border = 'none';
+                    if (i === 0 && j < firstDay || date > daysInMonth) {
+                        cell.style.background = 'transparent'; cell.style.border = 'none';
                     } else {
-                        const key = `${year}-${String(month+1).padStart(2,'0')}-${String(date).padStart(2,'0')}`;
-                        const job = app.jobs[key];
-                        const currentDay = date;
-                        
-                        cell.innerHTML = `
-                            <div style="display:flex; flex-direction:column; height:100%;">
-                                <span style="font-size:16px; font-weight:800; color:${job ? '#3b82f6' : '#555'};">${currentDay}</span>
-                                ${job ? '<div class="job-node-marker"></div>' : ''}
-                            </div>
-                        `;
-                        cell.onclick = () => openEditor(key);
-                        if (app.selectedKey === key) {
-                            cell.style.borderColor = '#3b82f6';
-                            cell.style.backgroundColor = 'rgba(59, 130, 246, 0.1)';
-                        }
+                        const dateString = `${year}-${String(month+1).padStart(2,'0')}-${String(date).padStart(2,'0')}`;
+                        const hasJob = titan.customers.find(c => c.date === dateString);
+                        cell.innerHTML = `<span style="font-size:14px; font-weight:800; color:${hasJob?'#3b82f6':'#444'}">${date}</span>${hasJob?'<div class="job-node"></div>':''}`;
+                        if(hasJob) cell.onclick = () => setView('CRM');
                         date++;
                     }
                     row.appendChild(cell);
@@ -341,59 +356,30 @@
             }
         }
 
-        function switchView(name) {
-            document.getElementById('view-title').innerText = name;
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.innerText.trim() === name) btn.classList.add('active');
-            });
-
-            document.getElementById('DashboardContainer').classList.add('hidden');
-            document.getElementById('AuditContainer').classList.add('hidden');
-            document.getElementById('EditorContainer').classList.add('hidden');
-
-            if (name === 'Dashboard' || name === 'Schedules') {
-                document.getElementById('DashboardContainer').classList.remove('hidden');
-                renderCalendar();
-            } else if (name === 'Audit') {
-                document.getElementById('AuditContainer').classList.remove('hidden');
-            }
+        function renderCRM() {
+            const body = document.getElementById('crm-body');
+            body.innerHTML = titan.customers.map(c => `
+                <tr>
+                    <td class="text-blue-400 font-bold">${c.name}</td>
+                    <td>${c.route}</td>
+                    <td>${c.size}</td>
+                    <td>${c.vol} ft³</td>
+                    <td>${c.date || 'TBD'}</td>
+                    <td><span class="bg-blue-900/30 text-blue-400 px-3 py-1 rounded-full text-[10px] uppercase">${c.status}</span></td>
+                </tr>
+            `).join('');
         }
 
-        function openEditor(key) {
-            app.selectedKey = key;
-            const job = app.jobs[key] || { client: '', truck: '' };
-            document.getElementById('editor-date-text').innerText = new Date(key + "T00:00:00").toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-            document.getElementById('node-client').value = job.client;
-            document.getElementById('node-truck').value = job.truck;
-            document.getElementById('EditorContainer').classList.remove('hidden');
-            document.getElementById('EditorContainer').scrollIntoView({ behavior: 'smooth' });
-            renderCalendar();
+        function updateStats() {
+            document.getElementById('stat-leads').innerText = titan.customers.length;
+            document.getElementById('stat-moves').innerText = titan.customers.filter(c => c.date).length;
         }
 
-        function closeEditor() {
-            document.getElementById('EditorContainer').classList.add('hidden');
-            app.selectedKey = null;
-            renderCalendar();
-        }
+        function changeMonth(dir) { titan.month.setMonth(titan.month.getMonth() + dir); renderCalendar(); }
+        function updateAudit(val) { document.getElementById('aud-res').innerText = '$' + (val * 4.5 * 0.12).toFixed(2); }
 
-        function saveNode() {
-            const key = app.selectedKey;
-            app.jobs[key] = {
-                client: document.getElementById('node-client').value,
-                truck: document.getElementById('node-truck').value
-            };
-            closeEditor();
-        }
-
-        function changeMonth(dir) {
-            app.currentMonth.setMonth(app.currentMonth.getMonth() + dir);
-            renderCalendar();
-        }
-
-        window.onload = renderCalendar;
+        window.onload = () => { renderCalendar(); updateStats(); };
     </script>
 </body>
 </html>
-
 
