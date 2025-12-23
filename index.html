@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>MoveMasters OS | Titan X-87</title>
+    <title>MoveMasters OS | Titan X-90</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
@@ -17,8 +17,6 @@
             --accent: #3b82f6;
             --border-white: #ffffff;
             --card-bg: #0a0a0a;
-            --status-booked: #22c55e;
-            --status-pending: #3b82f6;
         }
 
         body { 
@@ -28,7 +26,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* --- SENTINEL SIDEBAR --- */
+        /* --- SIDEBAR SENTINEL --- */
         .sidebar {
             width: 260px; background-color: var(--sidebar); border-right: 2px solid var(--border-white);
             height: 100%; flex-shrink: 0; display: flex; flex-direction: column; z-index: 1000;
@@ -72,12 +70,26 @@
             font-weight: 700; font-size: 15px; margin-bottom: 12px; outline: none; text-align: center;
         }
 
-        /* --- SIGNATURE PAD --- */
-        .sig-canvas {
-            background: #050505; border: 2px dashed rgba(255,255,255,0.2);
-            border-radius: 20px; cursor: crosshair; touch-action: none;
-            width: 100%; height: 200px;
+        /* --- LOGISTICS MATRIX SCROLLER --- */
+        .category-header {
+            font-size: 10px; font-weight: 900; color: var(--accent); text-transform: uppercase;
+            letter-spacing: 0.4em; margin: 30px 0 15px 0; border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+            width: 100%; padding-bottom: 5px; text-align: center;
         }
+        .inventory-scroll {
+            width: 100%; max-height: 500px; overflow-y: auto; padding-right: 15px;
+            display: flex; flex-direction: column; gap: 10px; margin-top: 50px;
+        }
+        .item-counter {
+            background: rgba(255,255,255,0.03); border: 1.5px solid rgba(255,255,255,0.1);
+            border-radius: 20px; padding: 15px 25px; display: flex; align-items: center; justify-content: space-between;
+        }
+        .qty-btn {
+            width: 42px; height: 42px; border-radius: 12px; border: 1.5px solid rgba(255,255,255,0.2);
+            display: flex; align-items: center; justify-content: center; font-weight: 900; color: #fff; cursor: pointer;
+        }
+        .qty-btn:active { background: var(--accent); transform: scale(0.9); }
+        .qty-val { font-size: 20px; font-weight: 900; color: var(--accent); min-width: 30px; text-align: center; }
 
         /* --- HD CALENDAR MATRIX --- */
         .calendar-card {
@@ -89,15 +101,12 @@
         .date-tile { 
             background: #000; border: 1px solid rgba(255,255,255,0.2);
             border-radius: 14px; height: 115px; padding: 10px; vertical-align: top; 
-            cursor: pointer; transition: 0.15s; overflow: hidden; position: relative;
+            cursor: pointer; transition: 0.15s; position: relative;
         }
-        .date-tile:hover { border-color: #fff; }
-        .date-tile.active-focus { border: 3px solid var(--accent); background: rgba(59, 130, 246, 0.1); }
-        .tile-num { font-size: 14px; font-weight: 900; color: #333; }
         .tile-plus { 
             position: absolute; top: 8px; right: 8px; opacity: 0; color: #fff; background: var(--accent); 
             border-radius: 4px; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
-            font-size: 18px; font-weight: 900; transition: 0.2s;
+            font-size: 18px; font-weight: 900;
         }
         .date-tile:hover .tile-plus { opacity: 1; }
         .job-pill { 
@@ -106,29 +115,15 @@
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
             display: block; width: 100%; text-align: center; border-left: 4px solid var(--accent);
         }
-        .job-pill.authorized { border-left: 4px solid var(--status-booked); background: #f0fff4; }
 
-        /* --- LOGISTICS MATRIX SCROLLER --- */
-        .inventory-scroll {
-            width: 100%; max-height: 480px; overflow-y: auto; padding-right: 15px;
-            display: grid; grid-template-cols: repeat(2, 1fr); gap: 15px; margin-top: 60px;
-        }
-        .item-counter {
-            background: rgba(255,255,255,0.03); border: 1.5px solid rgba(255,255,255,0.1);
-            border-radius: 20px; padding: 20px; display: flex; align-items: center; justify-content: space-between;
-        }
-        .qty-btn {
-            width: 42px; height: 42px; border-radius: 12px; border: 1.5px solid rgba(255,255,255,0.2);
-            display: flex; align-items: center; justify-content: center; font-weight: 900;
-            color: #fff; cursor: pointer; font-size: 18px;
-        }
-        .qty-btn:active { background: var(--accent); transform: scale(0.9); }
-        .qty-val { font-size: 20px; font-weight: 900; color: var(--accent); min-width: 30px; text-align: center; }
-
-        /* --- UTILITIES --- */
+        /* --- UI UTILITIES --- */
         .btn-sync { background: #fff; color: #000; padding: 24px; border-radius: 24px; font-weight: 900; text-transform: uppercase; width: 100%; border: 3px solid #fff; cursor: pointer; }
         .btn-sync:active { transform: scale(0.97); background: var(--accent); color: #fff; }
         .store-btn { background: var(--accent); color: #fff; padding: 22px; border-radius: 20px; font-weight: 900; text-transform: uppercase; width: 100%; border: 2.5px solid var(--accent); cursor: pointer; }
+
+        .photo-gallery { display: grid; grid-template-cols: repeat(auto-fill, minmax(110px, 1fr)); gap: 15px; width: 100%; }
+        .gallery-item { aspect-ratio: 1; border-radius: 18px; overflow: hidden; border: 2.5px solid var(--border-white); background: #000; position: relative; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
         #toast-msg {
             position: fixed; bottom: 40px; right: 40px; background: #fff; color: #000;
@@ -146,12 +141,12 @@
 </head>
 <body>
 
-    <div id="toast-msg">LEAD SYNCHRONIZED</div>
+    <div id="toast-msg">DATA SYNCHRONIZED</div>
 
-    <!-- SIDEBAR -->
+    <!-- COMMAND SIDEBAR (SOVEREIGN ENGINE) -->
     <aside class="sidebar">
         <div class="sidebar-header">
-            <h2 class="text-[18px] font-black uppercase tracking-[0.4em] text-white italic">Titan OS</h2>
+            <h2 class="text-[18px] font-black uppercase tracking-[0.4em] text-white italic">MoveMasters</h2>
         </div>
         <div id="sidebar-nav" class="flex-grow py-6 overflow-y-auto">
             <div id="nav-Dashboard" class="nav-btn active" onclick="switchTab('Dashboard')">Dashboard</div>
@@ -159,13 +154,13 @@
             <div id="nav-CustomerList" class="nav-btn" onclick="switchTab('Customer List')">Customer List</div>
             <div id="nav-CRM" class="nav-btn" onclick="switchTab('CRM')">CRM Database</div>
             <div id="nav-CrewHub" class="nav-btn" onclick="switchTab('Crew Hub')">Crew Hub</div>
-            <div id="nav-Audit" class="nav-btn" onclick="switchTab('Audit')">Referral Audit</div>
             <div id="nav-Fleet" class="nav-btn" onclick="switchTab('Fleet')">Fleet Master</div>
+            <div id="nav-Inventory" class="nav-btn" onclick="switchTab('Inventory')">Inventory Master</div>
             <div id="nav-Financials" class="nav-btn" onclick="switchTab('Financials')">Financial Hub</div>
             <div id="nav-Settings" class="nav-btn" onclick="switchTab('Settings')">Settings</div>
         </div>
         <div class="p-8 border-t-2 border-white bg-zinc-900 text-center">
-            <span class="text-[9px] font-black uppercase text-white tracking-widest italic block text-blue-400">Titan X-87 Magnet</span>
+            <span class="text-[9px] font-black uppercase text-white tracking-widest italic block text-blue-400">Titan X-90 Vision</span>
         </div>
     </aside>
 
@@ -188,7 +183,7 @@
                         <div class="p-6"><table class="calendar-table"><thead><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead><tbody id="calendar-body"></tbody></table></div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                        <div class="node-card"><span class="node-label">Projected Revenue Hub</span><div class="stat-value" id="stat-rev">$0</div></div>
+                        <div class="node-card"><span class="node-label">Revenue Hub</span><div class="stat-value" id="stat-rev">$0</div></div>
                         <div class="node-card"><span class="node-label">Market Load Sync</span><div id="city-stats" class="w-full mt-12 space-y-3"></div></div>
                     </div>
                 </div>
@@ -200,75 +195,83 @@
             </div>
         </div>
 
-        <!-- VIEW: LEAD MAGNET & CAPTURE (WIZARD MODE) -->
+        <!-- VIEW: LEAD MAGNET (CONSUMER WIZARD) -->
         <div id="LeadMagnetView" class="view-panel hidden pb-40">
             <div class="max-w-4xl mx-auto space-y-10">
-                <div class="node-card relative">
+                <div class="node-card relative !min-height-[600px]">
                     <span class="node-label" id="magnet-step-label">Step 1 // Route Node</span>
-                    
-                    <!-- Magnet Steps -->
-                    <div id="magnet-step-1" class="w-full mt-12 space-y-5 animate-in fade-in">
-                        <h4 class="text-3xl font-black italic text-white">WHERE IS THE MISSION?</h4>
-                        <div class="grid grid-cols-2 gap-4">
-                            <input type="text" id="mag-from" placeholder="Pickup Zip">
-                            <input type="text" id="mag-to" placeholder="Delivery Zip">
-                        </div>
-                        <button type="button" onclick="magnetNext(2)" class="btn-sync">Establish Route Node</button>
+                    <div id="magnet-step-1" class="w-full mt-12 space-y-5">
+                        <h4 class="text-3xl font-black italic text-white uppercase">Where is the move?</h4>
+                        <div class="grid grid-cols-2 gap-4"><input type="text" id="mag-from" placeholder="Pickup Zip"><input type="text" id="mag-to" placeholder="Delivery Zip"></div>
+                        <button type="button" onclick="magnetNext(2)" class="btn-sync">Secure Route Node</button>
                     </div>
-
-                    <div id="magnet-step-2" class="w-full mt-12 space-y-6 hidden animate-in slide-in-from-right">
-                        <h4 class="text-3xl font-black italic text-white">SELECT INVENTORY</h4>
-                        <div class="text-5xl font-black italic text-blue-500 mb-4" id="mag-tally">0 ft³</div>
-                        <div id="mag-inventory-grid" class="inventory-scroll custom-scrollbar h-96"></div>
-                        <button type="button" onclick="magnetNext(3)" class="btn-sync">Analyze Volumetric Data</button>
+                    <div id="magnet-step-2" class="w-full mt-12 space-y-6 hidden">
+                        <h4 class="text-3xl font-black italic text-white uppercase">Essential Inventory</h4>
+                        <div class="text-5xl font-black italic text-blue-500" id="mag-tally">0 ft³</div>
+                        <div id="mag-inventory-grid" class="inventory-scroll custom-scrollbar !max-h-[400px]"></div>
+                        <button type="button" onclick="magnetNext(3)" class="btn-sync mt-6">Analyze Matrix</button>
                     </div>
-
-                    <div id="magnet-step-3" class="w-full mt-12 space-y-5 hidden animate-in slide-in-from-right">
-                        <h4 class="text-3xl font-black italic text-white">LEAD CAPTURE</h4>
-                        <p class="text-sm text-zinc-500 uppercase font-black italic">Enter details to unlock your authorized quote</p>
-                        <input type="text" id="mag-name" placeholder="Full Legal Name">
-                        <input type="tel" id="mag-phone" placeholder="Mobile Number">
-                        <input type="email" id="mag-email" placeholder="Email Address">
-                        <button type="button" onclick="magnetNext(4)" class="btn-sync">Generate Authorized Quote</button>
+                    <div id="magnet-step-3" class="w-full mt-12 space-y-5 hidden">
+                        <h4 class="text-3xl font-black italic text-white uppercase">Capture Node</h4>
+                        <input type="text" id="mag-name" placeholder="Legal Name"><input type="tel" id="mag-phone" placeholder="Mobile Node"><input type="email" id="mag-email" placeholder="Email Channel">
+                        <button type="button" onclick="magnetNext(4)" class="btn-sync">Generate Quote</button>
                     </div>
-
-                    <div id="magnet-step-4" class="w-full mt-12 space-y-8 hidden animate-in zoom-in">
-                        <h4 class="text-2xl font-black italic text-zinc-500">AUTHORIZED QUOTE</h4>
+                    <div id="magnet-step-4" class="w-full mt-12 space-y-8 hidden">
+                        <h4 class="text-2xl font-black italic text-zinc-500 uppercase tracking-tighter">Authorized Quote</h4>
                         <div class="text-7xl font-black italic text-green-500" id="mag-final-price">$0.00</div>
-                        <div class="p-6 border-2 border-white/10 rounded-3xl bg-white/[0.02]">
-                            <p id="mag-summary" class="text-xs font-bold text-zinc-400 uppercase leading-loose"></p>
-                        </div>
                         <button type="button" onclick="magnetFinalize()" class="btn-sync bg-blue-600 !text-white border-blue-600">Claim Mission Node</button>
-                        <button onclick="magnetNext(1)" class="text-xs font-black text-zinc-700 uppercase underline">Restart Survey</button>
                     </div>
-
                 </div>
             </div>
         </div>
 
-        <!-- VIEW: CUSTOMER LIST (OPEN INTAKE) -->
+        <!-- VIEW: CUSTOMER LIST (RESTORED DEPTH) -->
         <div id="CustomerListView" class="view-panel hidden pb-40">
             <form id="customer-form">
                 <div class="grid grid-cols-1 xl:grid-cols-3 gap-10">
-                    <div class="node-card"><span class="node-label">01 // Identity Sync</span><div class="w-full mt-12 space-y-4"><input type="text" id="cap-name" placeholder="Name"><input type="tel" id="cap-phone" placeholder="Phone"><input type="email" id="cap-email" placeholder="Email"></div></div>
-                    <div class="node-card"><span class="node-label">02 // Route Nodes</span><div class="w-full mt-12 space-y-4"><input type="text" id="cap-from-city" placeholder="Pickup City"><input type="text" id="cap-to-city" placeholder="Delivery City"><input type="number" id="cap-miles" placeholder="Miles"></div></div>
-                    <div class="node-card"><span class="node-label">03 // Precision Time</span><div class="w-full mt-12 space-y-4"><div class="grid grid-cols-2 gap-4"><input type="date" id="cap-date"><input type="time" id="cap-time" value="08:20"></div><button type="button" onclick="handleSynchronize()" class="btn-sync mt-4">⚡ Sync command node</button></div></div>
+                    <div class="node-card"><span class="node-label">01 // Identity</span><div class="w-full mt-12 space-y-4"><input type="text" id="cap-name" placeholder="Name"><input type="tel" id="cap-phone" placeholder="Primary phone"><input type="tel" id="cap-phone2" placeholder="Secondary line"><input type="email" id="cap-email" placeholder="Email channel"></div></div>
+                    <div class="node-card"><span class="node-label">02 // Logistics</span><div class="w-full mt-12 space-y-4">
+                        <div class="p-5 border-2 border-white/5 rounded-2xl"><p class="text-[9px] font-black uppercase text-zinc-600 mb-2 italic">Pickup</p><input type="text" id="cap-pickup-street" placeholder="Street"><div class="grid grid-cols-3 gap-2"><input type="text" id="cap-pickup-city" placeholder="City"><input type="text" id="cap-pickup-state" placeholder="ST"><input type="text" id="cap-pickup-zip" placeholder="Zip"></div></div>
+                        <div class="p-5 border-2 border-white/5 rounded-2xl"><p class="text-[9px] font-black uppercase text-zinc-600 mb-2 italic">Delivery</p><input type="text" id="cap-delivery-street" placeholder="Street"><div class="grid grid-cols-3 gap-2"><input type="text" id="cap-delivery-city" placeholder="City"><input type="text" id="cap-delivery-state" placeholder="ST"><input type="text" id="cap-delivery-zip" placeholder="Zip"></div></div>
+                    </div></div>
+                    <div class="node-card"><span class="node-label">03 // Precision Schedule</span><div class="w-full mt-12 space-y-4"><div class="grid grid-cols-2 gap-4"><input type="date" id="cap-date"><input type="time" id="cap-time" value="08:20"></div><button type="button" onclick="handleSynchronize()" class="btn-sync mt-4">⚡ Synchronize mission</button></div></div>
+                </div>
+
+                <div class="node-card relative mt-5 !min-height-0">
+                    <span class="node-label">04 // Neural Vision Dossier & Essential Matrix</span>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mt-20 w-full">
+                        <div class="space-y-6 flex flex-col justify-center items-center">
+                            <p class="text-[10px] font-black uppercase text-zinc-500 tracking-widest italic mb-2">Multi-Vision Buffer</p>
+                            <div id="photo-gallery" class="photo-gallery grid grid-cols-3 gap-4">
+                                <div class="gallery-item border-4 border-dashed border-white/30 flex flex-col items-center justify-center cursor-pointer relative hover:border-white transition-all">
+                                    <div class="text-white font-black text-[10px] uppercase text-center">Snap<br>Room</div>
+                                    <input type="file" multiple accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="handlePhotoUpload(this)">
+                                </div>
+                            </div>
+                            <textarea id="cap-notes" rows="6" placeholder="Operational site intelligence..."></textarea>
+                        </div>
+                        <div class="space-y-8 flex flex-col justify-center items-center">
+                            <div class="p-10 bg-black border-2 border-white/10 rounded-[50px] shadow-inner text-center w-full">
+                                <div class="text-6xl font-black italic text-blue-500 mt-3 mb-8" id="calc-tally">0 ft³</div>
+                                <div id="inventory-grid" class="inventory-scroll custom-scrollbar !max-h-[400px]"></div>
+                                <button type="button" onclick="applyCalcToLoad()" class="w-full mt-10 py-5 bg-white text-black rounded-2xl font-black uppercase text-[11px]">Sync Audited volume</button>
+                            </div>
+                            <div class="w-full space-y-4"><input type="number" id="cap-vol" placeholder="Final volume Node" class="!mb-0 text-3xl font-black py-8"><button type="button" onclick="showToast('VISION LOCKED')" class="store-btn">Store Node Dossier</button></div>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
 
         <!-- VIEW: CRM -->
         <div id="CRMView" class="view-panel hidden">
-            <div class="node-card relative !min-height-0">
-                <span class="node-label">BMCR // Command Archive</span>
-                <div id="crm-body" class="w-full mt-16 divide-y divide-white/5"></div>
-            </div>
+            <div class="node-card relative !min-height-0"><span class="node-label">BMCR // Command Database</span><div id="crm-body" class="w-full mt-16 divide-y divide-white/5"></div></div>
         </div>
 
     </main>
 
     <script>
-        // --- SOVEREIGN ENGINE ---
+        // --- 1. SOVEREIGN LOGIC (LOADS FIRST, INDEPENDENT OF CLOUD) ---
         let state = {
             activeTab: 'Dashboard', customers: [],
             currentMonth: new Date(2025, 11, 1),
@@ -276,83 +279,119 @@
             magnetInventory: {}
         };
 
-        const MASTER_ITEMS = [
-            { name: 'Small Box', vol: 1.5 }, { name: 'Medium Box', vol: 3 }, { name: 'Large Box', vol: 4.5 },
-            { name: 'King Bed', vol: 60 }, { name: 'Queen Bed', vol: 50 }, { name: 'Dresser', vol: 25 },
-            { name: 'Sofa (3-Seat)', vol: 50 }, { name: 'Dining Table', vol: 25 }, { name: 'Desk', vol: 20 }
+        const ESSENTIAL_ITEMS = [
+            { cat: 'Bedroom', name: 'King Bed', vol: 60 }, { cat: 'Bedroom', name: 'Queen Bed', vol: 50 }, { cat: 'Bedroom', name: 'Twin Bed', vol: 25 }, { cat: 'Bedroom', name: 'Dresser', vol: 25 }, { cat: 'Bedroom', name: 'Nightstand', vol: 5 }, { cat: 'Bedroom', name: 'Armoire', vol: 30 },
+            { cat: 'Living', name: 'Sectional (Pc)', vol: 30 }, { cat: 'Living', name: 'Sofa (3-Seat)', vol: 50 }, { cat: 'Living', name: 'Loveseat', vol: 35 }, { cat: 'Living', name: 'Armchair', vol: 12 }, { cat: 'Living', name: 'Coffee Table', vol: 10 }, { cat: 'Living', name: 'Entertainment Ctr', vol: 25 },
+            { cat: 'Kitchen', name: 'Fridge', vol: 60 }, { cat: 'Kitchen', name: 'Stove', vol: 25 }, { cat: 'Kitchen', name: 'Washer', vol: 25 }, { cat: 'Kitchen', name: 'Dryer', vol: 25 },
+            { cat: 'Boxes', name: 'Small Box', vol: 1.5 }, { cat: 'Boxes', name: 'Medium Box', vol: 3 }, { cat: 'Boxes', name: 'Large Box', vol: 4.5 }, { cat: 'Boxes', name: 'Dish Pack', vol: 5.2 }, { cat: 'Boxes', name: 'Wardrobe Box', vol: 10 }
         ];
 
         window.switchTab = (id) => {
             state.activeTab = id;
             document.getElementById('view-title').innerText = id;
+            
+            // Hard-ID Sentinel Highlight
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
                 const target = id.replace(/\s+/g, '');
                 if (btn.id === 'nav-' + target || btn.innerText.replace(/\s+/g, '') === target) btn.classList.add('active');
             });
+
             document.querySelectorAll('.view-panel').forEach(p => p.classList.add('hidden'));
             const panel = document.getElementById(id.replace(/\s+/g, '') + 'View');
             if(panel) panel.classList.remove('hidden');
             
             if(id === 'Dashboard') renderCalendar();
-            if(id === 'Lead Magnet') magnetNext(1);
+            if(id === 'Customer List') renderInventoryGrid('inventory-grid', state.inventory, updateTally);
             if(id === 'CRM') renderCRM();
+            
             if(window.MM_CloudSync) window.MM_CloudSync();
         };
 
-        // --- MAGNET WIZARD LOGIC ---
+        // --- 2. VISION & LOGISTICS (SOVEREIGN) ---
+        window.handlePhotoUpload = (input) => {
+            if (!input.files || input.files.length === 0) return;
+            Array.from(input.files).forEach(f => {
+                const r = new FileReader();
+                r.onload = (e) => {
+                    state.images.push(e.target.result);
+                    const div = document.createElement('div'); div.className = 'gallery-item shadow-2xl';
+                    div.innerHTML = `<img src="${e.target.result}">`;
+                    const gallery = document.getElementById('photo-gallery');
+                    if(gallery) gallery.prepend(div);
+                };
+                r.readAsDataURL(f);
+            });
+        };
+
+        function renderInventoryGrid(targetId, inventoryObj, tallyFn) {
+            const container = document.getElementById(targetId);
+            if (!container) return;
+            let currentCat = "";
+            container.innerHTML = ESSENTIAL_ITEMS.map(item => {
+                let html = "";
+                if(item.cat !== currentCat) { currentCat = item.cat; html += `<div class="category-header">${currentCat} Matrix</div>`; }
+                html += `<div class="item-counter"><span class="item-name">${item.name}</span><div class="qty-controls"><div class="qty-btn" onclick="updateQty('${targetId}', '${item.name}', -1)">-</div><span class="qty-val">${inventoryObj[item.name] || 0}</span><div class="qty-btn" onclick="updateQty('${targetId}', '${item.name}', 1)">+</div></div></div>`;
+                return html;
+            }).join('');
+            tallyFn();
+        }
+
+        window.updateQty = (targetId, name, d) => {
+            const obj = targetId === 'inventory-grid' ? state.inventory : state.magnetInventory;
+            obj[name] = Math.max(0, (obj[name] || 0) + d);
+            renderInventoryGrid(targetId, obj, targetId === 'inventory-grid' ? updateTally : updateMagTally);
+        };
+
+        function updateTally() {
+            let total = 0; ESSENTIAL_ITEMS.forEach(i => total += (state.inventory[i.name] || 0) * i.vol);
+            document.getElementById('calc-tally').innerText = total.toFixed(1) + ' ft³';
+        }
+
+        function updateMagTally() {
+            let total = 0; ESSENTIAL_ITEMS.forEach(i => total += (state.magnetInventory[i.name] || 0) * i.vol);
+            document.getElementById('mag-tally').innerText = total.toFixed(1) + ' ft³';
+        }
+
+        window.applyCalcToLoad = () => {
+            let total = 0; ESSENTIAL_ITEMS.forEach(i => total += (state.inventory[i.name] || 0) * i.vol);
+            document.getElementById('cap-vol').value = Math.ceil(total);
+            showToast('VOLUME APPLIED');
+        };
+
         window.magnetNext = (step) => {
             document.querySelectorAll('[id^="magnet-step-"]').forEach(s => s.classList.add('hidden'));
             document.getElementById('magnet-step-' + step).classList.remove('hidden');
             document.getElementById('magnet-step-label').innerText = `Step ${step} // ${step===1?'Route':step===2?'Inventory':step===3?'Capture':'Quote'}`;
-            if(step === 2) renderMagnetInventory();
-            if(step === 4) calculateMagnetQuote();
+            if(step === 2) renderInventoryGrid('mag-inventory-grid', state.magnetInventory, updateMagTally);
+            if(step === 4) {
+                let total = 0; ESSENTIAL_ITEMS.forEach(i => total += (state.magnetInventory[i.name] || 0) * i.vol);
+                document.getElementById('mag-final-price').innerText = '$' + (total * 2.5 + 250).toLocaleString(undefined, {minimumFractionDigits:2});
+            }
         };
-
-        function renderMagnetInventory() {
-            const container = document.getElementById('mag-inventory-grid');
-            container.innerHTML = MASTER_ITEMS.map(item => `
-                <div class="item-counter">
-                    <span class="text-[10px] font-black uppercase text-white">${item.name}</span>
-                    <div class="qty-controls">
-                        <div class="qty-btn" onclick="updateMagQty('${item.name}', -1)">-</div>
-                        <span class="qty-val">${state.magnetInventory[item.name] || 0}</span>
-                        <div class="qty-btn" onclick="updateMagQty('${item.name}', 1)">+</div>
-                    </div>
-                </div>
-            `).join('');
-            let total = 0; MASTER_ITEMS.forEach(i => total += (state.magnetInventory[i.name] || 0) * i.vol);
-            document.getElementById('mag-tally').innerText = total.toFixed(1) + ' ft³';
-        }
-
-        window.updateMagQty = (name, d) => {
-            state.magnetInventory[name] = Math.max(0, (state.magnetInventory[name] || 0) + d);
-            renderMagnetInventory();
-        };
-
-        function calculateMagnetQuote() {
-            let totalVol = 0; MASTER_ITEMS.forEach(i => totalVol += (state.magnetInventory[i.name] || 0) * i.vol);
-            const price = (totalVol * 2.5) + 250;
-            document.getElementById('mag-final-price').innerText = '$' + price.toLocaleString(undefined, {minimumFractionDigits:2});
-            document.getElementById('mag-summary').innerText = `${document.getElementById('mag-from').value} ➔ ${document.getElementById('mag-to').value} // ${totalVol} FT³ LOAD NODE`;
-        }
 
         window.magnetFinalize = () => {
             const name = document.getElementById('mag-name').value;
-            if(!name) return showToast('NAME REQUIRED');
-            let totalVol = 0; MASTER_ITEMS.forEach(i => totalVol += (state.magnetInventory[i.name] || 0) * i.vol);
-            const newLead = {
-                id: Date.now().toString(), name, fromCity: document.getElementById('mag-from').value,
-                toCity: document.getElementById('mag-to').value, date: new Date().toISOString().split('T')[0],
-                time: '08:20', vol: Math.ceil(totalVol), inventory: {...state.magnetInventory}, isMagnetLead: true
-            };
-            state.customers.unshift(newLead);
-            showToast('LEAD CAPTURED');
-            switchTab('Dashboard');
-            state.magnetInventory = {};
+            if(!name) return;
+            let total = 0; ESSENTIAL_ITEMS.forEach(i => total += (state.magnetInventory[i.name] || 0) * i.vol);
+            state.customers.unshift({ id: Date.now().toString(), name, fromCity: document.getElementById('mag-from').value, toCity: document.getElementById('mag-to').value, date: new Date().toISOString().split('T')[0], time: '08:20', vol: Math.ceil(total), inventory: {...state.magnetInventory} });
+            switchTab('Dashboard'); state.magnetInventory = {};
         };
 
-        // --- DASHBOARD & CRM ---
+        window.handleSynchronize = () => {
+            const name = document.getElementById('cap-name').value;
+            const date = document.getElementById('cap-date').value;
+            if(!name || !date) return;
+            let totalVol = 0; ESSENTIAL_ITEMS.forEach(i => totalVol += (state.inventory[i.name] || 0) * i.vol);
+            const newJob = { 
+                id: Date.now().toString(), name, phone: document.getElementById('cap-phone').value,
+                pickup: `${document.getElementById('cap-pickup-city').value}, ${document.getElementById('cap-pickup-state').value}`,
+                delivery: `${document.getElementById('cap-delivery-city').value}, ${document.getElementById('cap-delivery-state').value}`,
+                date, time: document.getElementById('cap-time').value, vol: parseInt(document.getElementById('cap-vol')?.value) || 0, inventory: {...state.inventory}
+            };
+            state.customers.unshift(newJob); switchTab('Dashboard'); document.getElementById('customer-form').reset(); state.inventory = {};
+        };
+
         window.renderCalendar = () => {
             const body = document.getElementById('calendar-body');
             const year = state.currentMonth.getFullYear();
@@ -370,12 +409,7 @@
                     else {
                         const dKey = `${year}-${String(month+1).padStart(2,'0')}-${String(date).padStart(2,'0')}`;
                         const dayJobs = state.customers.filter(c => c.date === dKey);
-                        cell.innerHTML = `
-                            <div class="date-tile ${state.selectedDate === dKey ? 'active-focus' : ''}" onclick="focusDay('${dKey}')">
-                                <div class="tile-header"><span class="tile-num">${date}</span><div class="tile-plus" onclick="quickAdd(event, '${dKey}')">+</div></div>
-                                <div class="jobs-container">${dayJobs.map(j => `<div class="job-pill" onclick="event.stopPropagation(); alert('Lead: '+j.name)">${j.name.split(' ')[0]}</div>`).join('')}</div>
-                            </div>
-                        `;
+                        cell.innerHTML = `<div class="date-tile ${state.selectedDate === dKey ? 'active-focus' : ''}" onclick="focusDay('${dKey}')"><div class="tile-header"><span class="tile-num">${date}</span><div class="tile-plus" onclick="quickAdd(event, '${dKey}')">+</div></div><div class="jobs-container">${dayJobs.map(j => `<div class="job-pill">${j.name.split(' ')[0]}</div>`).join('')}</div></div>`;
                         date++;
                     }
                     row.appendChild(cell);
@@ -383,38 +417,25 @@
                 body.appendChild(row);
                 if (date > daysInMonth) break;
             }
-            updateStats();
         };
 
         window.focusDay = (date) => { state.selectedDate = date; renderCalendar(); 
             const list = document.getElementById('day-jobs-list');
-            const jobs = state.customers.filter(c => c.date === date);
-            list.innerHTML = jobs.length ? jobs.map(j => `<div class="bg-black p-5 rounded-3xl border-2 border-white mb-3 text-center shadow-lg"><span class="text-xl font-black italic text-white">${j.name}</span><div class="text-[10px] font-black uppercase text-zinc-500 mt-2">${j.time} // ${j.vol} FT³</div></div>`).join('') : `<div class="py-12 text-center opacity-10 uppercase text-xs">No Active Manifest</div>`;
+            const jobs = state.customers.filter(c => c.date === date).sort((a,b)=>(a.time||'').localeCompare(b.time||''));
+            document.getElementById('day-node-title').innerText = "Manifest: " + new Date(date + "T00:00:00").toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            list.innerHTML = jobs.length ? jobs.map(j => `<div class="bg-black p-5 rounded-3xl border-2 border-white mb-3 text-center shadow-lg"><span class="text-xl font-black italic text-white">${j.name}</span><div class="text-[10px] font-black uppercase text-zinc-500 mt-2">${j.time} // ${j.vol} FT³</div></div>`).join('') : `<div class="py-12 text-center opacity-10 uppercase text-xs">Empty Manifest</div>`;
         };
 
         window.renderCRM = () => {
             const body = document.getElementById('crm-body');
-            body.innerHTML = state.customers.map(c => `<div class="py-10 flex justify-between items-center px-6"><p class="text-3xl font-black italic text-blue-400 uppercase">${c.name}</p><div class="text-right"><p class="text-[10px] font-black text-green-500 uppercase italic">$${(c.vol*2.5).toLocaleString()}</p><p class="text-[9px] font-bold text-zinc-600 uppercase mt-1">${c.fromCity} ➔ ${c.toCity}</p></div></div>`).join('') || '<p class="py-20 text-center opacity-10">Archive Empty</p>';
+            body.innerHTML = state.customers.map(c => `<div class="py-10 flex justify-between items-center px-6 text-center"><div class="flex-1"><p class="text-3xl font-black italic text-blue-400 uppercase">${c.name}</p></div><div class="flex-1 font-bold text-zinc-500 uppercase">${c.pickup} ➔ ${c.delivery}</div></div>`).join('') || '<p class="py-20 text-center opacity-10">Archive Empty</p>';
         };
 
         window.quickAdd = (e, d) => { e.stopPropagation(); document.getElementById('cap-date').value = d; switchTab('Customer List'); };
         window.showToast = (msg) => { const t = document.getElementById('toast-msg'); t.innerText = msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 2000); };
         window.changeMonth = (dir) => { state.currentMonth.setMonth(state.currentMonth.getMonth() + dir); renderCalendar(); };
 
-        function updateStats() {
-            let totalRev = 0; state.customers.forEach(c => totalRev += (c.vol * 2.5 + 250));
-            document.getElementById('stat-rev').innerText = '$' + totalRev.toLocaleString(undefined, {maximumFractionDigits:0});
-        }
-
-        window.handleSynchronize = () => {
-            const name = document.getElementById('cap-name').value;
-            const date = document.getElementById('cap-date').value;
-            if(!name || !date) return;
-            state.customers.unshift({ id: Date.now().toString(), name, fromCity: document.getElementById('cap-from-city').value, toCity: document.getElementById('cap-to-city').value, date, time: document.getElementById('cap-time').value, vol: parseInt(document.getElementById('cap-vol')?.value) || 0 });
-            switchTab('Dashboard'); if(window.MM_CloudSync) window.MM_CloudSync();
-        };
-
-        // --- CLOUD ENGINE ---
+        // --- 3. CLOUD LAYER (SHIELDED) ---
         try {
             const configString = typeof __firebase_config !== 'undefined' ? __firebase_config : "{}";
             const fConfig = JSON.parse(configString);
@@ -422,11 +443,11 @@
                 firebase.initializeApp(fConfig);
                 const db = firebase.firestore();
                 const auth = firebase.auth();
-                window.MM_CloudSync = async () => { if(!auth.currentUser) return; await db.collection('artifacts').doc('MM-X87').collection('users').doc(auth.currentUser.uid).collection('system').doc('state').set({activeTab: state.activeTab, customers: state.customers, timestamp: Date.now()}, {merge:true}); };
+                window.MM_CloudSync = async () => { if(!auth.currentUser) return; await db.collection('artifacts').doc('MM-X90').collection('users').doc(auth.currentUser.uid).collection('system').doc('state').set({activeTab: state.activeTab, customers: state.customers, timestamp: Date.now()}, {merge:true}); };
                 window.onload = async () => {
                     const t = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
                     if(t) await auth.signInWithCustomToken(t); else await auth.signInAnonymously();
-                    auth.onAuthStateChanged(async (u) => { if(u) { const s = await db.collection('artifacts').doc('MM-X87').collection('users').doc(u.uid).collection('system').doc('state').get(); if(s.exists()) { state.customers = s.data().customers || []; state.activeTab = s.data().activeTab || 'Dashboard'; } } switchTab(state.activeTab); });
+                    auth.onAuthStateChanged(async (u) => { if(u) { const s = await db.collection('artifacts').doc('MM-X90').collection('users').doc(u.uid).collection('system').doc('state').get(); if(s.exists()) { state.customers = s.data().customers || []; state.activeTab = s.data().activeTab || 'Dashboard'; } } switchTab(state.activeTab); });
                 };
             }
         } catch (e) {}
