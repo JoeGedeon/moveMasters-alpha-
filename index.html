@@ -3,12 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>MoveMasters OS | Titan X-60</title>
+    <title>MoveMasters OS | Titan X-61</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Using Compat SDKs for maximum iPad stability -->
-    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore-compat.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
         
@@ -29,10 +25,9 @@
             height: 100dvh;
             width: 100vw;
             overflow: hidden;
-            -webkit-tap-highlight-color: transparent;
         }
 
-        /* 1. PERMANENT SIDEBAR - ALL 9 BUTTONS */
+        /* 1. SIDEBAR ARCHITECTURE (9 NODES) */
         .sidebar {
             width: 260px;
             background-color: var(--sidebar);
@@ -45,20 +40,27 @@
             overflow-y: auto;
         }
 
+        .sidebar-header {
+            padding: 40px 30px;
+            border-bottom: 2px solid var(--border-white);
+        }
+
         .nav-btn {
             display: flex;
             align-items: center;
             gap: 12px;
             padding: 18px 24px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 800;
-            color: #444;
+            color: #555;
             cursor: pointer;
             transition: 0.2s;
             border-bottom: 1px solid rgba(255,255,255,0.05);
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
         }
+
+        .nav-btn:hover { color: #888; background: rgba(255,255,255,0.02); }
 
         .nav-btn.active {
             background-color: rgba(255, 255, 255, 0.05);
@@ -70,9 +72,9 @@
         .main-stage {
             flex-grow: 1;
             overflow-y: auto;
-            background: #000;
             padding: 40px 60px;
             position: relative;
+            background: #000;
         }
 
         .titan-title {
@@ -83,19 +85,22 @@
             letter-spacing: -0.04em;
             line-height: 0.9;
             margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .titan-gradient {
             background: linear-gradient(to right, #ffffff, #3b82f6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* 3. WHITE BORDER CARDS */
+        /* 3. INDUSTRIAL WHITE BORDER CARDS */
         .node-card {
             background: var(--card-bg);
             border: 1px solid var(--border-white);
             border-radius: 20px;
             padding: 30px;
             box-shadow: 0 15px 50px rgba(0,0,0,0.9);
-            position: relative;
             margin-bottom: 25px;
         }
 
@@ -106,7 +111,7 @@
             color: #000;
             background: #fff;
             display: inline-block;
-            padding: 4px 10px;
+            padding: 5px 12px;
             border-radius: 4px;
             letter-spacing: 0.2em;
             margin-bottom: 25px;
@@ -115,7 +120,7 @@
         input, select {
             background: #000 !important;
             border: 1px solid var(--border-white) !important;
-            padding: 16px;
+            padding: 18px;
             border-radius: 12px;
             width: 100%;
             color: #fff !important;
@@ -125,7 +130,7 @@
             outline: none;
         }
 
-        /* 4. WALL GRID */
+        /* 4. WALL CALENDAR */
         .calendar-table {
             width: 100%;
             table-layout: fixed;
@@ -139,8 +144,8 @@
             background: #080808;
             border: 1px solid #1a1a1a;
             border-radius: 14px;
-            height: 105px;
-            padding: 10px;
+            height: 110px;
+            padding: 12px;
             vertical-align: top;
             cursor: pointer;
             transition: 0.2s;
@@ -148,6 +153,8 @@
 
         .date-tile:hover { border-color: #fff; background: #111; }
         .date-tile.active-focus { border: 2px solid var(--accent); background: rgba(59, 130, 246, 0.05); }
+
+        .tile-num { font-size: 12px; font-weight: 900; margin-bottom: 6px; display: block; }
 
         .job-pill {
             background: #ffffff;
@@ -162,7 +169,18 @@
             text-overflow: ellipsis;
         }
 
-        /* 5. SYNC BUTTON */
+        /* 5. PHOTO GALLERY */
+        .photo-gallery {
+            display: grid;
+            grid-template-cols: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .gallery-item { aspect-ratio: 1; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-white); position: relative; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* 6. SYNC BUTTON */
         .btn-sync {
             background: #ffffff;
             color: #000;
@@ -178,17 +196,6 @@
         }
 
         .btn-sync:active { transform: scale(0.97); background: var(--accent); color: #fff; }
-
-        /* 6. PHOTO GALLERY */
-        .photo-gallery {
-            display: grid;
-            grid-template-cols: repeat(auto-fill, minmax(130px, 1fr));
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        .gallery-item { aspect-ratio: 1; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-white); position: relative; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
         .hidden { display: none !important; }
         .no-select { -webkit-user-select: none; user-select: none; }
@@ -207,16 +214,16 @@
 </head>
 <body class="no-select">
 
-    <!-- SIDEBAR (9 NODES HARD-CODED) -->
+    <!-- SIDEBAR -->
     <aside class="sidebar custom-scrollbar">
-        <div class="p-10 border-b-2 border-white">
-            <h2 class="text-[16px] font-black uppercase tracking-[0.4em] text-white italic">MoveMasters</h2>
+        <div class="sidebar-header">
+            <h2 class="text-[18px] font-black uppercase tracking-[0.4em] text-white italic">MoveMasters</h2>
         </div>
         <div class="flex-grow py-4">
             <div id="nav-Dashboard" class="nav-btn active" onclick="switchTab('Dashboard')">Dashboard</div>
-            <div id="nav-CustomerList" class="nav-btn" onclick="switchTab('Customer List')">Customer List</div>
+            <div id="nav-CustomerList" class="nav-btn" onclick="switchTab('CustomerList')">Customer List</div>
             <div id="nav-CRM" class="nav-btn" onclick="switchTab('CRM')">CRM Database</div>
-            <div id="nav-CrewHub" class="nav-btn" onclick="switchTab('Crew Hub')">Crew Hub</div>
+            <div id="nav-CrewHub" class="nav-btn" onclick="switchTab('CrewHub')">Crew Hub</div>
             <div id="nav-Audit" class="nav-btn" onclick="switchTab('Audit')">Referral Audit</div>
             <div id="nav-Fleet" class="nav-btn" onclick="switchTab('Fleet')">Fleet Master</div>
             <div id="nav-Inventory" class="nav-btn" onclick="switchTab('Inventory')">Inventory Master</div>
@@ -224,14 +231,14 @@
             <div id="nav-Settings" class="nav-btn" onclick="switchTab('Settings')">Settings</div>
         </div>
         <div class="p-8 border-t-2 border-white bg-zinc-900">
-            <span class="text-[9px] font-black uppercase text-white tracking-widest italic">M5 Total Override v60</span>
+            <span class="text-[9px] font-black uppercase text-white tracking-widest italic">Iron Logic v61.0</span>
         </div>
     </aside>
 
     <!-- MAIN CONSOLE -->
     <main class="main-stage custom-scrollbar">
         <div class="glow"></div>
-        <h1 id="view-title" class="titan-title">Dashboard</h1>
+        <h1 id="view-title" class="titan-title titan-gradient">Dashboard</h1>
 
         <!-- VIEW: DASHBOARD -->
         <div id="DashboardView" class="view-panel">
@@ -241,8 +248,8 @@
                         <div class="p-8 flex justify-between items-center border-b-2 border-white bg-white/[0.01]">
                             <h3 class="text-2xl font-black italic uppercase" id="month-label">December 2025</h3>
                             <div class="flex gap-4">
-                                <button onclick="changeMonth(-1)" class="w-14 h-14 border-2 border-white rounded-xl flex items-center justify-center">◀</button>
-                                <button onclick="changeMonth(1)" class="w-14 h-14 border-2 border-white rounded-xl flex items-center justify-center">▶</button>
+                                <button onclick="changeMonth(-1)" class="w-14 h-14 border-2 border-white rounded-xl flex items-center justify-center hover:bg-white hover:text-black">◀</button>
+                                <button onclick="changeMonth(1)" class="w-14 h-14 border-2 border-white rounded-xl flex items-center justify-center hover:bg-white hover:text-black">▶</button>
                             </div>
                         </div>
                         <div class="p-6">
@@ -253,127 +260,106 @@
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-10">
-                        <div class="node-card"><p class="text-zinc-500 uppercase font-black text-[10px] mb-4 tracking-widest">Revenue Node</p><h4 class="text-7xl font-black italic text-white" id="stat-rev">$142,850</h4></div>
-                        <div class="node-card"><p class="text-zinc-500 uppercase font-black text-[10px] mb-4 tracking-widest">Market Load</p><div id="city-stats" class="space-y-2 mt-2"></div></div>
+                        <div class="node-card"><p class="text-zinc-500 uppercase font-black text-[10px] mb-4 tracking-widest">Revenue Hub</p><h4 class="text-7xl font-black italic text-white" id="stat-rev">$142,850</h4></div>
+                        <div class="node-card"><p class="text-zinc-500 uppercase font-black text-[10px] mb-4 tracking-widest">Market load</p><div id="city-stats" class="space-y-2 mt-2"></div></div>
                     </div>
                 </div>
                 <div class="node-card h-fit sticky top-0 border-2 border-white">
-                    <h4 id="day-node-title" class="text-2xl font-black uppercase italic text-white mb-6 tracking-tighter">Day Node</h4>
+                    <h4 id="day-node-title" class="text-2xl font-black uppercase italic text-white mb-6">Day Node</h4>
                     <div id="day-jobs-list" class="space-y-6"></div>
                 </div>
             </div>
         </div>
 
-        <!-- VIEW: CUSTOMER LIST (3-COLUMN OPEN ARCHITECTURE) -->
+        <!-- VIEW: CUSTOMER LIST (OPEN ARCHITECTURE) -->
         <div id="CustomerListView" class="view-panel hidden">
-            <form id="customer-form">
-                <div class="grid grid-cols-1 xl:grid-cols-3 gap-10">
-                    <div class="node-card space-y-4">
-                        <span class="node-label">01 // Identity node</span>
-                        <input type="text" id="cap-name" placeholder="Legal Full Name">
-                        <input type="tel" id="cap-phone" placeholder="Mobile phone">
-                        <input type="email" id="cap-email" placeholder="Email channel">
-                    </div>
-                    <div class="node-card space-y-4">
-                        <span class="node-label">02 // Logistics sync</span>
-                        <input type="text" id="cap-from-city" placeholder="Origin City">
-                        <input type="text" id="cap-to-city" placeholder="Destination City">
-                        <input type="text" id="cap-zip" placeholder="Zip code node">
-                    </div>
-                    <div class="node-card space-y-4">
-                        <span class="node-label">03 // Dispatch node</span>
-                        <input type="date" id="cap-date">
-                        <select id="cap-crew"><option>Marcus T. (Foreman)</option><option>James R. (Foreman)</option><option>David L. (Foreman)</option></select>
-                        <button type="button" onclick="handleSynchronize()" class="btn-sync mt-4">⚡ Synchronize command</button>
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-10">
+                <!-- 01 IDENTITY -->
+                <div class="node-card space-y-4">
+                    <span class="node-label">01 // Identity node</span>
+                    <input type="text" id="cap-name" placeholder="Full Legal Name">
+                    <input type="tel" id="cap-phone" placeholder="Mobile Phone">
+                    <input type="email" id="cap-email" placeholder="Email Address">
+                </div>
+                <!-- 02 LOGISTICS -->
+                <div class="node-card space-y-4">
+                    <span class="node-label">02 // Route sync</span>
+                    <input type="text" id="cap-from-city" placeholder="Origin City">
+                    <input type="text" id="cap-to-city" placeholder="Destination City">
+                    <input type="text" id="cap-zip" placeholder="Zip Node">
+                </div>
+                <!-- 03 DISPATCH -->
+                <div class="node-card space-y-4">
+                    <span class="node-label">03 // Schedule</span>
+                    <input type="date" id="cap-date">
+                    <select id="cap-crew"><option>Marcus T. (Foreman)</option><option>James R. (Foreman)</option></select>
+                    <button onclick="handleSynchronize()" class="btn-sync mt-4">⚡ Synchronize command</button>
+                </div>
+            </div>
+            <!-- PHOTO DUMP -->
+            <div class="node-card mt-10">
+                <span class="node-label">04 // Survey Dossier gallery</span>
+                <div id="photo-dump-gallery" class="photo-gallery">
+                    <div class="gallery-item bg-black border-4 border-dashed border-white flex flex-col items-center justify-center cursor-pointer relative">
+                        <div class="text-white font-black text-[10px] uppercase">Snap Node</div>
+                        <input type="file" multiple accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="handlePhotoUpload(this)">
                     </div>
                 </div>
-                <div class="node-card mt-10">
-                    <span class="node-label">04 // Survey Dossier gallery</span>
-                    <div id="photo-dump-gallery" class="photo-gallery">
-                        <div class="gallery-item bg-black border-4 border-dashed border-white flex flex-col items-center justify-center cursor-pointer relative">
-                            <div class="text-white font-black text-[10px] uppercase">Snap Node</div>
-                            <input type="file" multiple accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="handlePhotoUpload(this)">
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <!-- CRM VIEW -->
-        <div id="CRMView" class="view-panel hidden">
-            <div class="node-card">
-                <table class="w-full text-left">
-                    <thead><tr class="text-[10px] font-black uppercase text-zinc-600 border-b border-white/10"><th class="pb-6">Client</th><th class="pb-6">Route</th><th class="pb-6">Vol</th></tr></thead>
-                    <tbody id="crm-body" class="divide-y divide-white/5"></tbody>
-                </table>
             </div>
         </div>
 
-        <!-- PLACEHOLDER PANELS -->
-        <div id="CrewHubView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Crew Hub</h3></div></div>
-        <div id="AuditView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Audit</h3></div></div>
-        <div id="FleetView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Fleet</h3></div></div>
-        <div id="InventoryView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Inventory</h3></div></div>
-        <div id="FinancialsView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Financials</h3></div></div>
-        <div id="SettingsView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Settings</h3></div></div>
-
-        <!-- MASTER EDITOR -->
-        <div id="edit-modal" class="fixed inset-0 bg-black/95 backdrop-blur-3xl z-[2000] hidden overflow-y-auto p-12">
-            <div class="bg-zinc-900 border-4 border-white rounded-[60px] p-16 max-w-6xl w-full mx-auto shadow-2xl">
-                <div class="flex justify-between items-center mb-16">
-                    <h4 class="text-5xl font-black italic uppercase">Edit Node</h4>
-                    <button onclick="closeEditor()" class="p-5 border-4 border-white rounded-full">✕</button>
-                </div>
-                <div class="grid grid-cols-2 gap-16">
-                    <div class="space-y-8">
-                        <input type="text" id="edit-name" class="text-3xl font-black">
-                        <div class="grid grid-cols-2 gap-4"><input type="date" id="edit-date"><input type="time" id="edit-time"></div>
-                        <input type="number" id="edit-vol" placeholder="ft³">
-                    </div>
-                    <div id="edit-gallery" class="grid grid-cols-3 gap-4"></div>
-                </div>
-                <button onclick="finalizeEdit()" class="btn-sync mt-16 py-10 text-2xl italic">Finalize Sync</button>
-            </div>
-        </div>
+        <!-- OTHER SHELLS -->
+        <div id="CRMView" class="view-panel hidden"><div class="node-card"><h3 class="text-3xl font-black italic">CRM DATABASE</h3><div id="crm-body" class="mt-8"></div></div></div>
+        <div id="CrewHubView" class="view-panel hidden"><div class="node-card"><h3 class="text-3xl font-black italic uppercase">Crew Hub Active</h3></div></div>
+        <div id="AuditView" class="view-panel hidden"><div class="node-card"><h3 class="text-3xl font-black italic uppercase">Audit Mode</h3></div></div>
+        <div id="FleetView" class="view-panel hidden"><div class="node-card"><h3 class="text-3xl font-black italic uppercase">Fleet Master</h3></div></div>
+        <div id="InventoryView" class="view-panel hidden"><div class="node-card"><h3 class="text-3xl font-black italic uppercase">Inventory Master</h3></div></div>
+        <div id="FinancialsView" class="view-panel hidden"><div class="node-card"><h3 class="text-3xl font-black italic uppercase">Financial Hub</h3></div></div>
+        <div id="SettingsView" class="view-panel hidden"><div class="node-card"><h3 class="text-3xl font-black italic uppercase">Settings</h3></div></div>
 
     </main>
 
+    <!-- UI LOGIC (CRITICAL: PLACED FIRST) -->
     <script>
-        // Use Compat Global variable style
-        const firebaseConfig = JSON.parse(__firebase_config || "{}");
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'titan-x60';
-        
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        const auth = firebase.auth();
-
+        // 1. STATE INITIALIZATION
         let state = {
             activeTab: 'Dashboard',
             customers: [],
             currentMonth: new Date(2025, 11, 1),
             selectedDate: '2025-12-22',
-            images: [], vol: 0, editingId: null
+            images: [], vol: 0
         };
 
-        // --- 1. CORE NAV ---
-        window.switchTab = (id) => {
+        // 2. TAB SWITCHING (Trapped-Proof)
+        window.switchTab = function(id) {
+            console.log("Switching to:", id);
             state.activeTab = id;
+            
+            // Title
             document.getElementById('view-title').innerText = id;
+            
+            // Sidebar buttons
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
-                if(btn.innerText.includes(id)) btn.classList.add('active');
+                if(btn.id === 'nav-' + id.replace(' ', '')) btn.classList.add('active');
             });
+            
+            // View panels
             document.querySelectorAll('.view-panel').forEach(p => p.classList.add('hidden'));
             const panel = document.getElementById(id.replace(' ', '') + 'View');
             if(panel) panel.classList.remove('hidden');
-            window.renderCalendar();
+            
+            if(id === 'Dashboard') window.renderCalendar();
             if(id === 'CRM') renderCRM();
-            saveState();
+            
+            // Background save (doesn't block UI)
+            if(window.saveState) window.saveState();
         };
 
-        // --- 2. CALENDAR ---
-        window.renderCalendar = () => {
+        // 3. CALENDAR ENGINE
+        window.renderCalendar = function() {
             const body = document.getElementById('calendar-body');
+            if(!body) return;
             const year = state.currentMonth.getFullYear();
             const month = state.currentMonth.getMonth();
             const firstDay = new Date(year, month, 1).getDay();
@@ -389,7 +375,7 @@
                     else {
                         const dKey = `${year}-${String(month+1).padStart(2,'0')}-${String(date).padStart(2,'0')}`;
                         const dayJobs = state.customers.filter(c => c.date === dKey);
-                        cell.innerHTML = `<span style="font-size:12px; font-weight:900; color:${dayJobs.length?'#3b82f6':'#333'}">${date}</span>`;
+                        cell.innerHTML = `<span class="tile-num ${dayJobs.length?'text-blue-400':'text-zinc-700'}">${date}</span>`;
                         dayJobs.slice(0,2).forEach(j => { cell.innerHTML += `<div class="job-pill">${j.name.split(' ')[0]}</div>`; });
                         const currentD = dKey; cell.onclick = () => focusDay(currentD);
                         if(state.selectedDate === dKey) cell.classList.add('active-focus');
@@ -407,10 +393,9 @@
             const list = document.getElementById('day-jobs-list');
             const jobs = state.customers.filter(c => c.date === date);
             document.getElementById('day-node-title').innerText = "Nodes: " + new Date(date + "T00:00:00").toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-            list.innerHTML = jobs.length ? jobs.map(j => `<div class="bg-black p-6 rounded-2xl border-2 border-white mb-4"><span class="text-xl font-black italic text-white">${j.name}</span><div class="text-[10px] font-black uppercase text-zinc-500 mt-2">${j.time || '08:00'} // ${j.toCity || 'Local'}</div></div>`).join('') : `<div class="py-20 text-center opacity-10 italic text-xs uppercase">No Active Nodes</div>`;
+            list.innerHTML = jobs.length ? jobs.map(j => `<div class="bg-black p-6 rounded-2xl border-2 border-white mb-4"><span class="text-xl font-black italic text-white">${j.name}</span><div class="text-[10px] font-black uppercase text-zinc-500 mt-2">${j.time || '08:00'} // ${j.fromCity || 'Local'}</div></div>`).join('') : `<div class="py-20 text-center opacity-10 italic text-xs uppercase">No Active Nodes</div>`;
         }
 
-        // --- 3. INTAKE ---
         window.handlePhotoUpload = (input) => {
             const files = Array.from(input.files);
             files.forEach(file => {
@@ -425,55 +410,55 @@
             });
         };
 
-        window.handleSynchronize = () => {
+        window.handleSynchronize = function() {
             const name = document.getElementById('cap-name').value;
             const date = document.getElementById('cap-date').value;
             if(!name || !date) return;
             const newJob = { id: Date.now().toString(), name, fromCity: document.getElementById('cap-from-city').value, toCity: document.getElementById('cap-to-city').value, date, images: [...state.images], vol: 350 };
             state.customers.unshift(newJob);
             switchTab('Dashboard');
-            state.images = []; document.getElementById('customer-form').reset();
+            state.images = [];
             document.querySelectorAll('#photo-dump-gallery .gallery-item:not(:last-child)').forEach(el => el.remove());
-            saveState();
         };
 
-        async function saveState() {
-            if(!auth.currentUser) return;
-            await db.collection('artifacts').doc(appId).collection('users').doc(auth.currentUser.uid).collection('system').doc('state').set({
-                activeTab: state.activeTab,
-                customers: state.customers,
-                timestamp: Date.now()
-            }, { merge: true });
-        }
+        window.changeMonth = (dir) => { state.currentMonth.setMonth(state.currentMonth.getMonth() + dir); window.renderCalendar(); };
 
         function renderCRM() {
             const body = document.getElementById('crm-body');
-            body.innerHTML = state.customers.map(c => `<tr class="hover:bg-white/[0.02] transition-all"><td class="p-6 font-black italic text-blue-400">${c.name}</td><td class="p-6 text-zinc-500 font-bold uppercase">${c.fromCity} ➔ ${c.toCity}</td><td class="p-6 font-black">${c.vol} ft³</td></tr>`).join('');
+            body.innerHTML = state.customers.map(c => `<div class="p-6 border-b border-white/5 font-black text-blue-400 italic">${c.name} - ${c.date}</div>`).join('');
         }
 
-        // --- 4. INIT ---
-        window.changeMonth = (dir) => { state.currentMonth.setMonth(state.currentMonth.getMonth() + dir); window.renderCalendar(); };
+        window.onload = () => { window.renderCalendar(); };
+    </script>
 
-        async function boot() {
-            try {
-                const token = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-                if(token) await auth.signInWithCustomToken(token);
-                else await auth.signInAnonymously();
+    <!-- CLOUD LOGIC (MODULAR FIREBASE) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 
-                auth.onAuthStateChanged(async (u) => {
-                    if(u) {
-                        const snap = await db.collection('artifacts').doc(appId).collection('users').doc(u.uid).collection('system').doc('state').get();
-                        if(snap.exists) {
-                            state.customers = snap.data().customers || [];
-                            state.activeTab = snap.data().activeTab || 'Dashboard';
-                        }
-                    }
-                    switchTab(state.activeTab);
-                });
-            } catch(e) { switchTab('Dashboard'); }
+        const firebaseConfig = JSON.parse(__firebase_config || "{}");
+        if(firebaseConfig.apiKey) {
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth(app);
+            const db = getFirestore(app);
+            const appId = typeof __app_id !== 'undefined' ? __app_id : 'titan-x61';
+
+            window.saveState = async () => {
+                if(!auth.currentUser) return;
+                await setDoc(doc(db, 'artifacts', appId, 'users', auth.currentUser.uid, 'system', 'state'), {
+                    customers: state.customers, activeTab: state.activeTab
+                }, { merge: true });
+            };
+
+            signInAnonymously(auth).then(async (cred) => {
+                const snap = await getDoc(doc(db, 'artifacts', appId, 'users', cred.user.uid, 'system', 'state'));
+                if(snap.exists()) {
+                    state.customers = snap.data().customers || [];
+                    window.renderCalendar();
+                }
+            });
         }
-
-        window.onload = boot;
     </script>
 </body>
 </html>
