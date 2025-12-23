@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>MoveMasters OS | Titan X-121 Sovereign</title>
+    <title>MoveMasters OS | Titan X-123 Sovereign</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
@@ -36,7 +36,7 @@
         .sidebar-header { padding: 40px 20px; border-bottom: 2px solid var(--border-white); text-align: center; }
         .nav-btn {
             display: flex; align-items: center; gap: 12px; padding: 22px 24px;
-            font-size: 11px; font-weight: 800; color: #444; cursor: pointer;
+            font-size: 11px; font-weight: 800; color: #555; cursor: pointer;
             transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1); border-bottom: 1px solid rgba(255,255,255,0.05);
             text-transform: uppercase; letter-spacing: 0.15em; border-left: 0px solid transparent;
         }
@@ -46,12 +46,19 @@
             color: #ffffff !important;
             border-left: 12px solid var(--accent) !important;
             box-shadow: inset 30px 0 50px -20px rgba(59, 130, 246, 0.8) !important;
+            font-weight: 900 !important;
         }
 
-        /* --- MAIN STAGE (SCROLLABLE CONSOLE) --- */
+        /* --- MAIN STAGE (SCROLLABLE RE-ENGINEERED) --- */
         .main-stage { 
-            flex-grow: 1; height: 100vh; overflow-y: auto; padding: 40px; 
-            background: #000; position: relative; -webkit-overflow-scrolling: touch;
+            flex-grow: 1; 
+            height: 100vh; 
+            overflow-y: scroll !important; /* FORCED SCROLLING */
+            padding: 40px; 
+            background: #000; 
+            position: relative; 
+            -webkit-overflow-scrolling: touch; /* IPAD SMOOTH SCROLL */
+            display: block;
         }
         .titan-title { font-size: 40px; font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: -0.04em; margin-bottom: 30px; text-align: center; }
         .titan-gradient { background: linear-gradient(to right, #fff, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -77,48 +84,51 @@
             font-weight: 700; font-size: 15px; margin-bottom: 12px; outline: none; text-align: center;
         }
 
-        /* --- CALENDAR MATRIX STYLES --- */
-        .calendar-table { width: 96%; margin: 0 auto; table-layout: fixed; border-collapse: separate; border-spacing: 8px; }
-        .calendar-table th { font-size: 11px; font-weight: 900; color: #ffffff; text-transform: uppercase; padding: 15px 0; }
-        .date-tile { 
-            background: #000; border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 14px; height: 120px; padding: 10px; vertical-align: top; 
-            cursor: pointer; transition: 0.15s; position: relative;
-        }
-        .date-tile:hover { border-color: #fff; background: #080808; }
-        .date-tile[data-selected="true"] { border: 3px solid var(--accent); background: rgba(59, 130, 246, 0.1); }
-        .job-pill { 
-            background: #ffffff; color: #000; font-size: 8px; font-weight: 900; 
-            padding: 5px 8px; border-radius: 6px; margin-top: 5px; 
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-            display: block; width: 100%; text-align: center; border-left: 4px solid var(--accent);
-            cursor: pointer;
-        }
-
-        /* --- LOGISTICS MATRIX SCROLLER --- */
+        /* --- LOGISTICS MATRIX --- */
         .category-header {
             font-size: 10px; font-weight: 900; color: var(--accent); text-transform: uppercase;
             letter-spacing: 0.4em; margin: 30px 0 15px 0; border-bottom: 1px solid rgba(59, 130, 246, 0.3);
             width: 100%; padding-bottom: 5px; text-align: center;
         }
         .inventory-scroll {
-            width: 100%; max-height: 450px; overflow-y: auto; padding-right: 15px;
+            width: 100%; max-height: 500px; overflow-y: auto; padding-right: 15px;
             display: flex; flex-direction: column; gap: 10px; margin-top: 40px;
         }
         .item-counter {
             background: rgba(255,255,255,0.03); border: 1.5px solid rgba(255,255,255,0.1);
-            border-radius: 20px; padding: 15px 25px; display: flex; align-items: center; justify-content: space-between;
+            border-radius: 20px; padding: 18px 25px; display: flex; align-items: center; justify-content: space-between;
         }
+        .qty-controls { display: flex; align-items: center; gap: 15px; }
         .qty-btn {
-            width: 40px; height: 40px; border-radius: 12px; border: 1.5px solid rgba(255,255,255,0.2);
+            width: 38px; height: 38px; border-radius: 10px; border: 1.5px solid rgba(255,255,255,0.2);
             display: flex; align-items: center; justify-content: center; font-weight: 900; color: #fff; cursor: pointer;
         }
         .qty-btn:active { background: var(--accent); transform: scale(0.9); }
+        .qty-val { font-size: 20px; font-weight: 900; color: var(--accent); min-width: 30px; text-align: center; }
+
+        /* --- HD CALENDAR MATRIX --- */
+        .calendar-table { width: 96%; margin: 0 auto; table-layout: fixed; border-collapse: separate; border-spacing: 8px; }
+        .calendar-table th { font-size: 11px; font-weight: 900; color: #ffffff; text-transform: uppercase; padding: 15px 0; }
+        .date-tile { 
+            background: #000; border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px; height: 115px; padding: 10px; vertical-align: top; 
+            cursor: pointer; transition: 0.15s; position: relative;
+        }
+        .date-tile:hover { border-color: #fff; background: #080808; }
+        .date-tile[data-selected="true"] { border: 3px solid var(--accent); background: rgba(59, 130, 246, 0.1); }
+        .job-pill { 
+            background: #ffffff; color: #000; font-size: 8px; font-weight: 900; 
+            padding: 4px 6px; border-radius: 6px; margin-top: 4px; 
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            display: block; width: 100%; text-align: center; border-left: 4px solid var(--accent);
+            cursor: pointer;
+        }
 
         /* --- UI UTILITIES --- */
         .btn-sync { background: #fff; color: #000; padding: 24px; border-radius: 24px; font-weight: 900; text-transform: uppercase; width: 100%; border: 3px solid #fff; cursor: pointer; }
-        .save-btn { background: var(--accent); color: #fff; padding: 22px; border-radius: 20px; font-weight: 900; text-transform: uppercase; width: 100%; border: 2.5px solid var(--accent); cursor: pointer; }
-        
+        .save-btn { background: var(--accent); color: #fff; padding: 22px; border-radius: 20px; font-weight: 900; text-transform: uppercase; width: 100%; border: 2.5px solid var(--accent); cursor: pointer; letter-spacing: 0.1em; }
+        .save-btn:active { transform: scale(0.98); background: #2563eb; }
+
         #toast-msg {
             position: fixed; bottom: 40px; right: 40px; background: #fff; color: #000;
             padding: 22px 45px; border-radius: 24px; font-weight: 900; uppercase;
@@ -133,17 +143,22 @@
         .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.98); backdrop-filter: blur(30px); z-index: 5000; overflow-y: auto; padding: 40px; }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-thumb { background: #fff; border-radius: 10px; }
+
+        /* --- TICKER --- */
+        #ticker-feed { overflow: hidden; height: 40px; }
+        .ticker-item { animation: slideIn 0.3s ease-out forwards; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <div id="toast-msg">SYSTEM SYNCHRONIZED</div>
+    <div id="toast-msg">DATA SYNCHRONIZED</div>
 
-    <!-- COMMAND SIDEBAR (SOVEREIGN ENGINE) -->
+    <!-- COMMAND SIDEBAR -->
     <aside class="sidebar">
         <div class="sidebar-header"><h2 class="text-[18px] font-black uppercase tracking-[0.4em] text-white italic">MoveMasters</h2></div>
         <div id="sidebar-nav" class="flex-grow py-6">
-            <div id="nav-Dashboard" class="nav-btn" data-active="true" onclick="switchTab('Dashboard')">Dashboard</div>
+            <div id="nav-Dashboard" class="nav-btn sentinel-active" onclick="switchTab('Dashboard')">Dashboard</div>
             <div id="nav-LeadMagnet" class="nav-btn" style="color:var(--gold)" onclick="switchTab('Lead Magnet')">★ Lead Magnet</div>
             <div id="nav-CustomerList" class="nav-btn" onclick="switchTab('Customer List')">Customer List</div>
             <div id="nav-CRM" class="nav-btn" onclick="switchTab('CRM')">CRM Database</div>
@@ -154,39 +169,44 @@
             <div id="nav-Settings" class="nav-btn" onclick="switchTab('Settings')">Settings</div>
         </div>
         <div class="p-8 border-t-2 border-white bg-zinc-900 text-center">
-            <span class="text-[9px] font-black uppercase text-white tracking-widest italic block text-blue-400">Titan X-121 Sovereign</span>
+            <span class="text-[9px] font-black uppercase text-white tracking-widest italic block text-blue-400">Titan X-123 Sovereign</span>
         </div>
     </aside>
 
-    <main class="main-stage custom-scrollbar">
+    <main class="main-stage">
         <div class="glow"></div>
         <h1 id="view-title" class="titan-title titan-gradient">Dashboard</h1>
 
         <!-- VIEW: DASHBOARD -->
         <div id="DashboardView" class="view-panel">
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
-                <div class="lg:col-span-3 space-y-10">
+                <div class="lg:col-span-3 space-y-10 pb-40">
+                    <!-- TICKER -->
+                    <div class="node-card !min-height-0 !p-6 bg-blue-500/5 border-blue-500/20">
+                        <span class="node-label">Command Activity Feed</span>
+                        <div id="ticker-feed" class="w-full mt-10">
+                            <p class="ticker-item text-[10px] font-black uppercase text-blue-400 italic">... SYSTEM SECURE // STANDBY FOR LEAD NODES ...</p>
+                        </div>
+                    </div>
+
                     <div class="node-card !min-height-0 !p-8 bg-zinc-950">
                         <div class="flex justify-between items-center w-full mb-8">
                             <h3 class="text-3xl font-black italic uppercase text-white" id="month-label">December 2025</h3>
                             <div class="flex gap-4"><button onclick="changeMonth(-1)" class="w-14 h-14 border border-white/20 rounded-xl flex items-center justify-center font-bold">◀</button><button onclick="changeMonth(1)" class="w-14 h-14 border border-white/20 rounded-xl flex items-center justify-center font-bold">▶</button></div>
                         </div>
-                        <table class="calendar-table">
-                            <thead><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead>
-                            <tbody id="calendar-body"></tbody>
-                        </table>
+                        <div id="calendar-container"></div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                         <div class="node-card"><span class="node-label">Command Revenue</span><div class="stat-value text-5xl font-black italic" id="stat-rev">$0</div></div>
-                        <div class="node-card"><span class="node-label">Mission Hub</span><div class="text-5xl font-black italic text-blue-400" id="stat-active">0</div></div>
+                        <div class="node-card"><span class="node-label">Mission Load</span><div class="text-5xl font-black italic text-blue-400" id="stat-active">0</div></div>
                     </div>
                 </div>
                 <div class="node-card h-fit sticky top-0 !min-height-0"><span class="node-label">Active Manifest</span><h4 id="day-node-title" class="text-2xl font-black uppercase italic text-white mt-12 mb-8">Day Node</h4><div id="day-jobs-list" class="space-y-5 w-full"></div></div>
             </div>
         </div>
 
-        <!-- VIEW: CUSTOMER LIST (ABSOLUTE INTAKE) -->
-        <div id="CustomerListView" class="view-panel hidden pb-40">
+        <!-- VIEW: CUSTOMER LIST (INTAKE HUB) -->
+        <div id="CustomerListView" class="view-panel hidden pb-80">
             <form id="customer-form">
                 <div class="grid grid-cols-1 xl:grid-cols-3 gap-10">
                     <div class="node-card"><span class="node-label">01 // Identity Hub</span><div class="w-full mt-12 space-y-4">
@@ -194,44 +214,41 @@
                         <input type="tel" id="cap-phone" placeholder="Primary (000) 000-0000" class="phone-mask" oninput="saveDraft('phone', this.value)">
                         <input type="tel" id="cap-phone2" placeholder="Secondary Phone" class="phone-mask" oninput="saveDraft('phone2', this.value)">
                         <input type="email" id="cap-email" placeholder="Email Channel" oninput="saveDraft('email', this.value)">
+                        <button type="button" onclick="commitNode('IDENTITY')" class="save-btn w-full mt-4">Save Identity Node</button>
                     </div></div>
-                    <div class="node-card"><span class="node-label">02 // Pickup Node</span><div class="w-full mt-12 space-y-4">
+                    <div class="node-card"><span class="node-label">02 // Route Nodes</span><div class="w-full mt-12 space-y-4">
                         <div class="p-5 border-2 border-white/5 rounded-2xl">
-                            <input type="text" id="cap-pStreet" placeholder="Street Address" oninput="saveDraft('pStreet', this.value)">
+                            <input type="text" id="cap-pStreet" placeholder="Pickup Street" oninput="saveDraft('pStreet', this.value)">
                             <div class="grid grid-cols-3 gap-2"><input type="text" id="cap-pCity" placeholder="City" oninput="saveDraft('pCity', this.value)"><input type="text" id="cap-pST" placeholder="ST" oninput="saveDraft('pST', this.value)"><input type="tel" id="cap-pZip" placeholder="Zip" maxlength="5" oninput="saveDraft('pZip', this.value)"></div>
                         </div>
-                    </div></div>
-                    <div class="node-card"><span class="node-label">03 // Delivery Node</span><div class="w-full mt-12 space-y-4">
                         <div class="p-5 border-2 border-white/5 rounded-2xl">
-                            <input type="text" id="cap-dStreet" placeholder="Street Address" oninput="saveDraft('dStreet', this.value)">
+                            <input type="text" id="cap-dStreet" placeholder="Delivery Street" oninput="saveDraft('dStreet', this.value)">
                             <div class="grid grid-cols-3 gap-2"><input type="text" id="cap-dCity" placeholder="City" oninput="saveDraft('dCity', this.value)"><input type="text" id="cap-dST" placeholder="ST" oninput="saveDraft('dST', this.value)"><input type="tel" id="cap-dZip" placeholder="Zip" maxlength="5" oninput="saveDraft('dZip', this.value)"></div>
                         </div>
                     </div></div>
+                    <div class="node-card"><span class="node-label">03 // Schedule Node</span><div class="w-full mt-12 space-y-4">
+                        <div class="grid grid-cols-2 gap-4"><input type="date" id="cap-date" oninput="saveDraft('date', this.value)"><input type="time" id="cap-time" value="08:20" oninput="saveDraft('time', this.value)"></div>
+                        <button type="button" onclick="handleSynchronize()" class="btn-sync mt-4 shadow-2xl">⚡ Deploy Mission</button>
+                    </div></div>
                 </div>
 
-                <div class="node-card relative mt-5 !min-height-0 overflow-hidden">
+                <div class="node-card relative mt-5 !min-height-0 overflow-hidden pb-20">
                     <span class="node-label">04 // Neural Overdrive Vision & Matrix</span>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mt-20 w-full">
-                        <div class="space-y-10 flex flex-col items-center">
-                            <div class="w-full">
-                                <p class="text-[10px] font-black uppercase text-zinc-500 tracking-[0.4em] mb-4 text-center">Site Intelligence & Notes</p>
-                                <textarea id="cap-notes" rows="12" placeholder="LOG SITE DETAILS, CODES, AND ACCESS..." class="!text-left border-blue-500/20" oninput="saveDraft('notes', this.value)"></textarea>
+                        <div class="space-y-10">
+                            <textarea id="cap-notes" rows="12" placeholder="LOG SITE FRAGILES, GATE CODES, AND ACCESS..." class="!text-left border-blue-500/20" oninput="saveDraft('notes', this.value)"></textarea>
+                            <div id="photo-gallery" class="grid grid-cols-4 gap-4 w-full">
+                                <div class="aspect-square border-4 border-dashed border-white/30 flex flex-col items-center justify-center cursor-pointer relative rounded-2xl hover:border-white"><div class="text-white font-black text-[10px] uppercase text-center">Snap<br>Room</div><input type="file" multiple accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="handlePhotos(this)"></div>
                             </div>
-                            <div id="photo-gallery" class="photo-gallery grid grid-cols-4 gap-4">
-                                <div class="gallery-item border-4 border-dashed border-white/30 flex flex-col items-center justify-center cursor-pointer relative rounded-2xl hover:border-white transition-all"><div class="text-white font-black text-[10px] uppercase text-center">Snap<br>Room</div><input type="file" multiple accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="handlePhotos(this)"></div>
-                            </div>
-                            <button type="button" onclick="runNeuralAudit()" id="ai-btn" class="w-full py-5 bg-blue-600 rounded-3xl text-white font-black uppercase italic text-sm shadow-2xl hover:scale-[1.01] transition-all">Run Neural Inventory Audit</button>
+                            <button type="button" onclick="runNeuralAudit()" id="ai-btn" class="w-full py-5 bg-blue-600 rounded-3xl text-white font-black uppercase italic text-sm shadow-2xl hover:scale-[1.01]">Run Neural Inventory Audit</button>
+                            <button type="button" onclick="commitNode('VISION')" class="save-btn w-full">Save Vision Node</button>
                         </div>
                         <div class="space-y-8 flex flex-col items-center">
                             <div class="p-10 bg-black border-2 border-white/10 rounded-[50px] shadow-inner text-center w-full">
                                 <div class="text-7xl font-black italic text-blue-500 mt-3 mb-8" id="calc-tally">0 ft³</div>
                                 <div id="inventory-grid" class="inventory-scroll custom-scrollbar"></div>
                             </div>
-                            <div class="w-full space-y-4">
-                                <div class="grid grid-cols-2 gap-4"><input type="date" id="cap-date" oninput="saveDraft('date', this.value)"><input type="time" id="cap-time" value="08:20" oninput="saveDraft('time', this.value)"></div>
-                                <input type="number" id="cap-vol" placeholder="Final cubic node" class="!mb-0 text-3xl font-black py-8" oninput="saveDraft('vol', this.value)">
-                                <button type="button" onclick="handleSynchronize()" class="btn-sync !bg-blue-600 !text-white border-blue-600 shadow-2xl">⚡ Deploy mission</button>
-                            </div>
+                            <input type="number" id="cap-vol" placeholder="Final cubic node" class="!mb-0 text-3xl font-black py-8" oninput="saveDraft('vol', this.value)">
                         </div>
                     </div>
                 </div>
@@ -239,7 +256,7 @@
         </div>
 
         <!-- VIEW: INVENTORY MASTER -->
-        <div id="InventoryMasterView" class="view-panel hidden pb-40">
+        <div id="InventoryMasterView" class="view-panel hidden pb-80">
             <div class="node-card relative !min-height-0 overflow-hidden max-w-7xl mx-auto">
                 <span class="node-label">Global Matrix Architect</span>
                 <div class="w-full mt-20 p-8 bg-zinc-900 border border-blue-500/20 rounded-[40px] flex flex-wrap gap-4 items-end">
@@ -249,25 +266,27 @@
                     <button onclick="addGlobalItem()" class="px-10 py-4 bg-blue-600 text-white rounded-2xl font-black uppercase italic shadow-lg">Inject</button>
                 </div>
                 <div id="global-inventory-list" class="w-full mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+                <button onclick="commitNode('GLOBAL STANDARDS')" class="save-btn w-full mt-12">Save Standards Node</button>
             </div>
         </div>
 
         <!-- VIEW: SETTINGS -->
-        <div id="SettingsView" class="view-panel hidden pb-40">
+        <div id="SettingsView" class="view-panel hidden pb-80">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div class="node-card"><span class="node-label">System Standards</span><div class="w-full mt-10 space-y-4"><input type="number" placeholder="Distance Multiplier" value="4.50"><input type="number" placeholder="Fuel Surcharge %" value="15"><button onclick="showToast('SYSTEM STANDARDS LOCKED')" class="save-btn w-full">Apply Global Changes</button></div></div>
+                <div class="node-card"><span class="node-label">System Standards</span><div class="w-full mt-10 space-y-4"><input type="number" placeholder="Distance Multiplier" value="4.50"><input type="number" placeholder="Fuel Surcharge %" value="15"><button onclick="commitNode('SETTINGS')" class="save-btn w-full">Apply Global Changes</button></div></div>
                 <div class="node-card"><span class="node-label">Security Protocol</span><div class="w-full mt-10 space-y-4"><button class="save-btn w-full !bg-zinc-800">Refresh Database Sync</button><button class="save-btn w-full !bg-rose-600">Flush Command Buffer</button></div></div>
             </div>
         </div>
 
-        <!-- CRM & OTHERS -->
-        <div id="CRMView" class="view-panel hidden"><div class="node-card relative !min-height-0"><span class="node-label">BMCR // Command Archive</span><div id="crm-body" class="w-full mt-16 divide-y divide-white/5"></div></div></div>
-        <div id="LeadMagnetView" class="view-panel hidden pb-40"><div class="node-card"><h3>LEAD MAGNET ACTIVE</h3></div></div>
+        <!-- CRM -->
+        <div id="CRMView" class="view-panel hidden pb-80"><div class="node-card relative !min-height-0"><span class="node-label">BMCR // Command Archive</span><div id="crm-body" class="w-full mt-16 divide-y divide-white/5"></div></div></div>
+        
+        <div id="LeadMagnetView" class="view-panel hidden pb-80"><div class="node-card"><h3>LEAD MAGNET ACTIVE</h3></div></div>
 
         <!-- MASTER COMMAND EDITOR -->
         <div id="editor-modal" class="modal-overlay hidden">
             <div class="max-w-6xl mx-auto">
-                <div class="flex justify-between items-center mb-10"><h2 class="text-5xl font-black italic uppercase titan-gradient tracking-tighter">Command Override</h2><button onclick="closeEditor()" class="p-5 bg-white/5 rounded-full hover:bg-rose-500">✕</button></div>
+                <div class="flex justify-between items-center mb-10"><h2 class="text-5xl font-black italic uppercase titan-gradient tracking-tighter">Command Override</h2><button onclick="closeEditor()" class="p-5 bg-white/5 rounded-full hover:bg-rose-500 transition-all">✕</button></div>
                 <div id="editor-content" class="grid grid-cols-1 lg:grid-cols-2 gap-10 pb-40"></div>
                 <div class="fixed bottom-10 left-1/2 -translate-x-1/2 w-full max-w-4xl px-10"><button onclick="saveJobChanges()" class="w-full py-8 bg-blue-600 rounded-[40px] font-black uppercase italic tracking-widest text-xl shadow-2xl">Deploy Mission Update</button></div>
             </div>
@@ -303,8 +322,19 @@
         };
 
         window.saveDraft = (f, v) => { state.draft[f] = v; };
+        window.commitNode = (n) => { addTicker(`NODE SYNC: ${n} LOCKED`); showToast(`${n} SAVED`); };
 
-        // --- 3. BLUE SENTINEL NAVIGATION ---
+        // --- 3. TICKER ---
+        function addTicker(msg) {
+            const feed = document.getElementById('ticker-feed'); if(!feed) return;
+            const p = document.createElement('p');
+            p.className = "ticker-item text-[10px] font-black uppercase text-blue-400 italic mb-1";
+            p.innerText = `[${new Date().toLocaleTimeString()}] >> ${msg}`;
+            feed.prepend(p);
+            if(feed.children.length > 2) feed.lastChild.remove();
+        }
+
+        // --- 4. NAVIGATION ---
         window.switchTab = (id) => {
             state.activeTab = id;
             document.getElementById('view-title').innerText = id;
@@ -315,15 +345,14 @@
             });
             document.querySelectorAll('.view-panel').forEach(p => p.classList.add('hidden'));
             const pId = id.replace(/\s+/g, '') + 'View';
-            const panel = document.getElementById(pId);
-            if(panel) panel.classList.remove('hidden');
+            if(document.getElementById(pId)) document.getElementById(pId).classList.remove('hidden');
             if(id === 'Dashboard') renderCalendar();
             if(id === 'Customer List') renderInventoryGrid();
             if(id === 'Inventory Master') renderGlobalInventory();
             if(id === 'CRM') renderCRM();
         };
 
-        // --- 4. MASTER EDITOR (TILE GRABBING) ---
+        // --- 5. MASTER COMMAND EDITOR (TILE GRAB) ---
         window.openEditor = (id) => {
             const job = state.customers.find(c => c.id === id); if(!job) return;
             state.activeJobId = id;
@@ -331,7 +360,7 @@
             content.innerHTML = `
                 <div class="node-card"><span class="node-label">Identity Sync</span><input type="text" id="edit-name" value="${job.name}"><input type="tel" id="edit-phone" value="${job.phone}" class="phone-mask"></div>
                 <div class="node-card"><span class="node-label">Schedule Sync</span><input type="date" id="edit-date" value="${job.date}"><input type="time" id="edit-time" value="${job.time}"></div>
-                <div class="node-card lg:col-span-2"><span class="node-label">Mission Dossier</span><textarea id="edit-notes" rows="10" class="!text-left">${job.notes || ''}</textarea><input type="number" id="edit-vol" value="${job.vol}" class="text-3xl font-black"></div>
+                <div class="node-card lg:col-span-2"><span class="node-label">Mission Intelligence</span><textarea id="edit-notes" rows="10" class="!text-left">${job.notes || ''}</textarea><input type="number" id="edit-vol" value="${job.vol}" class="text-3xl font-black"></div>
             `;
             document.getElementById('editor-modal').classList.remove('hidden');
         };
@@ -339,41 +368,31 @@
         window.saveJobChanges = () => {
             const idx = state.customers.findIndex(c => c.id === state.activeJobId);
             state.customers[idx] = { ...state.customers[idx], name: document.getElementById('edit-name').value, phone: document.getElementById('edit-phone').value, date: document.getElementById('edit-date').value, time: document.getElementById('edit-time').value, notes: document.getElementById('edit-notes').value, vol: parseInt(document.getElementById('edit-vol').value) || 0 };
-            showToast('DATA UPDATED'); closeEditor(); renderCalendar();
+            addTicker(`MISSION ${state.activeJobId} UPDATED`); showToast('DATA UPDATED'); closeEditor(); renderCalendar();
         };
 
-        // --- 5. QUANTUM AI OVERDRIVE (ZERO DELAY) ---
+        // --- 6. QUANTUM AI SCAN ---
         async function runNeuralAudit() {
             if (state.images.length === 0) return showToast('NO PHOTOS DETECTED');
             const loader = document.getElementById('neural-loader'); loader.classList.remove('hidden');
-            const compressed = await Promise.all(state.images.slice(-3).map(b64 => {
-                return new Promise((r) => {
-                    const img = new Image(); img.onload = () => {
-                        const c = document.createElement('canvas'); const s = Math.min(1, 600 / Math.max(img.width, img.height));
-                        c.width = img.width * s; c.height = img.height * s;
-                        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
-                        r(c.toDataURL('image/jpeg', 0.4).split(',')[1]);
-                    }; img.src = b64;
-                });
-            }));
+            const compress = (b64) => new Promise((r) => { const img = new Image(); img.onload = () => { const c = document.createElement('canvas'); const s = Math.min(1, 600 / Math.max(img.width, img.height)); c.width = img.width * s; c.height = img.height * s; c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); r(c.toDataURL('image/jpeg', 0.4).split(',')[1]); }; img.src = b64; });
             try {
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, { 
-                    method: 'POST', body: JSON.stringify({ contents: [{ parts: [{ text: `Identify furniture. Map to: ${state.matrix.map(i=>i.name).join(', ')}. Return JSON {"items":{"Name":count}, "total_vol":number}.` }, ...compressed.map(d => ({ inlineData: { mimeType: "image/jpeg", data: d } }))] }] }) 
-                });
+                const clean = await Promise.all(state.images.slice(-3).map(compress));
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, { method: 'POST', body: JSON.stringify({ contents: [{ parts: [{ text: `Identify furniture. Map to: ${state.matrix.map(i=>i.name).join(', ')}. Return JSON {"items":{"Name":count}, "total_vol":number}.` }, ...clean.map(d => ({ inlineData: { mimeType: "image/jpeg", data: d } }))] }] }) });
                 const result = JSON.parse((await res.json()).candidates[0].content.parts[0].text.replace(/```json|```/g, '').trim());
                 Object.entries(result.items).forEach(([k, v]) => { if(state.matrix.find(i=>i.name===k)) state.inventory[k] = (state.inventory[k]||0)+v; });
-                document.getElementById('cap-vol').value = Math.ceil(result.total_vol); renderInventoryGrid(); showToast('QUANTUM SYNC COMPLETE');
+                document.getElementById('cap-vol').value = Math.ceil(result.total_vol); renderInventoryGrid(); addTicker(`NEURAL SYNC COMPLETE: ${Math.ceil(result.total_vol)} FT³`); showToast('QUANTUM SYNC COMPLETE');
             } catch (err) { showToast('NEURAL DELAY'); } finally { loader.classList.add('hidden'); }
         }
 
-        // --- 6. LOGISTICS MATRIX ---
+        // --- 7. LOGISTICS ARCHITECT ---
         window.addGlobalItem = () => {
             const n = document.getElementById('global-new-name').value; const v = parseFloat(document.getElementById('global-new-vol').value);
             if(n && !isNaN(v)) { state.matrix.unshift({ cat: document.getElementById('global-new-cat').value, name: n, vol: v }); renderGlobalInventory(); showToast("ITEM INJECTED"); }
         };
         function renderGlobalInventory() {
             const container = document.getElementById('global-inventory-list'); if(!container) return;
-            container.innerHTML = state.matrix.map(item => `<div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 text-center group hover:border-blue-500/40"><h5 class="text-lg font-black italic mb-3">${item.name}</h5><input type="number" class="!w-20 !p-2 !text-blue-500 !bg-black" value="${item.vol}" onchange="updateGlobalVol('${item.name}', this.value)"></div>`).join('');
+            container.innerHTML = state.matrix.map(item => `<div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 text-center group hover:border-blue-500/40"><h5 class="text-lg font-black italic mb-3 truncate">${item.name}</h5><input type="number" class="!w-20 !p-2 !text-blue-500 !bg-black" value="${item.vol}" onchange="updateGlobalVol('${item.name}', this.value)"></div>`).join('');
         }
         window.updateGlobalVol = (n, v) => { const idx = state.matrix.findIndex(i => i.name === n); if(idx !== -1) state.matrix[idx].vol = parseFloat(v) || 0; };
 
@@ -390,43 +409,37 @@
         window.updateQty = (n, d) => { state.inventory[n] = Math.max(0, (state.inventory[n] || 0) + d); renderInventoryGrid(); };
         function updateTally() { let t = 0; state.matrix.forEach(i => t += (state.inventory[i.name] || 0) * i.vol); document.getElementById('calc-tally').innerText = t.toFixed(1) + ' ft³'; document.getElementById('cap-vol').value = Math.ceil(t); }
 
-        // --- 7. CALENDAR ---
+        // --- 8. CALENDAR GRID ---
         window.renderCalendar = () => {
-            const body = document.getElementById('calendar-body'); if (!body) return;
+            const container = document.getElementById('calendar-container'); if (!container) return;
             const y = state.curMonth.getFullYear(); const m = state.curMonth.getMonth();
             const f = new Date(y, m, 1).getDay(); const d = new Date(y, m + 1, 0).getDate();
             document.getElementById('month-label').innerText = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(state.curMonth);
-            body.innerHTML = ''; let date = 1;
-            for (let i = 0; i < 6; i++) {
-                let row = document.createElement('tr');
-                for (let j = 0; j < 7; j++) {
-                    let cell = document.createElement('td');
-                    if (i === 0 && j < f || date > d) { cell.innerHTML = '<div></div>'; }
-                    else {
-                        const dKey = `${y}-${String(m+1).padStart(2, '0')}-${String(date).padStart(2, '0')}`;
-                        const dayJobs = state.customers.filter(c => c.date === dKey);
-                        cell.innerHTML = `<div class="date-tile" data-selected="${state.selDate === dKey}" onclick="focusDay('${dKey}')"><span class="text-[10px] font-black">${date}</span><div>${dayJobs.map(j => `<div class="job-pill" onclick="event.stopPropagation(); openEditor('${j.id}')">${j.name.split(' ')[0]}</div>`).join('')}</div></div>`;
-                        date++;
-                    }
-                    row.appendChild(cell);
-                }
-                body.appendChild(row); if (date > d) break;
+            let html = `<table class="calendar-table"><thead><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead><tbody><tr>`;
+            for(let i=0; i<f; i++) html += `<td></td>`;
+            for(let i=1; i<=d; i++) {
+                const dk = `${y}-${String(m+1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
+                const jobs = state.customers.filter(c => c.date === dk);
+                html += `<td><div class="date-tile" data-selected="${state.selectedDate === dk}" onclick="focusDay('${dk}')"><span class="tile-num text-[10px] font-black">${i}</span><div>${jobs.map(j => `<div class="job-pill" onclick="event.stopPropagation(); openEditor('${j.id}')">${j.name.split(' ')[0]}</div>`).join('')}</div></div></td>`;
+                if((i+f) % 7 === 0) html += `</tr><tr>`;
             }
+            html += `</tr></tbody></table>`;
+            container.innerHTML = html;
             updateStats();
         };
-        window.focusDay = (date) => { state.selDate = date; renderCalendar(); 
+        window.focusDay = (date) => { state.selectedDate = date; renderCalendar(); 
             const list = document.getElementById('day-jobs-list'); const jobs = state.customers.filter(c => c.date === date);
-            list.innerHTML = jobs.length ? jobs.map(j => `<div onclick="openEditor('${j.id}')" class="bg-black p-5 border border-white/10 rounded-3xl cursor-pointer hover:border-blue-500"><span class="text-xl font-black italic text-white">${j.name}</span><p class="text-[10px] font-black uppercase text-zinc-500 mt-1">${j.time} // ${j.vol} FT³</p></div>`).join('') : `<div class="py-10 text-center opacity-10">Void</div>`;
+            list.innerHTML = jobs.length ? jobs.map(j => `<div onclick="openEditor('${j.id}')" class="bg-black p-5 border border-white/10 rounded-3xl cursor-pointer hover:border-blue-500 transition-all"><span class="text-xl font-black italic text-white">${j.name}</span><p class="text-[10px] font-black uppercase text-zinc-500 mt-1">${j.time} // ${j.vol} FT³</p></div>`).join('') : `<div class="py-10 text-center opacity-10">Void</div>`;
         };
 
-        // --- 8. UI SYNC ---
-        window.handlePhotos = (input) => { Array.from(input.files).forEach(f => { const r = new FileReader(); r.onload = (e) => { state.images.push(e.target.result); const div = document.createElement('div'); div.className = 'gallery-item shadow-2xl rounded-2xl overflow-hidden'; div.innerHTML = `<img src="${e.target.result}">`; document.getElementById('photo-gallery').prepend(div); }; r.readAsDataURL(f); }); };
+        // --- 9. UI ENGINE ---
+        window.handlePhotos = (input) => { Array.from(input.files).forEach(f => { const r = new FileReader(); r.onload = (e) => { state.images.push(e.target.result); const div = document.createElement('div'); div.className = 'gallery-item shadow-2xl rounded-2xl overflow-hidden'; div.innerHTML = `<img src="${e.target.result}" class="w-full h-full object-cover">`; document.getElementById('photo-gallery').prepend(div); }; r.readAsDataURL(f); }); };
         window.handleSynchronize = () => {
             if(!state.draft.name || !state.draft.date) return showToast('DATA REQ: NAME/DATE');
-            state.customers.unshift({ id: Date.now().toString(), ...state.draft, vol: parseInt(document.getElementById('cap-vol').value) || 0, status: 'Active' });
-            state.draft = { time: '08:20' }; state.images = []; document.getElementById('customer-form').reset(); switchTab('Dashboard');
+            state.customers.unshift({ id: Date.now().toString(), ...state.draft, vol: parseInt(document.getElementById('cap-vol').value) || 0 });
+            addTicker(`NEW MISSION DEPLOYED`); state.draft = { time: '08:20' }; state.images = []; document.getElementById('customer-form').reset(); switchTab('Dashboard');
         };
-        window.renderCRM = () => { const b = document.getElementById('crm-body'); b.innerHTML = state.customers.map(c => `<div class="py-10 px-10 flex justify-between items-center cursor-pointer hover:bg-white/5" onclick="openEditor('${c.id}')"><p class="text-3xl font-black italic text-blue-400 uppercase">${c.name}</p><p class="font-bold text-zinc-600 uppercase">${c.vol} FT³ // ${c.date}</p></div>`).join(''); };
+        window.renderCRM = () => { const b = document.getElementById('crm-body'); b.innerHTML = state.customers.map(c => `<div class="py-10 px-10 flex justify-between items-center cursor-pointer hover:bg-white/5 transition-all" onclick="openEditor('${c.id}')"><p class="text-3xl font-black italic text-blue-400 uppercase">${c.name}</p><p class="font-bold text-zinc-600 uppercase">${c.vol} FT³ // ${c.date}</p></div>`).join(''); };
         window.changeMonth = (dir) => { state.curMonth.setMonth(state.curMonth.getMonth() + dir); renderCalendar(); };
         function updateStats() { let r = 0; state.customers.forEach(c => r += (parseInt(c.vol)||0)*2.5+250); document.getElementById('stat-rev').innerText = '$'+r.toLocaleString(); document.getElementById('stat-active').innerText = state.customers.length; }
         window.showToast = (m) => { const t = document.getElementById('toast-msg'); t.innerText = m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 2000); };
