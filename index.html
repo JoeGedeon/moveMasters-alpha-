@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>MoveMasters OS | Titan X-147 Sovereign Auditor</title>
+    <title>MoveMasters OS | Titan X-148 Forensic Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
@@ -55,14 +55,19 @@
 
         /* --- MAIN STAGE (INFINITE SCROLL) --- */
         .main-stage { 
-            flex-grow: 1; height: 100dvh; overflow-y: scroll !important; 
-            padding: 40px; background: #000; position: relative; 
-            -webkit-overflow-scrolling: touch; display: block;
+            flex-grow: 1; 
+            height: 100dvh; 
+            overflow-y: scroll !important; 
+            padding: 40px; 
+            background: #000; 
+            position: relative; 
+            -webkit-overflow-scrolling: touch; 
+            display: block;
         }
         .titan-title { font-size: 40px; font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: -0.04em; margin-bottom: 30px; text-align: center; }
         .titan-gradient { background: linear-gradient(to right, #fff, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* --- CARD SYSTEM --- */
+        /* --- CARD ARCHITECTURE --- */
         .node-card {
             background: var(--card-bg); border: 2.5px solid var(--border-white); border-radius: 30px;
             padding: 45px; box-shadow: 0 20px 60px rgba(0,0,0,1); margin-bottom: 25px;
@@ -86,19 +91,34 @@
         /* --- HD CALENDAR MATRIX --- */
         .calendar-table { width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 8px; }
         .calendar-table th { font-size: 11px; font-weight: 900; color: #ffffff; text-transform: uppercase; padding: 15px 0; }
-        .date-tile { background: #000; border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; height: 120px; padding: 10px; vertical-align: top; cursor: pointer; transition: 0.1s; position: relative; }
+        .date-tile { 
+            background: #000; border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px; height: 120px; padding: 10px; vertical-align: top; 
+            cursor: pointer; transition: 0.15s; position: relative;
+        }
         .date-tile:hover { border-color: #fff; background: #080808; }
         .date-tile[data-selected="true"] { border: 3px solid var(--accent); background: rgba(59, 130, 246, 0.1); }
         .tile-num { font-size: 11px; font-weight: 900; color: #444; }
-        .tile-plus { position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; background: var(--accent); color: #fff; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 900; opacity: 0; }
+        .tile-plus {
+            position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; background: var(--accent);
+            color: #fff; border-radius: 6px; display: flex; align-items: center; justify-content: center;
+            font-weight: 900; font-size: 16px; opacity: 0; transition: 0.2s;
+        }
         .date-tile:hover .tile-plus { opacity: 1; }
+        .job-pill { 
+            background: #ffffff; color: #000; font-size: 8px; font-weight: 900; 
+            padding: 5px 8px; border-radius: 6px; margin-top: 5px; 
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            display: block; width: 100%; text-align: center; border-left: 4px solid var(--accent);
+            cursor: pointer;
+        }
 
-        /* --- ASSET CARDS --- */
+        /* --- ASSET GRID --- */
         .asset-grid { display: grid; grid-template-cols: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; width: 100%; margin-top: 20px; }
         .asset-card { background: #0a0a0a; border: 2px solid #222; border-radius: 24px; padding: 30px; text-align: left; position: relative; transition: 0.2s; }
         .asset-card:hover { border-color: var(--accent); background: #0f0f0f; }
 
-        /* --- EXPENSE LEDGER CARDS --- */
+        /* --- LEDGER CARDS --- */
         .expense-card-grid { display: grid; grid-template-cols: 1fr; gap: 12px; width: 100%; }
         .expense-card { 
             background: #000; border: 1px solid #222; border-radius: 20px; padding: 18px 22px;
@@ -108,9 +128,15 @@
         .expense-card:hover { border-color: var(--accent); transform: translateX(8px); background: #050505; }
         .category-pill { padding: 4px 10px; border-radius: 8px; font-size: 9px; font-weight: 900; text-transform: uppercase; }
 
+        /* --- MATRIX SCROLLER --- */
+        .category-header { font-size: 10px; font-weight: 900; color: var(--accent); text-transform: uppercase; letter-spacing: 0.4em; margin: 30px 0 15px 0; border-bottom: 1px solid rgba(59, 130, 246, 0.3); width: 100%; padding-bottom: 5px; text-align: center; }
+        .inventory-scroll { width: 100%; max-height: 500px; overflow-y: auto; padding-right: 15px; display: flex; flex-direction: column; gap: 10px; margin-top: 40px; }
+        .item-counter { background: rgba(255,255,255,0.03); border: 1.5px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 18px 25px; display: flex; align-items: center; justify-content: space-between; }
+        .qty-btn { width: 40px; height: 40px; border-radius: 12px; border: 1.5px solid rgba(255,255,255,0.2); font-weight: 900; cursor: pointer; color: #fff; display: flex; align-items: center; justify-content: center; }
+        .qty-val { font-size: 20px; font-weight: 900; color: var(--accent); min-width: 30px; text-align: center; }
+
         /* --- UI UTILS --- */
-        .save-btn { background: var(--accent); color: #fff; padding: 22px; border-radius: 20px; font-weight: 900; text-transform: uppercase; width: 100%; border: 2.5px solid var(--accent); cursor: pointer; letter-spacing: 0.1em; transition: 0.2s; }
-        .save-btn:active { transform: scale(0.98); background: #1d4ed8; }
+        .save-btn { background: var(--accent); color: #fff; padding: 22px; border-radius: 20px; font-weight: 900; text-transform: uppercase; width: 100%; border: 2.5px solid var(--accent); cursor: pointer; letter-spacing: 0.1em; }
         .btn-sync { background: #fff; color: #000; padding: 24px; border-radius: 24px; font-weight: 900; text-transform: uppercase; width: 100%; border: 3px solid #fff; cursor: pointer; }
         
         #toast-msg { position: fixed; bottom: 40px; right: 40px; background: #fff; color: #000; padding: 22px 45px; border-radius: 24px; font-weight: 900; z-index: 10000; transform: translateY(180%); transition: 0.4s; }
@@ -126,20 +152,21 @@
 
     <div id="toast-msg">SYSTEM SYNCHRONIZED</div>
 
+    <!-- COMMAND SIDEBAR (TOOLBAR) -->
     <aside class="sidebar">
         <div class="sidebar-header"><h2 class="text-[18px] font-black uppercase tracking-[0.4em] text-white italic text-blue-500">MoveMasters</h2></div>
         <div id="sidebar-nav" class="custom-scrollbar">
             <div id="nav-Dashboard" class="nav-btn" data-id="Dashboard" onclick="switchTab('Dashboard')">Dashboard</div>
-            <div id="nav-CustomerList" class="nav-btn" data-id="Customer List" onclick="switchTab('Customer List')">Customer List</div>
+            <div id="nav-CustomerList" class="nav-btn" data-id="CustomerList" onclick="switchTab('Customer List')">Customer List</div>
             <div id="nav-CRM" class="nav-btn" data-id="CRM" onclick="switchTab('CRM')">CRM Database</div>
-            <div id="nav-CrewHub" class="nav-btn" data-id="Crew Hub" onclick="switchTab('Crew Hub')">Crew Hub</div>
-            <div id="nav-FleetMaster" class="nav-btn" data-id="Fleet Master" onclick="switchTab('Fleet Master')">Fleet Master</div>
-            <div id="nav-InventoryMaster" class="nav-btn" data-id="Inventory Master" onclick="switchTab('Inventory Master')">Inventory Master</div>
+            <div id="nav-CrewHub" class="nav-btn" data-id="CrewHub" onclick="switchTab('Crew Hub')">Crew Hub</div>
+            <div id="nav-FleetMaster" class="nav-btn" data-id="FleetMaster" onclick="switchTab('Fleet Master')">Fleet Master</div>
+            <div id="nav-InventoryMaster" class="nav-btn" data-id="InventoryMaster" onclick="switchTab('Inventory Master')">Inventory Master</div>
             <div id="nav-Financials" class="nav-btn" data-id="Financials" onclick="switchTab('Financials')">Financial Hub</div>
             <div id="nav-Settings" class="nav-btn" data-id="Settings" onclick="switchTab('Settings')">Settings</div>
         </div>
         <div class="p-8 border-t-2 border-white bg-zinc-900 text-center flex-shrink-0">
-            <span class="text-[9px] font-black uppercase text-white tracking-widest italic block text-blue-400">Titan X-147 Auditor</span>
+            <span class="text-[9px] font-black uppercase text-white tracking-widest italic block text-blue-400">Titan X-148 Forensic</span>
         </div>
     </aside>
 
@@ -179,32 +206,32 @@
                     <input type="text" id="cap-name" placeholder="Full Legal Name" oninput="saveDraft('name', this.value)">
                     <input type="tel" id="cap-phone" placeholder="Primary Mobile" class="phone-mask" oninput="saveDraft('phone', this.value)">
                     <input type="tel" id="cap-phone2" placeholder="Secondary Phone" class="phone-mask" oninput="saveDraft('phone2', this.value)">
-                    <input type="email" id="cap-email" placeholder="Email Channel" oninput="saveDraft('email', this.value)">
+                    <input type="email" id="cap-email" placeholder="Email Sync Channel" oninput="saveDraft('email', this.value)">
                     <button onclick="commitNode('IDENTITY')" class="save-btn w-full mt-4">Save Identity Node</button>
                 </div></div>
                 <div class="node-card"><span class="node-label">02 // Pickup Node</span><div class="w-full mt-12 space-y-4">
-                    <input type="text" id="cap-pStreet" placeholder="Street Address" oninput="saveDraft('pStreet', this.value)">
+                    <input type="text" id="cap-pStreet" placeholder="Origin Street Address" oninput="saveDraft('pStreet', this.value)">
                     <div class="grid grid-cols-3 gap-2"><input type="text" placeholder="City"><input type="text" placeholder="ST"><input type="tel" placeholder="Zip" maxlength="5"></div>
                     <button onclick="commitNode('PICKUP')" class="save-btn w-full mt-4">Save Pickup Node</button>
                 </div></div>
                 <div class="node-card"><span class="node-label">03 // Delivery Node</span><div class="w-full mt-12 space-y-4">
-                    <input type="text" id="cap-dStreet" placeholder="Street Address" oninput="saveDraft('dStreet', this.value)">
+                    <input type="text" id="cap-dStreet" placeholder="Destination Street" oninput="saveDraft('dStreet', this.value)">
                     <div class="grid grid-cols-3 gap-2"><input type="text" placeholder="City"><input type="text" placeholder="ST"><input type="tel" placeholder="Zip" maxlength="5"></div>
                     <button onclick="commitNode('DELIVERY')" class="save-btn w-full mt-4">Save Delivery Node</button>
                 </div></div>
             </div>
-            <div class="node-card relative mt-8 !min-height-0 overflow-hidden pb-20 border-blue-600/30">
+            <div class="node-card relative mt-8 !min-height-0 overflow-hidden pb-20 border-blue-600/30 text-left">
                 <span class="node-label">04 // Neural Vision AI & Matrix Sync</span>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mt-20 w-full text-left">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mt-20 w-full">
                     <div class="space-y-10">
                         <textarea id="cap-notes" rows="12" placeholder="LOG SITE FRAGILES, CODES, AND ACCESS..." oninput="saveDraft('notes', this.value)"></textarea>
                         <div id="photo-gallery" class="grid grid-cols-4 gap-4 w-full">
                             <div class="aspect-square border-4 border-dashed border-white/30 flex flex-col items-center justify-center cursor-pointer relative rounded-2xl hover:border-white transition-all"><div class="text-white font-black text-[10px] uppercase text-center">Snap<br>Room</div><input type="file" multiple accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="handlePhotos(this)"></div>
                         </div>
-                        <button type="button" onclick="runNeuralAudit()" id="ai-btn" class="w-full py-5 bg-blue-600 rounded-3xl text-white font-black uppercase italic text-sm shadow-2xl">Run Neural Inventory Audit</button>
+                        <button type="button" onclick="runNeuralAudit()" id="ai-btn" class="w-full py-5 bg-blue-600 rounded-3xl text-white font-black uppercase italic text-sm shadow-2xl hover:scale-[1.01]">Run Neural Inventory Audit</button>
                     </div>
-                    <div class="space-y-8 flex flex-col items-center">
-                        <div class="p-10 bg-black border-2 border-white/10 rounded-[50px] shadow-inner text-center w-full">
+                    <div class="space-y-8 flex flex-col items-center text-center">
+                        <div class="p-10 bg-black border-2 border-white/10 rounded-[50px] shadow-inner w-full">
                             <div class="text-7xl font-black italic text-blue-500 mt-3 mb-8" id="calc-tally">0 ft³</div>
                             <div id="inventory-grid" class="inventory-scroll custom-scrollbar"></div>
                         </div>
@@ -252,20 +279,20 @@
         <div id="FinancialsView" class="view-panel hidden pb-80">
             <div class="max-w-7xl mx-auto space-y-10 text-left">
                 <div class="node-card !min-height-0 !p-12">
-                    <span class="node-label">Global Audit Ledger Aggregator</span>
+                    <span class="node-label">Global Audit Aggregator</span>
                     <div class="grid grid-cols-4 gap-10 w-full mt-10">
                         <div><p class="text-zinc-600 font-black text-[9px] uppercase mb-1 tracking-widest">Total road burn</p><h3 class="text-5xl font-black italic text-rose-500" id="fin-total-spent">$0</h3></div>
                         <div><p class="text-zinc-600 font-black text-[9px] uppercase mb-1 tracking-widest">Total disbursed</p><h3 class="text-3xl font-black italic text-green-400" id="fin-total-sent">$0</h3></div>
                         <div><p class="text-zinc-600 font-black text-[9px] uppercase mb-1 tracking-widest">Fuel node</p><h3 class="text-3xl font-black italic text-white" id="fin-total-fuel">$0</h3></div>
-                        <div><p class="text-zinc-600 font-black text-[9px] uppercase mb-1 tracking-widest">Field reserve</p><h3 class="text-3xl font-black italic text-blue-500" id="fin-total-balance">$0</h3></div>
+                        <div><p class="text-zinc-600 font-black text-[9px] uppercase mb-1 tracking-widest">Net liquidity</p><h3 class="text-3xl font-black italic text-blue-500" id="fin-total-balance">$0</h3></div>
                     </div>
                 </div>
-                <div class="node-card relative !min-height-0 overflow-hidden"><span class="node-label">Corporate Ledger Feed</span><div id="global-ledger-list" class="w-full mt-12 divide-y divide-white/5"></div></div>
+                <div id="global-ledger-list" class="w-full space-y-3"></div>
             </div>
         </div>
 
         <!-- PLACEHOLDERS -->
-        <div id="CRMView" class="view-panel hidden pb-80"><div id="crm-body" class="w-full space-y-4"></div></div>
+        <div id="CRMView" class="view-panel hidden pb-80"><div id="crm-body" class="w-full divide-y divide-white/5"></div></div>
         <div id="FleetMasterView" class="view-panel hidden pb-80"><div class="max-w-7xl mx-auto"><div id="fleet-list-grid" class="asset-grid"></div></div></div>
         <div id="SettingsView" class="view-panel hidden pb-80"><div class="node-card"><h3>SYSTEM SETTINGS</h3><button onclick="commitNode('SETTINGS')" class="save-btn mt-10">Save Global Parameters</button></div></div>
     </main>
@@ -280,23 +307,25 @@
                         <span class="node-label">Application identity</span>
                         <div><label class="text-[9px] uppercase font-black text-zinc-500">Legal Name</label><input type="text" id="ps-edit-name"></div>
                         <div><label class="text-[9px] uppercase font-black text-zinc-500">Mobile</label><input type="tel" id="ps-edit-phone" class="phone-mask"></div>
-                        <div><label class="text-[9px] uppercase font-black text-zinc-500">Email Hub</label><input type="email" id="ps-edit-email"></div>
+                        <div><label class="text-[9px] uppercase font-black text-zinc-500">Email Identity</label><input type="email" id="ps-edit-email"></div>
                         <div><label class="text-[9px] uppercase font-black text-zinc-500">Residential Base</label><textarea id="ps-edit-address" rows="3"></textarea></div>
                         <button onclick="savePersonnelChanges()" class="save-btn w-full mt-4">Sync Application</button>
                     </div>
                 </div>
-                <div class="lg:col-span-2 space-y-6">
-                    <div class="node-card !min-height-0 !p-10 overflow-hidden text-center"><span class="node-label">Forensic Audit Vault</span>
+                <div class="lg:col-span-2 space-y-6 text-center">
+                    <div class="node-card !min-height-0 !p-10 overflow-hidden">
+                        <span class="node-label">Forensic Audit Vault</span>
                         <div class="grid grid-cols-2 gap-8 mb-10 mt-10 text-left">
-                            <div class="bg-zinc-950 p-6 rounded-3xl border border-white/5"><p class="text-[9px] font-black uppercase text-zinc-600 mb-1">Receipt road burn</p><h4 class="text-4xl font-black italic text-rose-500" id="ps-total-spent">$0</h4></div>
+                            <div class="bg-zinc-950 p-6 rounded-3xl border border-white/5"><p class="text-[9px] font-black uppercase text-zinc-600 mb-1">Receipt burn</p><h4 class="text-4xl font-black italic text-rose-500" id="ps-total-spent">$0</h4></div>
                             <div class="bg-zinc-950 p-6 rounded-3xl border border-white/5"><p class="text-[9px] font-black uppercase text-zinc-600 mb-1">Active reserve</p><h4 class="text-4xl font-black italic text-green-500" id="ps-total-balance">$0</h4></div>
                         </div>
-                        <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="grid grid-cols-3 gap-4 mb-8">
                             <div class="relative bg-blue-600 p-6 rounded-3xl flex items-center justify-center shadow-2xl cursor-pointer">
-                                <span class="font-black text-[10px] uppercase italic text-white">Capture Multi-Receipt Page</span>
+                                <span class="font-black text-[10px] uppercase italic text-white">Batch Scans</span>
                                 <input type="file" multiple accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="runReceiptAI(this)">
                             </div>
-                            <div class="p-6 bg-green-600/5 border border-green-600/20 rounded-3xl flex flex-col justify-center"><p class="text-[9px] font-black uppercase text-green-500 mb-2">Inject funds to driver</p><div class="flex gap-2"><input type="number" id="ps-fund-amt" placeholder="$ Injection" class="!mb-0 !p-3 !text-xs"><button onclick="injectFunds()" class="bg-green-600 px-6 rounded-xl font-black uppercase text-[10px]">Auth</button></div></div>
+                            <button onclick="manualReceiptEntry()" class="bg-zinc-800 border border-white/10 rounded-3xl font-black uppercase italic text-[10px]">Manual Entry</button>
+                            <div class="bg-green-600/10 border border-green-600/30 rounded-3xl flex flex-col justify-center p-2"><div class="flex gap-1"><input type="number" id="ps-fund-amt" placeholder="$ Sent" class="!p-2 !text-[9px] !mb-0"><button onclick="injectFunds()" class="bg-green-600 p-2 rounded-lg font-black text-[9px]">Auth</button></div></div>
                         </div>
                         <div id="ps-ledger-list" class="expense-card-grid custom-scrollbar overflow-y-auto max-h-[400px]"></div>
                     </div>
@@ -308,12 +337,24 @@
     <!-- AUDIT CORRECTION MODAL -->
     <div id="audit-modal" class="modal-overlay hidden !z-[6000]">
         <div class="max-w-5xl mx-auto node-card !min-height-0 !p-12">
-            <div class="flex justify-between w-full mb-10"><h2 class="text-3xl font-black italic uppercase">Forensic Node Correction</h2><button onclick="closeAudit()" class="text-2xl">✕</button></div>
+            <div class="flex justify-between w-full mb-10"><h2 class="text-3xl font-black italic uppercase">Forensic Terminal</h2><button onclick="closeAudit()" class="text-2xl">✕</button></div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
-                <div id="audit-img-portal" class="rounded-[40px] overflow-hidden border border-white/10 aspect-[3/4] bg-zinc-950 shadow-2xl"></div>
-                <div id="audit-data-portal" class="space-y-4"></div>
+                <div id="audit-img-portal" class="rounded-[40px] overflow-hidden border border-white/10 aspect-[3/4] bg-zinc-950 flex items-center justify-center font-black text-xs text-zinc-800">IMAGE NODE</div>
+                <div id="audit-data-portal" class="space-y-4">
+                    <div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">Vendor</label><input type="text" id="edit-tx-vendor"></div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">Date</label><input type="date" id="edit-tx-date"></div>
+                        <div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">Time</label><input type="text" id="edit-tx-time"></div>
+                    </div>
+                    <div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">Address</label><textarea id="edit-tx-address" rows="2"></textarea></div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">Category</label><select id="edit-tx-cat"><option>Gas</option><option>Hotel</option><option>Materials</option><option>Misc</option></select></div>
+                        <div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">GAL</label><input type="number" id="edit-tx-gal"></div>
+                    </div>
+                    <div><label class="text-[8px] font-black uppercase text-rose-500 ml-2">Total Amount ($)</label><input type="number" id="edit-tx-amt" class="text-3xl font-black text-rose-500 !bg-zinc-950 text-center"></div>
+                </div>
             </div>
-            <button onclick="saveAuditEdits()" class="save-btn w-full mt-10">Commit Correction</button>
+            <button onclick="saveAuditEdits()" class="save-btn w-full mt-10">Commit Audit Correction</button>
         </div>
     </div>
 
@@ -322,7 +363,7 @@
         <div class="max-w-6xl mx-auto"><div class="flex justify-between items-center mb-10"><h2 class="text-5xl font-black italic uppercase titan-gradient">Command Override</h2><button onclick="closeEditor()" class="p-5 bg-white/5 rounded-full hover:bg-rose-500 transition-all">✕</button></div><div id="editor-content" class="grid grid-cols-1 lg:grid-cols-2 gap-10 pb-40"></div><div class="fixed bottom-10 left-1/2 -translate-x-1/2 w-full max-w-4xl px-10"><button onclick="saveJobChanges()" class="w-full py-8 bg-blue-600 rounded-[40px] font-black uppercase italic shadow-2xl">Finalize Mission Sync</button></div></div>
     </div>
 
-    <div id="neural-loader" class="hidden fixed inset-0 z-[10000] bg-black/95 flex flex-col items-center justify-center"><div class="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-6"></div><p class="text-[12px] font-black uppercase text-blue-500 tracking-[0.6em]">Executing Forensic Scan</p></div>
+    <div id="neural-loader" class="hidden fixed inset-0 z-[10000] bg-black/95 flex flex-col items-center justify-center"><div class="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-6"></div><p class="text-[12px] font-black uppercase text-blue-500 tracking-[0.6em]">Executing Forensic scan</p></div>
 
     <script>
         const apiKey = ""; 
@@ -340,55 +381,101 @@
             draft: { time: '08:20' }, activeJobId: null, activeCrewId: null, activeTxId: null
         };
 
-        // --- 2. THE INDESTRUCTIBLE NAVIGATION ---
+        // --- 2. INDESTRUCTIBLE NAVIGATION ---
         window.switchTab = (id) => {
             state.activeTab = id; document.getElementById('view-title').innerText = id;
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.setAttribute('data-active', 'false');
-                const target = id.toLowerCase().replace(/\s+/g, '');
-                const btnId = btn.getAttribute('data-id').toLowerCase().replace(/\s+/g, '');
-                if (btnId === target) btn.setAttribute('data-active', 'true');
+                const btnId = btn.getAttribute('data-id').toLowerCase();
+                if (btnId === id.toLowerCase().replace(/\s+/g, '')) btn.setAttribute('data-active', 'true');
             });
             document.querySelectorAll('.view-panel').forEach(p => p.classList.add('hidden'));
             const panelId = id.replace(/\s+/g, '') + 'View';
             if(document.getElementById(panelId)) document.getElementById(panelId).classList.remove('hidden');
             if(id === 'Dashboard') renderCalendar();
+            if(id === 'Customer List') renderInventoryGrid();
             if(id === 'Crew Hub') renderCrews();
             if(id === 'Financials') renderFinancials();
             if(id === 'Inventory Master') renderGlobalInventory();
         };
 
-        // --- 3. FORENSIC AUDIT ENGINE (GITHUB HARDENED) ---
+        // --- 3. FORENSIC AUDIT SYNC (FIXED FOR GITHUB) ---
         async function runReceiptAI(input) {
             if(!input.files.length) return;
             const loader = document.getElementById('neural-loader'); loader.classList.remove('hidden');
             const cIdx = state.crews.findIndex(x=>x.id===state.activeCrewId);
-
             for (const file of Array.from(input.files)) {
                 await new Promise(resolve => {
                     const reader = new FileReader();
                     reader.onload = async (e) => {
                         const b64 = e.target.result.split(',')[1];
-                        const prompt = `Act as forensic corporate auditor. Extract ALL distinct receipts as an array of JSON objects. For each receipt, identify: { "date": "YYYY-MM-DD", "time": "HH:MM AM/PM", "category": "Gas/Hotel/Materials/Misc", "amount": number, "vendor": "Name", "address": "Full Store Address", "gallons": number_or_null }. JSON ARRAY ONLY.`;
+                        const prompt = `Act as forensic auditor. Extract ALL distinct receipts as JSON array. Items: { "date": "YYYY-MM-DD", "time": "HH:MM AM/PM", "category": "Gas/Hotel/Materials/Misc", "amount": number, "vendor": "Name", "address": "Store Address", "gallons": number_or_null }. JSON ARRAY ONLY.`;
                         try {
                             const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, { method: 'POST', body: JSON.stringify({ contents: [{ parts: [{ text: prompt }, { inlineData: { mimeType: "image/jpeg", data: b64 } }] }] }) });
                             const results = JSON.parse((await res.json()).candidates[0].content.parts[0].text.replace(/```json|```/g, '').trim());
-                            
-                            // FORCE STATE RE-RENDER FOR GITHUB
                             const txs = Array.isArray(results) ? results : [results];
                             const newLedger = [...state.crews[cIdx].ledger];
-                            txs.forEach(tx => {
-                                newLedger.unshift({ ...tx, amount: Number(tx.amount)||0, id: Math.random().toString(36).substr(2, 9), type: 'receipt', img: e.target.result });
-                            });
+                            txs.forEach(tx => newLedger.unshift({ ...tx, amount: Number(tx.amount)||0, id: Math.random().toString(36).substr(2, 9), type: 'receipt', img: e.target.result }));
                             state.crews[cIdx].ledger = newLedger;
-                        } catch (err) { console.error("Audit failure", err); }
+                        } catch (err) { console.error(err); }
                         resolve();
                     };
                     reader.readAsDataURL(file);
                 });
             }
-            renderCrewLedger(state.crews[cIdx]); renderFinancials(); loader.classList.add('hidden'); showToast("FORENSIC SCAN SYNCED");
+            renderCrewLedger(state.crews[cIdx]); renderFinancials(); loader.classList.add('hidden'); showToast("BATCH SYNCED");
         }
+
+        window.manualReceiptEntry = () => {
+            state.activeTxId = 'new';
+            document.getElementById('audit-img-portal').innerText = "MANUAL ENTRY NODE";
+            document.getElementById('edit-tx-vendor').value = "";
+            document.getElementById('edit-tx-date').value = new Date().toISOString().split('T')[0];
+            document.getElementById('edit-tx-time').value = new Date().toLocaleTimeString();
+            document.getElementById('edit-tx-address').value = "";
+            document.getElementById('edit-tx-cat').value = "Gas";
+            document.getElementById('edit-tx-gal').value = 0;
+            document.getElementById('edit-tx-amt').value = 0;
+            document.getElementById('audit-modal').classList.remove('hidden');
+        };
+
+        window.openAuditNode = (txId) => {
+            const c = state.crews.find(x=>x.id===state.activeCrewId); const tx = c.ledger.find(t=>t.id===txId);
+            state.activeTxId = txId;
+            document.getElementById('audit-img-portal').innerHTML = tx.img ? `<img src="${tx.img}" class="w-full h-full object-cover">` : 'MANUAL ENTRY NODE';
+            document.getElementById('edit-tx-vendor').value = tx.vendor;
+            document.getElementById('edit-tx-date').value = tx.date;
+            document.getElementById('edit-tx-time').value = tx.time;
+            document.getElementById('edit-tx-address').value = tx.address || '';
+            document.getElementById('edit-tx-cat').value = tx.category;
+            document.getElementById('edit-tx-gal').value = tx.gallons || 0;
+            document.getElementById('edit-tx-amt').value = tx.amount;
+            document.getElementById('audit-modal').classList.remove('hidden');
+        };
+
+        window.saveAuditEdits = () => {
+            const cIdx = state.crews.findIndex(x=>x.id===state.activeCrewId);
+            const newTx = {
+                id: state.activeTxId === 'new' ? Math.random().toString(36).substr(2, 9) : state.activeTxId,
+                type: 'receipt',
+                vendor: document.getElementById('edit-tx-vendor').value,
+                date: document.getElementById('edit-tx-date').value,
+                time: document.getElementById('edit-tx-time').value,
+                address: document.getElementById('edit-tx-address').value,
+                category: document.getElementById('edit-tx-cat').value,
+                gallons: Number(document.getElementById('edit-tx-gal').value)||0,
+                amount: Number(document.getElementById('edit-tx-amt').value)||0,
+                img: state.activeTxId === 'new' ? null : state.crews[cIdx].ledger.find(t=>t.id===state.activeTxId).img
+            };
+
+            if(state.activeTxId === 'new') {
+                state.crews[cIdx].ledger.unshift(newTx);
+            } else {
+                const txIdx = state.crews[cIdx].ledger.findIndex(t=>t.id===state.activeTxId);
+                state.crews[cIdx].ledger[txIdx] = newTx;
+            }
+            renderCrewLedger(state.crews[cIdx]); renderFinancials(); closeAudit(); showToast("ENTRY SAVED");
+        };
 
         function renderFinancials() {
             const list = document.getElementById('global-ledger-list'); let spent = 0, sent = 0, fuel = 0;
@@ -398,54 +485,23 @@
                     if(tx.type === 'receipt') { spent += tx.amount; if(tx.category==='Gas') fuel += tx.amount; } else { sent += tx.amount; }
                     html += `
                     <div class="expense-card" onclick="openAuditNodeGlobal('${c.id}', '${tx.id}')">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-zinc-900 border border-white/5 overflow-hidden flex items-center justify-center">${tx.img ? `<img src="${tx.img}" class="w-full h-full object-cover">` : '<span class="text-green-500 font-black">$</span>'}</div>
-                            <div class="text-left"><p class="text-xs font-black text-white uppercase truncate max-w-[180px]">${tx.vendor}</p><p class="text-[8px] font-bold text-zinc-600 uppercase tracking-widest">Foreman: ${c.name} // ${tx.date}</p></div>
-                        </div>
-                        <div class="flex items-center gap-4"><span class="category-pill ${tx.type==='receipt'?'bg-rose-500/10 text-rose-500':'bg-green-500/10 text-green-400'}">${tx.category}</span><span class="font-black ${tx.type==='receipt'?'text-rose-500':'text-green-500'} text-lg">${tx.type==='receipt'?'-':'+'}$${tx.amount.toFixed(2)}</span></div>
+                        <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-zinc-900 border border-white/5 overflow-hidden flex items-center justify-center">${tx.img ? `<img src="${tx.img}" class="w-full h-full object-cover">` : '$'}</div><div class="text-left"><p class="text-xs font-black text-white uppercase">${tx.vendor}</p><p class="text-[8px] font-bold text-zinc-600 uppercase">Foreman: ${c.name} // ${tx.date}</p></div></div>
+                        <div class="flex items-center gap-4"><span class="category-pill ${tx.type==='receipt'?'bg-rose-500/10 text-rose-400':'bg-green-500/10 text-green-400'}">${tx.category}</span><span class="font-black ${tx.type==='receipt'?'text-rose-500':'text-green-500'} text-lg">${tx.type==='receipt'?'-':'+'}$${tx.amount.toFixed(2)}</span></div>
                     </div>`;
                 });
             });
-            if(list) list.innerHTML = html || '<p class="py-20 text-center opacity-10 text-[10px] font-black uppercase italic tracking-[0.5em]">Ledger Node Offline</p>';
+            if(list) list.innerHTML = html || '<p class="py-20 text-center opacity-10 font-black italic">Ledger Void</p>';
             if(document.getElementById('fin-total-spent')) document.getElementById('fin-total-spent').innerText = `$${spent.toLocaleString()}`;
             if(document.getElementById('fin-total-sent')) document.getElementById('fin-total-sent').innerText = `$${sent.toLocaleString()}`;
             if(document.getElementById('fin-total-fuel')) document.getElementById('fin-total-fuel').innerText = `$${fuel.toLocaleString()}`;
             if(document.getElementById('fin-total-balance')) document.getElementById('fin-total-balance').innerText = `$${(sent - spent).toLocaleString()}`;
             if(document.getElementById('dash-burn')) document.getElementById('dash-burn').innerText = `$${spent.toLocaleString()}`;
+            if(document.getElementById('stat-liquidity')) document.getElementById('stat-liquidity').innerText = `$${(sent - spent).toLocaleString()}`;
         }
-
         window.openAuditNodeGlobal = (cId, txId) => { state.activeCrewId = cId; openAuditNode(txId); };
-
-        window.openAuditNode = (txId) => {
-            const c = state.crews.find(x=>x.id===state.activeCrewId); const tx = c.ledger.find(t=>t.id===txId);
-            state.activeTxId = txId;
-            document.getElementById('audit-img-portal').innerHTML = tx.img ? `<img src="${tx.img}" class="w-full h-full object-cover">` : '<div class="h-full w-full flex items-center justify-center font-black text-5xl">$</div>';
-            document.getElementById('audit-data-portal').innerHTML = `
-                <div class="bg-white/5 p-8 rounded-3xl border border-white/5 space-y-4">
-                    <div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">Vendor Name</label><input type="text" id="edit-tx-vendor" value="${tx.vendor}"></div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">Date</label><input type="date" id="edit-tx-date" value="${tx.date}"></div>
-                        <div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">Time</label><input type="text" id="edit-tx-time" value="${tx.time}"></div>
-                    </div>
-                    <div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">Address</label><textarea id="edit-tx-address" rows="2">${tx.address || ''}</textarea></div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">Category</label><select id="edit-tx-cat"><option ${tx.category==='Gas'?'selected':''}>Gas</option><option ${tx.category==='Hotel'?'selected':''}>Hotel</option><option ${tx.category==='Materials'?'selected':''}>Materials</option></select></div>
-                        <div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">Gal</label><input type="number" id="edit-tx-gal" value="${tx.gallons || 0}"></div>
-                    </div>
-                    <div><label class="text-[8px] font-black uppercase text-rose-500 ml-2">Amount ($)</label><input type="number" id="edit-tx-amt" value="${tx.amount}" class="text-3xl font-black text-rose-500 !bg-zinc-950 text-center"></div>
-                </div>`;
-            document.getElementById('audit-modal').classList.remove('hidden');
-        };
-
-        window.saveAuditEdits = () => {
-            const cIdx = state.crews.findIndex(x=>x.id===state.activeCrewId); const txIdx = state.crews[cIdx].ledger.findIndex(t=>t.id===state.activeTxId);
-            state.crews[cIdx].ledger[txIdx] = { ...state.crews[cIdx].ledger[txIdx], vendor: document.getElementById('edit-tx-vendor').value, date: document.getElementById('edit-tx-date').value, time: document.getElementById('edit-tx-time').value, address: document.getElementById('edit-tx-address').value, category: document.getElementById('edit-tx-cat').value, gallons: Number(document.getElementById('edit-tx-gal').value)||0, amount: Number(document.getElementById('edit-tx-amt').value)||0 };
-            renderFinancials(); renderCrewLedger(state.crews[cIdx]); closeAudit(); showToast("NODE CORRECTED");
-        };
-
         window.closeAudit = () => document.getElementById('audit-modal').classList.add('hidden');
 
-        // --- 4. PERSONNEL & CORE UI ---
+        // --- 4. PERSONNEL ---
         function renderCrewLedger(c) {
             const list = document.getElementById('ps-ledger-list'); let spent = 0, sent = 0;
             if(!list) return;
@@ -453,38 +509,33 @@
                 if(tx.type === 'receipt') spent += tx.amount; else sent += tx.amount;
                 return `
                 <div class="expense-card" onclick="openAuditNode('${tx.id}')">
-                    <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-zinc-900 border border-white/5 overflow-hidden flex items-center justify-center">${tx.img ? `<img src="${tx.img}" class="w-full h-full object-cover">` : '<span class="text-green-500 font-black">$</span>'}</div><div class="text-left"><p class="text-xs font-black text-white uppercase truncate max-w-[140px]">${tx.vendor}</p><p class="text-[8px] font-bold text-zinc-600 uppercase">${tx.date}</p></div></div>
+                    <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-zinc-900 border border-white/5 overflow-hidden flex items-center justify-center">${tx.img ? `<img src="${tx.img}" class="w-full h-full object-cover">` : '<span class="text-green-500 font-black">$</span>'}</div><div class="text-left"><p class="text-xs font-black text-white uppercase">${tx.vendor}</p><p class="text-[8px] font-bold text-zinc-600 uppercase">${tx.date}</p></div></div>
                     <div class="flex items-center gap-4"><span class="category-pill ${tx.type==='receipt'?'bg-rose-500/10 text-rose-400':'bg-green-500/10 text-green-400'}">${tx.category}</span><span class="font-black ${tx.type==='receipt'?'text-rose-500':'text-green-500'} text-lg">${tx.type==='receipt'?'-':'+'}$${tx.amount.toFixed(2)}</span></div>
-                </div>`;}).join('') : '<p class="py-20 text-center opacity-10 text-[10px] font-black uppercase italic tracking-widest">Vault Node active</p>';
+                </div>`;}).join('') : '<p class="py-20 text-center opacity-10 italic">Vault Ready</p>';
             document.getElementById('ps-total-spent').innerText = `$${spent.toLocaleString()}`;
             document.getElementById('ps-total-balance').innerText = `$${(sent - spent).toLocaleString()}`;
         }
-
         window.injectFunds = () => {
             const amt = Number(document.getElementById('ps-fund-amt').value); if(!amt) return;
             const cIdx = state.crews.findIndex(x=>x.id===state.activeCrewId);
-            state.crews[cIdx].ledger.unshift({ id: Date.now().toString(), type: 'disbursement', amount: amt, date: new Date().toISOString().split('T')[0], time: new Date().toLocaleTimeString(), category: 'Funds Sent', vendor: 'Company injection', address: 'Digital Transfer', img: null });
+            state.crews[cIdx].ledger.unshift({ id: Date.now().toString(), type: 'disbursement', amount: amt, date: new Date().toISOString().split('T')[0], time: new Date().toLocaleTimeString(), category: 'Funds Sent', vendor: 'Company Transfer', address: 'Digital Remittance', img: null });
             document.getElementById('ps-fund-amt').value = ''; renderCrewLedger(state.crews[cIdx]); renderFinancials(); showToast("FUNDS SENT");
         };
-
         window.addCrew = () => {
             const name = document.getElementById('crew-new-name').value;
-            if(name) { state.crews.unshift({ id: Date.now().toString(), name, phone: document.getElementById('crew-new-phone').value, email: document.getElementById('crew-new-email').value, address: '', ledger: [] }); renderCrews(); showToast("PERSONNEL ENLISTED"); }
+            if(name) { state.crews.unshift({ id: Date.now().toString(), name, phone: document.getElementById('crew-new-phone').value, email: document.getElementById('crew-new-email').value, address: '', ledger: [] }); renderCrews(); showToast("ENLISTED"); }
         };
         function renderCrews() {
             const grid = document.getElementById('crew-list-grid'); if(!grid) return;
-            grid.innerHTML = state.crews.map(c => `<div class="asset-card border-l-4 border-l-blue-600"><span class="text-[9px] font-black uppercase text-zinc-600 block mb-2 italic tracking-widest">Dossier Access</span><h4 class="text-2xl font-black italic text-white mb-1 uppercase tracking-tighter">${c.name}</h4><p class="text-[10px] font-bold text-blue-500 mb-6 tracking-widest">${c.phone || '(No Sync)'}</p><button onclick="openPersonnel('${c.id}')" class="w-full py-4 bg-blue-600 rounded-xl text-[9px] font-black uppercase italic shadow-lg">Manage Ledger & Audit</button></div>`).join('');
+            grid.innerHTML = state.crews.map(c => `<div class="asset-card border-l-4 border-l-blue-600"><span class="text-[9px] font-black uppercase text-zinc-600 block mb-2 italic">Dossier Control</span><h4 class="text-2xl font-black italic text-white mb-1 uppercase">${c.name}</h4><p class="text-[10px] font-bold text-blue-500 mb-6">${c.phone || '(No Sync)'}</p><button onclick="openPersonnel('${c.id}')" class="w-full py-4 bg-blue-600 rounded-xl text-[9px] font-black uppercase italic shadow-lg">Manage Dossier & Ledger</button></div>`).join('');
         }
         window.openPersonnel = (id) => {
             const c = state.crews.find(x=>x.id===id); state.activeCrewId = id;
-            document.getElementById('ps-edit-name').value = c.name;
-            document.getElementById('ps-edit-phone').value = c.phone || '';
-            document.getElementById('ps-edit-email').value = c.email || '';
-            document.getElementById('ps-edit-address').value = c.address || '';
+            document.getElementById('ps-edit-name').value = c.name; document.getElementById('ps-edit-phone').value = c.phone || ''; document.getElementById('ps-edit-email').value = c.email || ''; document.getElementById('ps-edit-address').value = c.address || '';
             renderCrewLedger(c); document.getElementById('personnel-modal').classList.remove('hidden');
         };
 
-        // --- 5. HD CALENDAR & DATA INTAKE ---
+        // --- 5. HD CALENDAR ---
         window.renderCalendar = () => {
             const container = document.getElementById('calendar-container'); if(!container) return;
             const y = state.curMonth.getFullYear(); const m = state.curMonth.getMonth();
@@ -502,26 +553,11 @@
         };
         window.focusDay = (date) => { 
             state.selectedDate = date; renderCalendar(); const jobs = state.customers.filter(c => c.date === date);
-            document.getElementById('day-jobs-list').innerHTML = jobs.length ? jobs.map(j => `
-                <div class="bg-black p-5 border border-white/10 rounded-3xl flex justify-between items-center hover:border-blue-500 transition-all text-left">
-                    <div><span class="text-xl font-black italic text-white uppercase">${j.name}</span><p class="text-[10px] font-black uppercase text-zinc-500 mt-1">${j.time} // ${j.vol} FT³</p></div>
-                    <button onclick="openEditor('${j.id}')" class="px-5 py-2 bg-blue-600 rounded-full font-black uppercase text-[9px] italic shadow-lg">Edit</button>
-                </div>`).join('') : `<div class="py-10 text-center opacity-10 uppercase italic text-xs font-black tracking-widest">Manifest Void</div>`;
+            document.getElementById('day-jobs-list').innerHTML = jobs.length ? jobs.map(j => `<div class="bg-black p-5 border border-white/10 rounded-3xl flex justify-between items-center hover:border-blue-500 transition-all text-left"><div><span class="text-xl font-black italic text-white uppercase">${j.name}</span><p class="text-[10px] font-black uppercase text-zinc-500 mt-1">${j.time} // ${j.vol} FT³</p></div><button onclick="openEditor('${j.id}')" class="px-5 py-2 bg-blue-600 rounded-full font-black uppercase text-[9px] italic">Edit</button></div>`).join('') : `<div class="py-10 text-center opacity-10 uppercase italic text-xs font-black">Void</div>`;
             document.getElementById('day-node-title').innerText = date;
         };
 
-        // --- 6. MARKET STORE ---
-        window.addGlobalItem = () => {
-            const n = document.getElementById('global-new-name').value; const v = parseFloat(document.getElementById('global-new-vol').value);
-            if(n && !isNaN(v)) { state.matrix.unshift({ cat: document.getElementById('global-new-cat').value, name: n, vol: v }); renderGlobalInventory(); showToast("ITEM INJECTED"); }
-        };
-        function renderGlobalInventory() {
-            const container = document.getElementById('global-inventory-list'); if(!container) return;
-            container.innerHTML = state.matrix.map(item => `<div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 text-center group hover:border-blue-500/40 transition-all"><h5 class="text-lg font-black italic mb-3 truncate uppercase">${item.name}</h5><input type="number" class="!w-20 !p-2 !text-blue-500 !bg-black text-center font-black" value="${item.vol}" onchange="updateGlobalVol('${item.name}', this.value)"></div>`).join('');
-        }
-        window.updateGlobalVol = (n, v) => { const idx = state.matrix.findIndex(i => i.name === n); if(idx !== -1) state.matrix[idx].vol = Number(v) || 0; };
-
-        // --- 7. CORE UTILS ---
+        // --- 6. CORE UTILS ---
         window.formatPhone = (val) => { if (!val) return val; const num = val.replace(/[^\d]/g, ''); if (num.length < 4) return num; if (num.length < 7) return `(${num.slice(0, 3)}) ${num.slice(3)}`; return `(${num.slice(0, 3)}) ${num.slice(3, 6)}-${num.slice(6, 10)}`; }
         window.addEventListener('input', (e) => { if (e.target.classList.contains('phone-mask')) e.target.value = formatPhone(e.target.value); });
         window.saveDraft = (f,v) => state.draft[f] = v;
@@ -531,19 +567,9 @@
         window.quickAdd = (date) => { state.draft.date = date; switchTab('Customer List'); showToast(`ADD CLIENT TO ${date}`); };
         window.changeMonth = (dir) => { state.curMonth.setMonth(state.curMonth.getMonth() + dir); renderCalendar(); };
         window.showToast = (m) => { const t = document.getElementById('toast-msg'); t.innerText = m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 2000); };
-        
-        window.openEditor = (id) => {
-            const job = state.customers.find(c => c.id === id); if(!job) return;
-            state.activeJobId = id; document.getElementById('editor-modal').classList.remove('hidden');
-            document.getElementById('editor-content').innerHTML = `<div class="node-card"><span class="node-label">Identity Sync</span><input type="text" id="edit-name" value="${job.name}"><input type="tel" id="edit-phone" value="${job.phone}" class="phone-mask"></div><div class="node-card lg:col-span-2"><span class="node-label">Mission Dossier</span><textarea id="edit-notes" rows="10" class="!text-left">${job.notes || ''}</textarea></div>`;
-        };
         window.closeEditor = () => document.getElementById('editor-modal').classList.add('hidden');
-        window.saveJobChanges = () => {
-            const i = state.customers.findIndex(c => c.id === state.activeJobId);
-            state.customers[i] = { ...state.customers[i], name:document.getElementById('edit-name').value, phone:document.getElementById('edit-phone').value };
-            closeEditor(); renderCalendar(); showToast("MISSION UPDATED");
-        };
-
+        window.openEditor = (id) => { const job = state.customers.find(c => c.id === id); if(!job) return; state.activeJobId = id; document.getElementById('editor-modal').classList.remove('hidden'); document.getElementById('editor-content').innerHTML = `<div class="node-card"><span class="node-label">Identity Sync</span><input type="text" id="edit-name" value="${job.name}"><input type="tel" id="edit-phone" value="${job.phone}" class="phone-mask"></div><div class="node-card lg:col-span-2"><span class="node-label">Mission Dossier</span><textarea id="edit-notes" rows="10" class="!text-left">${job.notes || ''}</textarea></div>`; };
+        window.saveJobChanges = () => { const i = state.customers.findIndex(c => c.id === state.activeJobId); state.customers[i] = { ...state.customers[i], name:document.getElementById('edit-name').value, phone:document.getElementById('edit-phone').value }; closeEditor(); renderCalendar(); showToast("MISSION UPDATED"); };
         window.handlePhotos = (input) => { Array.from(input.files).forEach(f => { const r = new FileReader(); r.onload = (e) => { state.images.push(e.target.result); const div = document.createElement('div'); div.className = 'gallery-item rounded-xl overflow-hidden aspect-square'; div.innerHTML = `<img src="${e.target.result}" class="w-full h-full object-cover">`; document.getElementById('photo-gallery').prepend(div); }; r.readAsDataURL(f); }); };
         window.handleSynchronize = () => { if(!state.draft.name || !state.draft.date) return showToast('DATA REQ: IDENTITY/DATE'); state.customers.unshift({ id: Date.now().toString(), ...state.draft, status: 'authorized' }); state.draft = { time: '08:20' }; switchTab('Dashboard'); };
 
@@ -553,24 +579,26 @@
             const compress = (b64) => new Promise((r) => { const img = new Image(); img.onload = () => { const c = document.createElement('canvas'); const s = Math.min(1, 600/Math.max(img.width, img.height)); c.width=img.width*s; c.height=img.height*s; c.getContext('2d').drawImage(img,0,0,c.width,c.height); r(c.toDataURL('image/jpeg',0.4).split(',')[1]); }; img.src = b64; });
             try {
                 const clean = await Promise.all(state.images.slice(-3).map(compress));
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, { method: 'POST', body: JSON.stringify({ contents: [{ parts: [{ text: `Identify furniture. Map to: ${state.matrix.map(i=>i.name).join(', ')}. Return JSON {"items":{"Name":count}, "total_vol":number}.` }, ...clean.map(d => ({ inlineData: { mimeType: "image/jpeg", data: d } }))] }] }) });
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, { method: 'POST', body: JSON.stringify({ contents: [{ parts: [{ text: `Identify furniture. Return JSON {"items":{"Name":count}, "total_vol":number}.` }, ...clean.map(d => ({ inlineData: { mimeType: "image/jpeg", data: d } }))] }] }) });
                 const result = JSON.parse((await res.json()).candidates[0].content.parts[0].text.replace(/```json|```/g, '').trim());
                 Object.entries(result.items).forEach(([k, v]) => { if(state.matrix.find(i=>i.name===k)) state.inventory[k] = (state.inventory[k]||0)+v; });
-                document.getElementById('calc-tally').innerText = result.total_vol + ' ft³'; renderInventoryGrid(); showToast('QUANTUM SYNC COMPLETE');
-            } catch (err) { showToast('NEURAL DELAY'); } finally { loader.classList.add('hidden'); }
+                document.getElementById('calc-tally').innerText = result.total_vol + ' ft³'; renderInventoryGrid(); showToast('SYNC COMPLETE');
+            } catch (err) { showToast('AI DELAY'); } finally { loader.classList.add('hidden'); }
         }
 
         function renderInventoryGrid() {
             const container = document.getElementById('inventory-grid'); if (!container) return;
-            let currentCat = "";
+            let curCat = "";
             container.innerHTML = state.matrix.map(item => {
-                let h = ""; if(item.cat !== currentCat) { currentCat = item.cat; h += `<div class="category-header">${currentCat}</div>`; }
-                h += `<div class="item-counter"><div class="text-left"><span class="item-name text-xs font-black uppercase italic tracking-wider">${item.name}</span></div><div class="qty-controls"><div class="qty-btn" onclick="updateQty('${item.name}', -1)">-</div><span class="qty-val font-black text-blue-500">${state.inventory[item.name] || 0}</span><div class="qty-btn" onclick="updateQty('${item.name}', 1)">+</div></div></div>`;
+                let h = ""; if(item.cat !== curCat) { curCat = item.cat; h += `<div class="category-header">${curCat}</div>`; }
+                h += `<div class="item-counter"><div class="text-left"><span class="item-name text-xs font-black uppercase">${item.name}</span></div><div class="qty-controls"><div class="qty-btn" onclick="updateQty('${item.name}', -1)">-</div><span class="qty-val">${state.inventory[item.name] || 0}</span><div class="qty-btn" onclick="updateQty('${item.name}', 1)">+</div></div></div>`;
                 return h;
             }).join('');
         }
         window.updateQty = (n, d) => { state.inventory[n] = Math.max(0, (state.inventory[n] || 0) + d); let t = 0; state.matrix.forEach(i => t += (state.inventory[i.name] || 0) * i.vol); document.getElementById('calc-tally').innerText = t.toFixed(1) + ' ft³'; renderInventoryGrid(); };
-        function renderFleet() { const grid = document.getElementById('fleet-list-grid'); if(!grid) return; grid.innerHTML = state.fleet.map(f => `<div class="asset-card border-l-4 border-l-amber-500"><span class="node-label">Asset Node</span><h4 class="text-2xl font-black italic text-white mb-2 uppercase">${f.name}</h4><p class="text-[10px] font-bold text-amber-500 mb-6 uppercase tracking-widest">${f.size} // ${f.plate}</p></div>`).join(''); }
+
+        function renderGlobalInventory() { const container = document.getElementById('global-inventory-list'); if(!container) return; container.innerHTML = state.matrix.map(item => `<div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 text-center group hover:border-blue-500/40"><h5 class="text-lg font-black italic mb-3 uppercase">${item.name}</h5><input type="number" class="!w-20 !p-2 !text-blue-500 !bg-black text-center" value="${item.vol}" onchange="updateGlobalVol('${item.name}', this.value)"></div>`).join(''); }
+        window.updateGlobalVol = (n, v) => { const idx = state.matrix.findIndex(i => i.name === n); if(idx !== -1) state.matrix[idx].vol = Number(v) || 0; };
 
         window.onload = () => { switchTab('Dashboard'); renderFinancials(); };
     </script>
