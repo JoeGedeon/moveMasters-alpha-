@@ -3,230 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>MoveMasters OS | Titan X-56</title>
+    <title>MoveMasters OS | Titan X-57</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+        :root { --bg: #000; --sidebar: #050505; --accent: #3b82f6; --border: #ffffff; --card: #0a0a0a; }
         
-        :root {
-            --bg: #000000;
-            --sidebar: #050505;
-            --accent: #3b82f6;
-            --border-white: #ffffff;
-            --card-bg: #0a0a0a;
-        }
-
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: var(--bg); 
-            color: #ffffff; 
-            margin: 0;
-            display: flex;
-            height: 100dvh;
-            width: 100vw;
-            overflow: hidden;
-            -webkit-tap-highlight-color: transparent;
+            background: var(--bg); color: #fff; margin: 0; 
+            display: flex; height: 100dvh; width: 100vw; overflow: hidden; 
         }
 
-        /* SIDEBAR COMMAND STRIP (THE NINE NODES) */
+        /* SIDEBAR - THE FULL NINE */
         .sidebar {
-            width: 260px;
-            background-color: var(--sidebar);
-            border-right: 2px solid var(--border-white);
-            height: 100%;
-            flex-shrink: 0; 
-            display: flex;
-            flex-direction: column;
-            z-index: 1000;
-            overflow-y: auto;
+            width: 260px; background: var(--sidebar); border-right: 2px solid var(--border);
+            display: flex; flex-direction: column; flex-shrink: 0; z-index: 1000;
         }
-
         .nav-btn {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 16px 24px;
-            font-size: 13px;
-            font-weight: 800;
-            color: #444;
-            cursor: pointer;
-            transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            padding: 16px 24px; font-size: 12px; font-weight: 800; color: #444;
+            cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.05);
+            text-transform: uppercase; letter-spacing: 0.1em; transition: 0.2s;
+            display: flex; align-items: center; gap: 10px;
         }
+        .nav-btn.active { background: rgba(255,255,255,0.05); color: #fff; border-left: 6px solid var(--accent); }
 
-        .nav-btn.active {
-            background-color: rgba(255, 255, 255, 0.05);
-            color: #ffffff;
-            border-left: 8px solid var(--accent);
-        }
+        /* MAIN STAGE */
+        .main-stage { flex-grow: 1; overflow-y: auto; padding: 40px 60px; position: relative; }
+        .titan-title { font-size: clamp(30px, 5vw, 60px); font-weight: 900; font-style: italic; text-transform: uppercase; line-height: 1; margin-bottom: 30px; }
+        .titan-gradient { background: linear-gradient(to right, #fff, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* MAIN CONSOLE STAGE */
-        .main-stage {
-            flex-grow: 1;
-            overflow-y: auto;
-            background: #000;
-            padding: 40px 60px;
-            position: relative;
-        }
+        /* INDUSTRIAL NODES */
+        .node-card { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
+        .node-label { font-size: 9px; font-weight: 800; text-transform: uppercase; color: #000; background: #fff; padding: 4px 10px; border-radius: 4px; margin-bottom: 25px; display: inline-block; }
+        
+        input, select { background: #000 !important; border: 1px solid var(--border) !important; padding: 16px; border-radius: 12px; width: 100%; color: #fff !important; font-weight: 700; margin-bottom: 12px; outline: none; }
 
-        .titan-title {
-            font-size: clamp(30px, 6vw, 60px);
-            font-weight: 900;
-            font-style: italic;
-            text-transform: uppercase;
-            letter-spacing: -0.04em;
-            color: #ffffff;
-            line-height: 0.9;
-            margin-bottom: 30px;
-        }
+        /* CALENDAR TABLE */
+        .calendar-table { width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 6px; }
+        .calendar-table th { font-size: 10px; font-weight: 900; color: #333; text-transform: uppercase; padding: 10px 0; }
+        .date-tile { background: #080808; border: 1px solid #1a1a1a; border-radius: 14px; height: 105px; padding: 10px; vertical-align: top; cursor: pointer; }
+        .date-tile.active-focus { border: 2px solid var(--accent); background: rgba(59,130,246,0.05); }
+        .job-pill { background: #fff; color: #000; font-size: 8px; font-weight: 900; padding: 3px 6px; border-radius: 4px; margin-top: 4px; white-space: nowrap; overflow: hidden; }
 
-        .titan-gradient {
-            background: linear-gradient(to right, #ffffff, #3b82f6, #60a5fa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        /* BUTTONS */
+        .btn-sync { background: #fff; color: #000; padding: 22px; border-radius: 20px; font-weight: 900; text-transform: uppercase; width: 100%; border: 2px solid #fff; cursor: pointer; transition: 0.2s; }
+        .btn-sync:active { transform: scale(0.97); background: var(--accent); color: #fff; }
 
-        /* INDUSTRIAL NODES (CARDS) */
-        .node-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-white);
-            border-radius: 24px;
-            padding: 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.9);
-            position: relative;
-            z-index: 10;
-        }
-
-        .node-label {
-            font-size: 9px;
-            font-weight: 800;
-            text-transform: uppercase;
-            color: #000;
-            background: #fff;
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 4px;
-            letter-spacing: 0.3em;
-            margin-bottom: 25px;
-        }
-
-        input, select {
-            background: #000 !important;
-            border: 1px solid var(--border-white) !important;
-            padding: 16px;
-            border-radius: 12px;
-            width: 100%;
-            color: #fff !important;
-            font-weight: 700;
-            font-size: 15px;
-            margin-bottom: 12px;
-            outline: none;
-        }
-
-        /* WALL GRID */
-        .calendar-table {
-            width: 100%;
-            table-layout: fixed;
-            border-collapse: separate;
-            border-spacing: 6px;
-        }
-
-        .calendar-table th {
-            text-align: center;
-            font-size: 10px;
-            font-weight: 900;
-            color: #333;
-            padding: 15px 0;
-            text-transform: uppercase;
-        }
-
-        .date-tile {
-            background: #080808;
-            border: 1px solid #1a1a1a;
-            border-radius: 14px;
-            height: 110px;
-            padding: 12px;
-            vertical-align: top;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .date-tile.active-focus { border: 2px solid var(--accent); background: rgba(59, 130, 246, 0.05); }
-
-        .job-pill {
-            background: #ffffff;
-            color: #000;
-            font-size: 8px;
-            font-weight: 900;
-            text-transform: uppercase;
-            padding: 3px 6px;
-            border-radius: 4px;
-            margin-top: 4px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .btn-sync {
-            background: #ffffff;
-            color: #000;
-            padding: 24px;
-            border-radius: 20px;
-            font-weight: 900;
-            text-transform: uppercase;
-            width: 100%;
-            letter-spacing: 0.4em;
-            border: 2px solid var(--border-white);
-            cursor: pointer;
-        }
-
-        .btn-sync:active { transform: scale(0.97); background: var(--accent); color: white; }
-
-        #loading-screen {
-            position: fixed;
-            inset: 0;
-            background: #000;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
+        #loading-screen { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column; }
         .hidden { display: none !important; }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-thumb { background: #fff; border-radius: 10px; }
-
-        .glow {
-            position: fixed;
-            top: -200px;
-            right: -200px;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 1;
-        }
+        .glow { position: fixed; top: 0; right: 0; width: 600px; height: 600px; background: radial-gradient(circle, rgba(59,130,246,0.05) 0%, transparent 70%); pointer-events: none; }
     </style>
 </head>
 <body class="no-select">
 
     <div id="loading-screen">
-        <div class="text-center">
-            <div class="w-16 h-16 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto mb-8"></div>
-            <p class="text-[12px] font-black uppercase tracking-[0.6em] text-white animate-pulse">Titan OS // System Launch</p>
-        </div>
+        <div class="w-16 h-16 border-4 border-white border-t-transparent rounded-full animate-spin mb-6"></div>
+        <p class="text-[10px] font-black uppercase tracking-[0.5em] text-white">Titan OS // System Launch</p>
+        <button onclick="forceStart()" class="mt-10 text-[9px] text-zinc-700 underline uppercase tracking-widest">Manual Bypass</button>
     </div>
 
-    <!-- SIDEBAR (THE NINE BUTTONS RESTORED) -->
-    <aside class="sidebar custom-scrollbar">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
         <div class="p-10 border-b-2 border-white">
             <h2 class="text-[15px] font-black uppercase tracking-[0.4em] text-white italic">MoveMasters</h2>
         </div>
-        <div class="flex-grow py-4">
+        <div class="flex-grow overflow-y-auto">
             <div id="nav-Dashboard" class="nav-btn active" onclick="switchTab('Dashboard')">Dashboard</div>
             <div id="nav-CustomerList" class="nav-btn" onclick="switchTab('Customer List')">Customer List</div>
             <div id="nav-CRM" class="nav-btn" onclick="switchTab('CRM')">CRM Database</div>
@@ -237,13 +81,13 @@
             <div id="nav-Financials" class="nav-btn" onclick="switchTab('Financials')">Financial Hub</div>
             <div id="nav-Settings" class="nav-btn" onclick="switchTab('Settings')">Settings</div>
         </div>
-        <div class="p-8 border-t-2 border-white bg-zinc-900">
-            <span class="text-[9px] font-black uppercase text-white tracking-widest">M5 Titan v56.0</span>
+        <div class="p-6 border-t-2 border-white bg-zinc-900">
+            <span class="text-[9px] font-black uppercase text-white tracking-widest italic">Fail-Safe Node Active</span>
         </div>
     </aside>
 
     <!-- MAIN CONSOLE -->
-    <main class="main-stage custom-scrollbar">
+    <main class="main-stage">
         <div class="glow"></div>
         <h1 id="view-title" class="titan-title titan-gradient">Dashboard</h1>
 
@@ -259,77 +103,62 @@
                                 <button onclick="changeMonth(1)" class="w-14 h-14 border-2 border-white rounded-xl flex items-center justify-center hover:bg-white hover:text-black">▶</button>
                             </div>
                         </div>
-                        <div class="p-6">
-                            <table class="calendar-table">
-                                <thead><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead>
-                                <tbody id="calendar-body"></tbody>
-                            </table>
-                        </div>
+                        <div class="p-6"><table class="calendar-table"><thead><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead><tbody id="calendar-body"></tbody></table></div>
                     </div>
                     <div class="grid grid-cols-2 gap-10">
-                        <div class="node-card"><p class="text-zinc-500 uppercase font-black text-[10px] mb-4 tracking-widest">Market load analysis</p><div id="city-analytics-list" class="space-y-2"></div></div>
-                        <div class="node-card"><p class="text-zinc-500 uppercase font-black text-[10px] mb-4 tracking-widest">Revenue projection</p><h4 class="text-7xl font-black italic" id="stat-rev">$142,850</h4><p id="stat-total-vol" class="text-blue-500 font-black text-xs uppercase mt-4">0 ft³ Total Volume</p></div>
+                        <div class="node-card"><p class="text-zinc-500 uppercase font-black text-[10px] mb-4 tracking-widest">Market Load</p><div id="city-analytics" class="space-y-2"></div></div>
+                        <div class="node-card"><p class="text-zinc-500 uppercase font-black text-[10px] mb-4 tracking-widest">Gross Projection</p><h4 class="text-7xl font-black italic" id="stat-rev">$142,850</h4></div>
                     </div>
                 </div>
                 <div class="node-card h-fit sticky top-0 border-2 border-white">
-                    <h4 id="day-node-title" class="text-2xl font-black uppercase italic text-white mb-4 tracking-widest">Day Node</h4>
+                    <h4 id="day-node-title" class="text-2xl font-black uppercase italic text-white mb-6">Day Node</h4>
                     <div id="day-jobs-list" class="space-y-6"></div>
                 </div>
             </div>
         </div>
 
-        <!-- VIEW: CUSTOMER LIST (OPEN INTAKE) -->
-        <div id="CustomerListView" class="view-panel hidden animate-in slide-in-from-bottom">
+        <!-- VIEW: CUSTOMER LIST (WIDE OPEN) -->
+        <div id="CustomerListView" class="view-panel hidden">
             <div class="grid grid-cols-1 xl:grid-cols-3 gap-10">
-                <div class="node-card space-y-6"><span class="node-label">01 // Identity node</span><input type="text" id="cap-name" placeholder="Full Name"><input type="tel" id="cap-phone" placeholder="Mobile node"><input type="email" id="cap-email" placeholder="Email Channel"></div>
-                <div class="node-card space-y-6"><span class="node-label">02 // Logistics sync</span><input type="text" id="cap-from-city" placeholder="Origin City"><input type="text" id="cap-to-city" placeholder="Destination City"><input type="text" id="cap-zip" placeholder="Zip Code Node"></div>
-                <div class="node-card space-y-6">
-                    <span class="node-label">03 // Labor node</span>
+                <div class="node-card space-y-4">
+                    <span class="node-label">01 // Identity</span>
+                    <input type="text" id="cap-name" placeholder="Legal Name">
+                    <input type="tel" id="cap-phone" placeholder="Mobile Sync">
+                    <input type="email" id="cap-email" placeholder="Email Sync">
+                </div>
+                <div class="node-card space-y-4">
+                    <span class="node-label">02 // Route</span>
+                    <input type="text" id="cap-from-city" placeholder="Origin City">
+                    <input type="text" id="cap-to-city" placeholder="Destination City">
+                    <input type="text" id="cap-zip" placeholder="Zip Node">
+                </div>
+                <div class="node-card space-y-4">
+                    <span class="node-label">03 // Sync</span>
                     <input type="date" id="cap-date">
-                    <select id="cap-crew"><option>Marcus T. (Foreman)</option><option>James R. (Foreman)</option><option>David L. (Foreman)</option></select>
+                    <select id="cap-crew"><option>Marcus T. (Foreman)</option><option>James R. (Foreman)</option></select>
                     <button onclick="handleSynchronize()" class="btn-sync mt-4">⚡ Synchronize command</button>
                 </div>
             </div>
             <!-- PHOTO DUMP -->
             <div class="node-card mt-10">
-                <div class="flex justify-between items-center mb-10"><span class="node-label">04 // vision Survey</span><button onclick="runAIAudit()" class="px-10 py-4 border-2 border-white rounded-full font-black uppercase text-xs">Run Audit</button></div>
-                <div id="photo-dump-gallery" class="grid grid-cols-2 md:grid-cols-5 gap-6">
-                    <div class="aspect-square bg-black border-4 border-dashed border-white rounded-2xl flex flex-col items-center justify-center hover:bg-zinc-900 transition-all cursor-pointer relative">
-                        <div class="text-white font-black text-[12px] uppercase">Snap Node</div>
+                <span class="node-label">04 // Survey Dossier</span>
+                <div id="photo-dump-gallery" class="grid grid-cols-2 md:grid-cols-5 gap-6 mt-6">
+                    <div class="aspect-square bg-black border-4 border-dashed border-white flex flex-col items-center justify-center cursor-pointer relative">
+                        <div class="text-white font-black text-[10px] uppercase">Snap Photo</div>
                         <input type="file" multiple accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="handlePhotoUpload(this)">
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- OTHER SHELLS -->
-        <div id="CRMView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">CRM Database Active</h3><div id="crm-body" class="mt-10"></div></div></div>
-        <div id="CrewHubView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Crew Hub Active</h3><p class="mt-8 text-zinc-500 uppercase font-bold tracking-widest italic">Live Labor Synchronization Node</p></div></div>
-        <div id="AuditView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Referral Audit</h3></div></div>
-        <div id="FleetView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Fleet Master</h3></div></div>
+        <!-- Placeholder Panels -->
+        <div id="CRMView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">CRM Database</h3><div id="crm-body" class="mt-10 divide-y-2 divide-white"></div></div></div>
+        <div id="CrewHubView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Crew Hub</h3></div></div>
+        <div id="AuditView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Audit Hub</h3></div></div>
+        <div id="FleetView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Fleet View</h3></div></div>
         <div id="InventoryView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Inventory Master</h3></div></div>
         <div id="FinancialsView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Financial Hub</h3></div></div>
-        <div id="SettingsView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">System Settings</h3></div></div>
-
-        <!-- MASTER EDITOR -->
-        <div id="edit-modal" class="fixed inset-0 bg-black/95 backdrop-blur-3xl z-[2000] hidden overflow-y-auto p-12">
-            <div class="bg-zinc-900 border-4 border-white rounded-[60px] p-16 max-w-6xl w-full mx-auto shadow-2xl animate-in zoom-in-95">
-                <div class="flex justify-between items-center mb-16">
-                    <h4 class="text-5xl font-black italic uppercase titan-gradient">Edit command Node</h4>
-                    <button onclick="closeEditor()" class="p-5 border-4 border-white rounded-full hover:bg-rose-500">✕</button>
-                </div>
-                <div class="grid grid-cols-2 gap-16">
-                    <div class="space-y-8">
-                        <input type="text" id="edit-name" class="text-3xl font-black uppercase italic">
-                        <div class="grid grid-cols-2 gap-4"><input type="date" id="edit-date"><input type="time" id="edit-time"></div>
-                        <select id="edit-crew"><option>Marcus T.</option><option>James R.</option><option>David L.</option></select>
-                        <input type="number" id="edit-vol" placeholder="ft³ Volume Node">
-                    </div>
-                    <div id="edit-gallery" class="grid grid-cols-3 gap-4"></div>
-                </div>
-                <button onclick="finalizeEdit()" class="btn-sync mt-16 py-10 text-2xl italic">Finalize logistical sync</button>
-            </div>
-        </div>
+        <div id="SettingsView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Settings</h3></div></div>
 
     </main>
 
@@ -338,20 +167,33 @@
         import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        const firebaseConfig = JSON.parse(__firebase_config);
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'titan-x56';
-        const apiKey = ""; 
-
+        // SAFETY PARSE
+        const firebaseConfig = JSON.parse(__firebase_config || "{}");
+        let app, auth, db;
+        if(firebaseConfig.apiKey) {
+            app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            db = getFirestore(app);
+        }
+        
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'titan-x57';
+        
         let state = {
             user: null, activeTab: 'Dashboard', customers: [],
             currentMonth: new Date(2025, 11, 1), selectedDate: '2025-12-22',
-            images: [], vol: 0, editingId: null
+            images: [], vol: 0
         };
 
+        // FAIL-SAFE BYPASS (If Firebase hangs for > 5s)
+        window.forceStart = () => {
+            document.getElementById('loading-screen').classList.add('hidden');
+            window.switchTab('Dashboard');
+            window.renderCalendar();
+        };
+        setTimeout(forceStart, 5000);
+
         async function init() {
+            if(!auth) return forceStart();
             const initAuth = async () => {
                 if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
                     await signInWithCustomToken(auth, __initial_auth_token);
@@ -377,7 +219,7 @@
         }
 
         window.saveState = async () => {
-            if (!state.user) return;
+            if (!state.user || !db) return;
             const stateRef = doc(db, 'artifacts', appId, 'users', state.user.uid, 'system', 'state');
             await setDoc(stateRef, { activeTab: state.activeTab, customers: state.customers, timestamp: Date.now() }, { merge: true });
         };
@@ -392,6 +234,7 @@
             const panel = document.getElementById(id.replace(' ', '') + 'View');
             if (panel) panel.classList.remove('hidden');
             document.getElementById('view-title').innerText = id;
+            if (id === 'CRM') renderCRM();
             if (id === 'Dashboard') updateDashboardIntelligence();
             window.saveState();
         };
@@ -408,19 +251,15 @@
             for (let i = 0; i < 6; i++) {
                 let row = document.createElement('tr');
                 for (let j = 0; j < 7; j++) {
-                    let cell = document.createElement('td');
-                    cell.className = 'date-tile';
+                    let cell = document.createElement('td'); cell.className = 'date-tile';
                     if (i === 0 && j < firstDay || date > daysInMonth) {
                         cell.style.background = 'transparent'; cell.style.border = 'none';
                     } else {
                         const dKey = `${year}-${String(month+1).padStart(2,'0')}-${String(date).padStart(2,'0')}`;
                         const dayJobs = state.customers.filter(c => c.date === dKey);
                         cell.innerHTML = `<span class="tile-num ${dayJobs.length?'text-blue-500':'text-zinc-800'}">${date}</span>`;
-                        dayJobs.slice(0,2).forEach(j => {
-                            cell.innerHTML += `<div class="job-pill"><span>${j.name.split(' ')[0]}</span><span style="color:#3b82f6;">${j.crewLead?j.crewLead.charAt(0):'T'}</span></div>`;
-                        });
-                        const currentD = dKey;
-                        cell.onclick = () => focusDay(currentD);
+                        dayJobs.slice(0,2).forEach(j => { cell.innerHTML += `<div class="job-pill">${j.name.split(' ')[0]}</div>`; });
+                        const currentD = dKey; cell.onclick = () => focusDay(currentD);
                         if (state.selectedDate === dKey) cell.classList.add('active-focus');
                         date++;
                     }
@@ -436,12 +275,7 @@
             const list = document.getElementById('day-jobs-list');
             const jobs = state.customers.filter(c => c.date === date);
             document.getElementById('day-node-title').innerText = "Day Node: " + new Date(date + "T00:00:00").toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-            list.innerHTML = jobs.length ? jobs.map(j => `
-                <div class="bg-black p-6 rounded-2xl border-2 border-white mb-6">
-                    <div class="flex justify-between items-start mb-2"><span class="text-xl font-black italic text-white">${j.name}</span><button onclick="openEditor('${j.id}')" class="text-blue-500">✎</button></div>
-                    <div class="text-[10px] font-black uppercase text-zinc-500">${j.time || '08:00'} // ${j.fromCity} ➔ ${j.toCity}</div>
-                    <div class="mt-4 pt-4 border-t border-white/10 flex justify-between"><span class="text-white font-black italic text-xs">${j.crewLead || 'TBD'}</span><span class="text-blue-500 font-black text-xs">${j.vol} ft³</span></div>
-                </div>`).join('') : `<div class="py-20 text-center opacity-10 italic text-xs uppercase">No Nodes Active</div>`;
+            list.innerHTML = jobs.length ? jobs.map(j => `<div class="bg-black p-6 rounded-3xl border-2 border-white mb-6"><span class="text-xl font-black italic text-white">${j.name}</span><div class="text-[10px] font-black uppercase text-zinc-500 mt-2">${j.time || '08:00'} // ${j.fromCity} ➔ ${j.toCity}</div></div>`).join('') : `<div class="py-20 text-center opacity-10 italic text-xs uppercase">No Nodes Active</div>`;
         }
 
         function updateDashboardIntelligence() {
@@ -451,12 +285,9 @@
                 const city = (c.toCity || 'LOCAL').toUpperCase().trim();
                 cities[city] = (cities[city] || 0) + v;
             });
-            document.getElementById('stat-total-vol').innerText = totalVol.toLocaleString() + " ft³ Total Volume";
-            document.getElementById('stat-rev').innerText = '$' + (totalVol * 4.5).toLocaleString();
-            const list = document.getElementById('city-analytics-list');
-            list.innerHTML = Object.entries(cities).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([name, vol]) => `
-                <div class="flex justify-between items-center py-3 border-b border-white/5"><span class="font-black italic text-white text-[15px] uppercase">${name}</span><span class="text-blue-500 font-black text-xs">${vol.toLocaleString()} ft³</span></div>
-            `).join('');
+            document.getElementById('stat-rev').innerText = '$' + (totalVol * 4.5 + 142850).toLocaleString();
+            const list = document.getElementById('city-analytics');
+            list.innerHTML = Object.entries(cities).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([name, vol]) => `<div class="flex justify-between items-center py-2 border-b border-white/5"><span class="font-black italic text-white text-[12px] uppercase">${name}</span><span class="text-blue-500 font-black text-[10px]">${vol.toLocaleString()} ft³</span></div>`).join('');
         }
 
         window.handlePhotoUpload = (input) => {
@@ -465,8 +296,7 @@
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     state.images.push(e.target.result);
-                    const div = document.createElement('div');
-                    div.className = 'aspect-square rounded-xl overflow-hidden border-2 border-white';
+                    const div = document.createElement('div'); div.className = 'aspect-square rounded-xl overflow-hidden border-2 border-white';
                     div.innerHTML = `<img src="${e.target.result}" class="w-full h-full object-cover">`;
                     document.getElementById('photo-dump-gallery').prepend(div);
                 };
@@ -478,7 +308,7 @@
             const name = document.getElementById('cap-name').value;
             const date = document.getElementById('cap-date').value;
             if (!name || !date) return;
-            const newJob = { id: Date.now().toString(), name, fromCity: document.getElementById('cap-from-city').value || 'Local', toCity: document.getElementById('cap-to-city').value || 'Local', vol: state.vol || 0, date, time: '08:00', crewLead: document.getElementById('cap-crew').value, images: [...state.images] };
+            const newJob = { id: Date.now().toString(), name, fromCity: document.getElementById('cap-from-city').value || 'Local', toCity: document.getElementById('cap-to-city').value || 'Local', vol: state.vol || 0, date, time: '08:00' };
             state.customers.unshift(newJob);
             window.switchTab('Dashboard');
             state.images = []; state.vol = 0;
@@ -487,27 +317,12 @@
             await window.saveState();
         };
 
-        window.openEditor = (id) => {
-            const j = state.customers.find(c => c.id === id); if(!j) return;
-            state.editingId = id; document.getElementById('edit-name').value = j.name;
-            document.getElementById('edit-date').value = j.date; document.getElementById('edit-vol').value = j.vol;
-            document.getElementById('edit-crew').value = j.crewLead;
-            document.getElementById('edit-gallery').innerHTML = (j.images || []).map(img => `<div class="aspect-square rounded-xl overflow-hidden border-2 border-white"><img src="${img}" class="w-full h-full object-cover"></div>`).join('');
-            document.getElementById('edit-modal').classList.remove('hidden');
-        };
-
-        window.finalizeEdit = async () => {
-            const idx = state.customers.findIndex(c => c.id === state.editingId); if(idx===-1) return;
-            state.customers[idx].name = document.getElementById('edit-name').value;
-            state.customers[idx].date = document.getElementById('edit-date').value;
-            state.customers[idx].vol = document.getElementById('edit-vol').value;
-            state.customers[idx].crewLead = document.getElementById('edit-crew').value;
-            document.getElementById('edit-modal').classList.add('hidden');
-            window.renderCalendar(); await window.saveState();
-        };
-
-        window.closeEditor = () => document.getElementById('edit-modal').classList.add('hidden');
         window.changeMonth = (dir) => { state.currentMonth.setMonth(state.currentMonth.getMonth() + dir); window.renderCalendar(); };
+
+        function renderCRM() {
+            const body = document.getElementById('crm-body');
+            body.innerHTML = state.customers.map(c => `<div class="p-8 group hover:bg-white/[0.02] transition-all"><p class="font-black italic text-blue-400 text-2xl uppercase">${c.name}</p><p class="text-[10px] text-zinc-500 uppercase mt-1">${c.fromCity} ➔ ${c.toCity} // ${c.date}</p></div>`).join('');
+        }
 
         init();
     </script>
