@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>MoveMasters OS | Titan X-143 Absolute Synthesis</title>
+    <title>MoveMasters OS | Titan X-144 Hardened Auditor</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
@@ -44,7 +44,7 @@
             text-transform: uppercase; letter-spacing: 0.15em; border-left: 0px solid transparent;
         }
         
-        /* THE HARD-LOCKED SENTINEL HIGHLIGHT */
+        /* HARD-LOCKED SENTINEL HIGHLIGHT */
         .nav-btn[data-active="true"] {
             background-color: rgba(59, 130, 246, 0.2) !important;
             color: #ffffff !important;
@@ -53,7 +53,7 @@
             font-weight: 900 !important;
         }
 
-        /* --- MAIN STAGE (INFINITE SCROLL) --- */
+        /* --- MAIN STAGE --- */
         .main-stage { 
             flex-grow: 1; height: 100dvh; overflow-y: scroll !important; 
             padding: 40px; background: #000; position: relative; 
@@ -86,59 +86,39 @@
         /* --- HD CALENDAR MATRIX --- */
         .calendar-table { width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 8px; }
         .calendar-table th { font-size: 11px; font-weight: 900; color: #ffffff; text-transform: uppercase; padding: 15px 0; }
-        .date-tile { 
-            background: #000; border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 14px; height: 125px; padding: 10px; vertical-align: top; 
-            cursor: pointer; transition: 0.15s; position: relative;
-        }
+        .date-tile { background: #000; border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; height: 125px; padding: 10px; vertical-align: top; cursor: pointer; transition: 0.15s; position: relative; }
         .date-tile:hover { border-color: #fff; background: #080808; }
         .date-tile[data-selected="true"] { border: 3px solid var(--accent); background: rgba(59, 130, 246, 0.1); }
         .tile-num { font-size: 11px; font-weight: 900; color: #444; }
-        .tile-plus {
-            position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; background: var(--accent);
-            color: #fff; border-radius: 6px; display: flex; align-items: center; justify-content: center;
-            font-weight: 900; font-size: 16px; opacity: 0; transition: 0.2s;
-        }
+        .tile-plus { position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; background: var(--accent); color: #fff; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px; opacity: 0; transition: 0.2s; }
         .date-tile:hover .tile-plus { opacity: 1; }
-        .job-pill { 
-            background: #ffffff; color: #000; font-size: 8px; font-weight: 900; 
-            padding: 4px 6px; border-radius: 6px; margin-top: 4px; 
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-            display: block; width: 100%; text-align: center; border-left: 4px solid var(--accent);
-        }
+        .job-pill { background: #ffffff; color: #000; font-size: 8px; font-weight: 900; padding: 4px 6px; border-radius: 6px; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; width: 100%; text-align: center; border-left: 4px solid var(--accent); }
 
-        /* --- ASSET CARDS --- */
-        .asset-grid { display: grid; grid-template-cols: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; width: 100%; margin-top: 20px; }
-        .asset-card { background: #0a0a0a; border: 2px solid #222; border-radius: 24px; padding: 30px; text-align: left; position: relative; transition: 0.2s; }
-        .asset-card:hover { border-color: var(--accent); background: #0f0f0f; }
-
-        /* --- MATRIX SCROLLER --- */
-        .category-header { font-size: 10px; font-weight: 900; color: var(--accent); text-transform: uppercase; letter-spacing: 0.4em; margin: 30px 0 15px 0; border-bottom: 1px solid rgba(59, 130, 246, 0.3); width: 100%; padding-bottom: 5px; text-align: center; }
-        .inventory-scroll { width: 100%; max-height: 500px; overflow-y: auto; padding-right: 15px; display: flex; flex-direction: column; gap: 10px; margin-top: 40px; }
-        .item-counter { background: rgba(255,255,255,0.03); border: 1.5px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 18px 25px; display: flex; align-items: center; justify-content: space-between; }
-        .qty-btn { width: 40px; height: 40px; border-radius: 12px; border: 1.5px solid rgba(255,255,255,0.2); font-weight: 900; cursor: pointer; color: #fff; display: flex; align-items: center; justify-content: center; }
-        .qty-val { font-size: 20px; font-weight: 900; color: var(--accent); min-width: 30px; text-align: center; }
-
-        /* --- TAPPABLE LEDGER CARDS --- */
+        /* --- EXPENSE CARDS --- */
         .expense-card { 
             background: #000; border: 1px solid #222; border-radius: 20px; padding: 18px 22px;
             display: flex; align-items: center; justify-content: space-between; cursor: pointer; margin-bottom: 10px;
-            transition: 0.2s;
+            transition: 0.2s; width: 100%;
         }
         .expense-card:hover { border-color: var(--accent); transform: translateX(8px); background: #050505; }
         .category-pill { padding: 4px 10px; border-radius: 8px; font-size: 9px; font-weight: 900; text-transform: uppercase; }
 
-        /* --- UTILS --- */
+        /* --- UI UTILS --- */
         .save-btn { background: var(--accent); color: #fff; padding: 22px; border-radius: 20px; font-weight: 900; text-transform: uppercase; width: 100%; border: 2.5px solid var(--accent); cursor: pointer; letter-spacing: 0.1em; transition: 0.2s; }
+        .save-btn:active { transform: scale(0.98); background: #1d4ed8; }
         .btn-sync { background: #fff; color: #000; padding: 24px; border-radius: 24px; font-weight: 900; text-transform: uppercase; width: 100%; border: 3px solid #fff; cursor: pointer; }
         
-        #toast-msg { position: fixed; bottom: 40px; right: 40px; background: #fff; color: #000; padding: 22px 45px; border-radius: 24px; font-weight: 900; z-index: 10000; transform: translateY(180%); transition: 0.4s; }
-        #toast-msg.show { transform: translateY(0); }
         .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.98); backdrop-filter: blur(30px); z-index: 5000; overflow-y: auto; padding: 40px; }
         .hidden { display: none !important; }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-thumb { background: #fff; border-radius: 10px; }
         .glow { position: fixed; top: 0; right: 0; width: 600px; height: 600px; background: radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 70%); pointer-events: none; }
+
+        .asset-grid { display: grid; grid-template-cols: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; width: 100%; margin-top: 20px; }
+        .asset-card { background: #0a0a0a; border: 2px solid #222; border-radius: 24px; padding: 30px; text-align: left; position: relative; }
+        
+        .inventory-scroll { width: 100%; max-height: 500px; overflow-y: auto; padding-right: 15px; display: flex; flex-direction: column; gap: 10px; margin-top: 40px; }
+        .item-counter { background: rgba(255,255,255,0.03); border: 1.5px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 18px 25px; display: flex; align-items: center; justify-content: space-between; }
     </style>
 </head>
 <body>
@@ -158,7 +138,7 @@
             <div id="nav-Settings" class="nav-btn" onclick="switchTab('Settings')">Settings</div>
         </div>
         <div class="p-8 border-t-2 border-white bg-zinc-900 text-center flex-shrink-0">
-            <span class="text-[9px] font-black uppercase text-white tracking-widest italic block text-blue-400">Titan X-143 Synthesis</span>
+            <span class="text-[9px] font-black uppercase text-white tracking-widest italic block text-blue-400">Titan X-144 Hardened</span>
         </div>
     </aside>
 
@@ -178,14 +158,14 @@
                         <div id="calendar-container"></div>
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                       <div class="node-card !min-height-0 !p-10"><span class="node-label">Command Revenue</span><h4 class="text-5xl font-black italic">$142,850</h4></div>
-                       <div class="node-card !min-height-0 !p-10"><span class="node-label">Road Reserve</span><h4 class="text-5xl font-black italic text-green-500" id="stat-liquidity">$0</h4></div>
+                       <div class="node-card !min-height-0 !p-10 text-left"><span class="node-label">Command Revenue</span><h4 class="text-5xl font-black italic">$142,850</h4></div>
+                       <div class="node-card !min-height-0 !p-10 text-left"><span class="node-label">Road Reserve</span><h4 class="text-5xl font-black italic text-green-500" id="stat-liquidity">$0</h4></div>
                     </div>
                 </div>
                 <div class="node-card h-fit sticky top-0 !min-height-0">
                     <span class="node-label">Active Manifest</span>
                     <h4 id="day-node-title" class="text-2xl font-black uppercase italic text-white mt-12 mb-4">Day Node</h4>
-                    <button onclick="quickAdd(state.selectedDate)" class="w-full py-3 mb-8 bg-blue-600/20 border border-blue-600 text-blue-400 font-black uppercase text-[10px] rounded-xl">+ Add Mission to Date</button>
+                    <button onclick="quickAdd(state.selectedDate)" class="w-full py-3 mb-8 bg-blue-600/20 border border-blue-600 text-blue-400 font-black uppercase text-[10px] rounded-xl">+ Add Client to Date</button>
                     <div id="day-jobs-list" class="space-y-5 w-full"></div>
                 </div>
             </div>
@@ -203,12 +183,12 @@
                 </div></div>
                 <div class="node-card"><span class="node-label">02 // Pickup Node</span><div class="w-full mt-12 space-y-4 text-left">
                     <input type="text" id="cap-pStreet" placeholder="Origin Street Address" oninput="saveDraft('pStreet', this.value)">
-                    <div class="grid grid-cols-3 gap-2"><input type="text" placeholder="City"><input type="text" placeholder="ST"><input type="tel" placeholder="Zip" maxlength="5"></div>
+                    <div class="grid grid-cols-3 gap-2"><input type="text" id="pCity" placeholder="City"><input type="text" id="pST" placeholder="ST"><input type="tel" id="pZip" placeholder="Zip" maxlength="5"></div>
                     <button onclick="commitNode('PICKUP')" class="save-btn w-full mt-4">Save Pickup Node</button>
                 </div></div>
                 <div class="node-card"><span class="node-label">03 // Delivery Node</span><div class="w-full mt-12 space-y-4 text-left">
                     <input type="text" id="cap-dStreet" placeholder="Destination Street" oninput="saveDraft('dStreet', this.value)">
-                    <div class="grid grid-cols-3 gap-2"><input type="text" placeholder="City"><input type="text" placeholder="ST"><input type="tel" placeholder="Zip" maxlength="5"></div>
+                    <div class="grid grid-cols-3 gap-2"><input type="text" id="dCity" placeholder="City"><input type="text" id="dST" placeholder="ST"><input type="tel" id="dZip" placeholder="Zip" maxlength="5"></div>
                     <button onclick="commitNode('DELIVERY')" class="save-btn w-full mt-4">Save Delivery Node</button>
                 </div></div>
             </div>
@@ -216,7 +196,7 @@
                 <span class="node-label">04 // Neural Vision AI & Matrix Sync</span>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mt-20 w-full">
                     <div class="space-y-10">
-                        <textarea id="cap-notes" rows="12" placeholder="LOG SITE FRAGILES, CODES, AND ACCESS..." class="!text-left" oninput="saveDraft('notes', this.value)"></textarea>
+                        <textarea id="cap-notes" rows="12" placeholder="SITE FRAGILES, CODES, AND ACCESS..." class="!text-left" oninput="saveDraft('notes', this.value)"></textarea>
                         <div id="photo-gallery" class="grid grid-cols-4 gap-4 w-full">
                             <div class="aspect-square border-4 border-dashed border-white/30 flex flex-col items-center justify-center cursor-pointer relative rounded-2xl hover:border-white transition-all"><div class="text-white font-black text-[10px] uppercase text-center">Snap<br>Room</div><input type="file" multiple accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="handlePhotos(this)"></div>
                         </div>
@@ -229,7 +209,7 @@
                         </div>
                         <div class="w-full space-y-4">
                             <div class="grid grid-cols-2 gap-4"><input type="date" id="cap-date" oninput="saveDraft('date', this.value)"><input type="time" id="cap-time" value="08:20"></div>
-                            <button onclick="handleSynchronize()" class="btn-sync !bg-blue-600 !text-white border-blue-600 shadow-2xl">⚡ Synchronize mission node</button>
+                            <button onclick="handleSynchronize()" class="btn-sync !bg-blue-600 !text-white border-blue-600 shadow-2xl">⚡ Synchronize Mission</button>
                         </div>
                     </div>
                 </div>
@@ -240,7 +220,7 @@
         <div id="CrewHubView" class="view-panel hidden pb-80">
             <div class="max-w-7xl mx-auto">
                 <div class="node-card relative !min-height-0 mb-10">
-                    <span class="node-label">Employment Application Injection</span>
+                    <span class="node-label">Personnel Identity Injection</span>
                     <div class="w-full mt-20 grid grid-cols-1 md:grid-cols-4 gap-4 text-left">
                         <input type="text" id="crew-new-name" placeholder="Full Legal Name" class="!mb-0">
                         <input type="tel" id="crew-new-phone" placeholder="Identity Mobile" class="phone-mask !mb-0">
@@ -252,14 +232,29 @@
             </div>
         </div>
 
-        <!-- VIEW: FLEET MASTER (EDITABLE) -->
+        <!-- VIEW: INVENTORY MASTER -->
+        <div id="InventoryMasterView" class="view-panel hidden pb-80">
+            <div class="node-card relative !min-height-0 overflow-hidden max-w-7xl mx-auto">
+                <span class="node-label">Global Matrix Architect</span>
+                <div class="w-full mt-20 p-8 bg-zinc-900 border border-blue-500/20 rounded-[40px] flex flex-wrap gap-4 items-end text-left">
+                    <div class="flex-1 min-w-[200px]"><label class="text-[9px] font-black uppercase text-zinc-600 ml-4 mb-2 block">Item Name</label><input type="text" id="global-new-name" placeholder="Item Name" class="!mb-0 !bg-black !text-sm"></div>
+                    <div class="w-48"><label class="text-[9px] font-black uppercase text-zinc-600 ml-4 mb-2 block">Room Node</label><select id="global-new-cat" class="!mb-0 !bg-black !text-sm"><option>Living Room</option><option>Bedroom</option><option>Kitchen</option><option>Boxes</option></select></div>
+                    <div class="w-32"><label class="text-[9px] font-black uppercase text-zinc-600 ml-4 mb-2 block">ft³</label><input type="number" id="global-new-vol" placeholder="ft³" class="!mb-0 !bg-black !text-sm"></div>
+                    <button onclick="addGlobalItem()" class="h-[58px] px-10 bg-blue-600 text-white rounded-2xl font-black uppercase italic shadow-lg">Inject</button>
+                </div>
+                <div id="global-inventory-list" class="w-full mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+                <button onclick="commitNode('INVENTORY STANDARDS')" class="save-btn w-full mt-12">Save Matrix Roster</button>
+            </div>
+        </div>
+
+        <!-- VIEW: FLEET MASTER -->
         <div id="FleetMasterView" class="view-panel hidden pb-80">
             <div class="max-w-7xl mx-auto">
                 <div class="node-card relative !min-height-0 mb-10">
-                    <span class="node-label">Asset Identity Injection</span>
-                    <div class="w-full mt-20 grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <input type="text" id="fleet-new-name" placeholder="Truck ID (Titan 1)" class="!mb-0">
-                        <select id="fleet-new-size" class="!mb-0"><option>26FT Box</option><option>16FT Sprinter</option><option>10FT Transit</option></select>
+                    <span class="node-label">Asset Injection</span>
+                    <div class="w-full mt-20 grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+                        <input type="text" id="fleet-new-name" placeholder="Truck ID" class="!mb-0">
+                        <select id="fleet-new-size" class="!mb-0"><option>26FT Box</option><option>16FT Sprinter</option></select>
                         <button onclick="addFleet()" class="bg-blue-600 rounded-2xl font-black uppercase italic h-[58px]">Deploy Asset</button>
                     </div>
                 </div>
@@ -267,55 +262,41 @@
             </div>
         </div>
 
-        <!-- VIEW: INVENTORY MASTER (MARKET STORE) -->
-        <div id="InventoryMasterView" class="view-panel hidden pb-80">
-            <div class="node-card relative !min-height-0 overflow-hidden max-w-7xl mx-auto">
-                <span class="node-label">Global Matrix Architect</span>
-                <div class="w-full mt-20 p-8 bg-zinc-900 border border-blue-500/20 rounded-[40px] flex flex-wrap gap-4 items-end text-left">
-                    <div class="flex-1 min-w-[200px]"><label class="text-[9px] font-black uppercase text-zinc-600 ml-4 mb-2 block tracking-widest">Item Identity</label><input type="text" id="global-new-name" placeholder="Item Name" class="!mb-0 !bg-black !text-sm"></div>
-                    <div class="w-48"><label class="text-[9px] font-black uppercase text-zinc-600 ml-4 mb-2 block tracking-widest">Room Node</label><select id="global-new-cat" class="!mb-0 !bg-black !text-sm"><option>Living Room</option><option>Bedroom</option><option>Kitchen</option><option>Boxes</option></select></div>
-                    <div class="w-32"><label class="text-[9px] font-black uppercase text-zinc-600 ml-4 mb-2 block tracking-widest">Standard Vol</label><input type="number" id="global-new-vol" placeholder="ft³" class="!mb-0 !bg-black !text-sm"></div>
-                    <button onclick="addGlobalItem()" class="h-[58px] px-10 bg-blue-600 text-white rounded-2xl font-black uppercase italic shadow-lg hover:bg-blue-500">Inject</button>
-                </div>
-                <div id="global-inventory-list" class="w-full mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
-                <button onclick="commitNode('MATRIX STANDARDS')" class="save-btn w-full mt-12">Save Matrix Roster</button>
-            </div>
-        </div>
-
-        <div id="FinancialsView" class="view-panel hidden pb-80"><div class="node-card"><h3>GLOBAL FINANCIAL HUB ACTIVE</h3></div></div>
-        <div id="CRMView" class="view-panel hidden pb-80"><div id="crm-body" class="w-full space-y-4"></div></div>
-        <div id="SettingsView" class="view-panel hidden pb-80"><div class="node-card"><h3>SYSTEM SETTINGS</h3><button onclick="commitNode('SETTINGS')" class="save-btn mt-10">Save Global Parameters</button></div></div>
+        <!-- OTHERS -->
+        <div id="CRMView" class="view-panel hidden pb-80"><div id="crm-body" class="w-full divide-y divide-white/5"></div></div>
+        <div id="FinancialsView" class="view-panel hidden pb-80"><div class="node-card"><h3>FINANCIAL AGGREGATOR ACTIVE</h3></div></div>
+        <div id="SettingsView" class="view-panel hidden pb-80"><div class="node-card"><h3>SETTINGS NODE</h3><button onclick="commitNode('SETTINGS')" class="save-btn mt-10">Save Global Changes</button></div></div>
     </main>
 
     <!-- PERSONNEL DOSSIER MODAL -->
     <div id="personnel-modal" class="modal-overlay hidden">
         <div class="max-w-7xl mx-auto">
             <div class="flex justify-between items-center mb-10"><h2 id="personnel-title" class="text-4xl font-black italic uppercase titan-gradient">Personnel Dossier</h2><button onclick="closePersonnel()" class="p-5 bg-white/5 rounded-full hover:bg-rose-500">✕</button></div>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 pb-40">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 pb-40 text-left">
                 <div class="lg:col-span-1 space-y-6">
-                    <div class="node-card !min-height-0 !p-10 text-left space-y-4 border-blue-500/20">
-                        <span class="node-label">Identity Dossier</span>
+                    <div class="node-card !min-height-0 !p-10 space-y-4 border-blue-500/20">
+                        <span class="node-label">Identity Node</span>
                         <div><label class="text-[9px] uppercase font-black text-zinc-500 ml-2">Legal Name</label><input type="text" id="ps-edit-name"></div>
-                        <div><label class="text-[9px] uppercase font-black text-zinc-500 ml-2">Mobile Phone</label><input type="tel" id="ps-edit-phone" class="phone-mask"></div>
-                        <div><label class="text-[9px] uppercase font-black text-zinc-500 ml-2">Email Identity</label><input type="email" id="ps-edit-email"></div>
+                        <div><label class="text-[9px] uppercase font-black text-zinc-500 ml-2">Mobile</label><input type="tel" id="ps-edit-phone" class="phone-mask"></div>
+                        <div><label class="text-[9px] uppercase font-black text-zinc-500 ml-2">Email</label><input type="email" id="ps-edit-email"></div>
                         <div><label class="text-[9px] uppercase font-black text-zinc-500 ml-2">Home Address</label><textarea id="ps-edit-address" rows="3"></textarea></div>
                         <button onclick="savePersonnelChanges()" class="save-btn w-full mt-4">Sync Application</button>
                     </div>
                 </div>
                 <div class="lg:col-span-2 space-y-6">
-                    <div class="node-card !min-height-0 !p-10 overflow-hidden"><span class="node-label">Forensic Audit Vault</span>
+                    <div class="node-card !min-height-0 !p-10 overflow-hidden text-center"><span class="node-label">Autonomous Audit Vault</span>
                         <div class="grid grid-cols-2 gap-8 mb-10 mt-10">
                             <div class="bg-zinc-950 p-6 rounded-3xl border border-white/5 text-left"><p class="text-[9px] font-black uppercase text-zinc-600 mb-1">Receipt Road Burn</p><h4 class="text-4xl font-black italic text-rose-500" id="ps-total-spent">$0</h4></div>
                             <div class="bg-zinc-950 p-6 rounded-3xl border border-white/5 text-left"><p class="text-[9px] font-black uppercase text-zinc-600 mb-1">Active Reserve</p><h4 class="text-4xl font-black italic text-green-500" id="ps-total-balance">$0</h4></div>
                         </div>
                         <div class="grid grid-cols-2 gap-4 mb-8">
                             <div class="relative bg-blue-600 p-6 rounded-3xl flex items-center justify-center shadow-2xl cursor-pointer">
-                                <span class="font-black text-[10px] uppercase italic text-white tracking-widest">Analyze Multi-Receipts</span>
+                                <span class="font-black text-[10px] uppercase italic text-white">Capture Multi-Receipt Page</span>
                                 <input type="file" multiple accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="runReceiptAI(this)">
                             </div>
-                            <div class="p-6 bg-green-600/5 border border-green-600/20 rounded-3xl flex flex-col justify-center"><p class="text-[9px] font-black uppercase text-green-500 mb-2">Inject funds to driver</p><div class="flex gap-2"><input type="number" id="ps-fund-amt" placeholder="$ Injection" class="!mb-0 !p-3 !text-xs"><button onclick="injectFunds()" class="bg-green-600 px-6 rounded-xl font-black uppercase text-[10px]">Auth</button></div></div>
+                            <div class="p-6 bg-green-600/5 border border-green-600/20 rounded-3xl flex flex-col justify-center"><p class="text-[9px] font-black uppercase text-green-500 mb-2">Inject Funds</p><div class="flex gap-2"><input type="number" id="ps-fund-amt" placeholder="$ Injection" class="!mb-0 !p-3 !text-xs"><button onclick="injectFunds()" class="bg-green-600 px-6 rounded-xl font-black uppercase text-[10px]">Auth</button></div></div>
                         </div>
-                        <div id="ps-ledger-list" class="expense-card-grid custom-scrollbar overflow-y-auto max-h-[400px] w-full"></div>
+                        <div id="ps-ledger-list" class="w-full space-y-3 custom-scrollbar overflow-y-auto max-h-[400px]"></div>
                     </div>
                 </div>
             </div>
@@ -327,28 +308,28 @@
         <div class="max-w-5xl mx-auto node-card !min-height-0 !p-12">
             <div class="flex justify-between w-full mb-10"><h2 class="text-3xl font-black italic uppercase">Forensic Node Correction</h2><button onclick="closeAudit()" class="text-2xl">✕</button></div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
-                <div id="audit-img-portal" class="rounded-[40px] overflow-hidden border border-white/10 aspect-[3/4] bg-zinc-950 shadow-2xl"></div>
+                <div id="audit-img-portal" class="rounded-[40px] overflow-hidden border border-white/10 aspect-[3/4] bg-zinc-950"></div>
                 <div id="audit-data-portal" class="space-y-4"></div>
             </div>
-            <button onclick="saveAuditEdits()" class="save-btn w-full mt-10">Commit Audit Sync</button>
+            <button onclick="saveAuditEdits()" class="save-btn w-full mt-10">Commit Correction</button>
         </div>
     </div>
 
     <!-- FLEET MODAL -->
     <div id="fleet-modal" class="modal-overlay hidden !z-[6000]">
-        <div class="max-w-3xl mx-auto node-card !min-height-0 !p-12">
+        <div class="max-w-3xl mx-auto node-card !min-height-0 !p-12 text-left">
             <div class="flex justify-between w-full mb-10"><h2 class="text-3xl font-black italic uppercase">Asset Sync</h2><button onclick="closeFleetModal()" class="text-2xl">✕</button></div>
-            <div id="fleet-modal-content" class="w-full space-y-4 text-left"></div>
+            <div id="fleet-modal-content" class="w-full space-y-4"></div>
             <button onclick="saveFleetChanges()" class="save-btn w-full mt-10">Lock Asset Node</button>
         </div>
     </div>
 
     <!-- MASTER COMMAND EDITOR -->
     <div id="editor-modal" class="modal-overlay hidden">
-        <div class="max-w-6xl mx-auto"><div class="flex justify-between items-center mb-12"><h2 class="text-5xl font-black italic uppercase titan-gradient tracking-tighter">Command Override</h2><button onclick="closeEditor()" class="p-5 bg-white/5 rounded-full hover:bg-rose-500 transition-all">✕</button></div><div id="editor-content" class="grid grid-cols-1 lg:grid-cols-2 gap-12 pb-40"></div><div class="fixed bottom-10 left-1/2 -translate-x-1/2 w-full max-w-4xl px-10"><button onclick="saveJobChanges()" class="w-full py-8 bg-blue-600 rounded-[40px] font-black uppercase italic shadow-2xl">Deploy Mission Sync</button></div></div>
+        <div class="max-w-6xl mx-auto"><div class="flex justify-between items-center mb-10"><h2 class="text-5xl font-black italic uppercase titan-gradient">Command Override</h2><button onclick="closeEditor()" class="p-5 bg-white/5 rounded-full hover:bg-rose-500">✕</button></div><div id="editor-content" class="grid grid-cols-1 lg:grid-cols-2 gap-10 pb-40"></div><div class="fixed bottom-10 left-1/2 -translate-x-1/2 w-full max-w-4xl px-10"><button onclick="saveJobChanges()" class="w-full py-8 bg-blue-600 rounded-[40px] font-black uppercase italic shadow-2xl">Finalize Mission Sync</button></div></div>
     </div>
 
-    <div id="neural-loader" class="hidden fixed inset-0 z-[10000] bg-black/95 flex flex-col items-center justify-center"><div class="w-20 h-20 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-6"></div><p class="text-[12px] font-black uppercase text-blue-500 tracking-[0.6em]">Scanning Multi-Matrix Node</p></div>
+    <div id="neural-loader" class="hidden fixed inset-0 z-[10000] bg-black/95 flex flex-col items-center justify-center"><div class="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-6"></div><p class="text-[12px] font-black uppercase text-blue-500 tracking-[0.6em]">Executing Forensic Scan</p></div>
 
     <script>
         const apiKey = ""; 
@@ -358,7 +339,7 @@
             activeTab: 'Dashboard', customers: [], curMonth: new Date(2025, 11, 1), selDate: '2025-12-23',
             matrix: [
                 { cat: 'Living Room', name: 'Sofa (3-Seat)', vol: 50 }, { cat: 'Bedroom', name: 'King Bed', vol: 60 },
-                { cat: 'Kitchen', name: 'Fridge', vol: 60 }, { cat: 'Boxes', name: 'Small Box', vol: 1.5 }
+                { cat: 'Kitchen', name: 'Fridge', vol: 60 }, { cat: 'Boxes', name: 'Medium Box', vol: 3 }
             ],
             inventory: {}, images: [],
             crews: [{id:'c1', name:"Marcus Thorne", phone:"(555) 010-2020", email:"marcus@move.os", address:"123 Foreman Lane, LA", ledger: []}], 
@@ -383,24 +364,26 @@
             if(id === 'Crew Hub') renderCrews();
             if(id === 'Fleet Master') renderFleet();
             if(id === 'Inventory Master') renderGlobalInventory();
+            if(id === 'CRM') renderCRM();
         };
 
-        // --- 3. FORENSIC AUDIT (RECEIPTS) ---
+        // --- 3. FORENSIC AUDIT (MULTI-RECEIPT PAGE) ---
         async function runReceiptAI(input) {
             if(!input.files.length) return;
             const loader = document.getElementById('neural-loader'); loader.classList.remove('hidden');
             const cIdx = state.crews.findIndex(x=>x.id===state.activeCrewId);
+
             for (const file of Array.from(input.files)) {
                 await new Promise(resolve => {
                     const reader = new FileReader();
                     reader.onload = async (e) => {
                         const b64 = e.target.result.split(',')[1];
-                        const prompt = `Act as forensic corporate auditor. Extract ALL distinct receipts as an array of JSON objects. For each receipt, identify: { "date": "YYYY-MM-DD", "time": "HH:MM AM/PM", "category": "Gas/Hotel/Materials/Misc", "amount": number, "vendor": "Name", "address": "Full Store Address", "gallons": number_or_null }. Return JSON ARRAY ONLY.`;
+                        const prompt = `Act as forensic auditor. Extract ALL distinct receipts as JSON array. Items: { "date": "YYYY-MM-DD", "time": "HH:MM AM/PM", "category": "Gas/Hotel/Materials/Misc", "amount": number, "vendor": "Name", "address": "Store Address", "gallons": number_or_null }. JSON ARRAY ONLY.`;
                         try {
                             const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, { method: 'POST', body: JSON.stringify({ contents: [{ parts: [{ text: prompt }, { inlineData: { mimeType: "image/jpeg", data: b64 } }] }] }) });
                             const results = JSON.parse((await res.json()).candidates[0].content.parts[0].text.replace(/```json|```/g, '').trim());
                             (Array.isArray(results) ? results : [results]).forEach(tx => {
-                                state.crews[cIdx].ledger.unshift({ ...tx, amount: parseFloat(tx.amount)||0, id: Math.random().toString(36).substr(2, 9), type: 'receipt', img: e.target.result });
+                                state.crews[cIdx].ledger.unshift({ ...tx, amount: Number(tx.amount)||0, id: Math.random().toString(36).substr(2, 9), type: 'receipt', img: e.target.result });
                             });
                         } catch (err) { console.error(err); }
                         resolve();
@@ -417,25 +400,19 @@
             document.getElementById('audit-img-portal').innerHTML = tx.img ? `<img src="${tx.img}" class="w-full h-full object-cover">` : '<div class="h-full w-full flex items-center justify-center font-black text-5xl">$</div>';
             document.getElementById('audit-data-portal').innerHTML = `
                 <div class="bg-white/5 p-8 rounded-3xl border border-white/5 space-y-4">
-                    <div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">Vendor Name</label><input type="text" id="edit-tx-vendor" value="${tx.vendor}"></div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">Date</label><input type="date" id="edit-tx-date" value="${tx.date}"></div>
-                        <div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">Time</label><input type="text" id="edit-tx-time" value="${tx.time}"></div>
-                    </div>
+                    <div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">Vendor</label><input type="text" id="edit-tx-vendor" value="${tx.vendor}"></div>
+                    <div class="grid grid-cols-2 gap-4"><div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">Date</label><input type="date" id="edit-tx-date" value="${tx.date}"></div><div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">Time</label><input type="text" id="edit-tx-time" value="${tx.time}"></div></div>
                     <div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">Address</label><textarea id="edit-tx-address" rows="2">${tx.address || ''}</textarea></div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">Category</label><select id="edit-tx-cat"><option ${tx.category==='Gas'?'selected':''}>Gas</option><option ${tx.category==='Hotel'?'selected':''}>Hotel</option><option ${tx.category==='Materials'?'selected':''}>Materials</option></select></div>
-                        <div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">Gal</label><input type="number" id="edit-tx-gal" value="${tx.gallons || 0}"></div>
-                    </div>
-                    <div><label class="text-[8px] font-black uppercase text-rose-500 ml-2">Amount ($)</label><input type="number" id="edit-tx-amt" value="${tx.amount}" class="text-3xl font-black text-rose-500 !bg-zinc-950"></div>
+                    <div class="grid grid-cols-2 gap-4"><div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">Category</label><select id="edit-tx-cat"><option ${tx.category==='Gas'?'selected':''}>Gas</option><option ${tx.category==='Hotel'?'selected':''}>Hotel</option><option ${tx.category==='Materials'?'selected':''}>Materials</option></select></div><div><label class="text-[8px] font-black uppercase text-zinc-500 ml-2">Gal</label><input type="number" id="edit-tx-gal" value="${tx.gallons || 0}"></div></div>
+                    <div><label class="text-[8px] font-black uppercase text-rose-500 ml-2">Amount ($)</label><input type="number" id="edit-tx-amt" value="${tx.amount}" class="text-2xl font-black text-rose-500 !bg-zinc-950"></div>
                 </div>`;
             document.getElementById('audit-modal').classList.remove('hidden');
         };
 
         window.saveAuditEdits = () => {
             const cIdx = state.crews.findIndex(x=>x.id===state.activeCrewId); const txIdx = state.crews[cIdx].ledger.findIndex(t=>t.id===state.activeTxId);
-            state.crews[cIdx].ledger[txIdx] = { ...state.crews[cIdx].ledger[txIdx], vendor: document.getElementById('edit-tx-vendor').value, date: document.getElementById('edit-tx-date').value, time: document.getElementById('edit-tx-time').value, address: document.getElementById('edit-tx-address').value, category: document.getElementById('edit-tx-cat').value, gallons: parseFloat(document.getElementById('edit-tx-gal').value)||0, amount: parseFloat(document.getElementById('edit-tx-amt').value)||0 };
-            renderCrewLedger(state.crews[cIdx]); closeAudit(); showToast("TRANSACTION CORRECTED");
+            state.crews[cIdx].ledger[txIdx] = { ...state.crews[cIdx].ledger[txIdx], vendor: document.getElementById('edit-tx-vendor').value, date: document.getElementById('edit-tx-date').value, time: document.getElementById('edit-tx-time').value, address: document.getElementById('edit-tx-address').value, category: document.getElementById('edit-tx-cat').value, gallons: Number(document.getElementById('edit-tx-gal').value)||0, amount: Number(document.getElementById('edit-tx-amt').value)||0 };
+            renderCrewLedger(state.crews[cIdx]); closeAudit(); showToast("NODE CORRECTED");
         };
 
         function renderCrewLedger(c) {
@@ -444,89 +421,33 @@
                 if(tx.type === 'receipt') spent += tx.amount; else sent += tx.amount;
                 return `
                 <div class="expense-card" onclick="openAuditNode('${tx.id}')">
-                    <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-zinc-900 border border-white/5 overflow-hidden flex items-center justify-center">${tx.img ? `<img src="${tx.img}" class="w-full h-full object-cover">` : '<span class="text-green-500 font-black">$</span>'}</div><div class="text-left"><p class="text-xs font-black text-white uppercase truncate max-w-[150px]">${tx.vendor}</p><p class="text-[8px] font-bold text-zinc-600 uppercase">${tx.date}</p></div></div>
-                    <div class="flex items-center gap-4"><span class="category-pill ${tx.type==='receipt'?'bg-rose-500/10 text-rose-500':'bg-green-500/10 text-green-400'}">${tx.category}</span><span class="font-black ${tx.type==='receipt'?'text-rose-500':'text-green-500'} text-lg">${tx.type==='receipt'?'-':'+'}$${tx.amount.toFixed(2)}</span></div>
-                </div>`;}).join('') : '<p class="py-20 text-center opacity-10 text-[10px] font-black uppercase italic">Vault node ready</p>';
+                    <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-zinc-900 border border-white/5 overflow-hidden flex items-center justify-center">${tx.img ? `<img src="${tx.img}" class="w-full h-full object-cover">` : '<span class="text-green-500 font-black">$</span>'}</div><div class="text-left"><p class="text-xs font-black text-white uppercase truncate max-w-[140px]">${tx.vendor}</p><p class="text-[8px] font-bold text-zinc-600 uppercase">${tx.date}</p></div></div>
+                    <div class="flex items-center gap-4"><span class="category-pill ${tx.type==='receipt'?'bg-rose-500/10 text-rose-400':'bg-green-500/10 text-green-400'}">${tx.category}</span><span class="font-black ${tx.type==='receipt'?'text-rose-500':'text-green-500'} text-lg">${tx.type==='receipt'?'-':'+'}$${tx.amount.toFixed(2)}</span></div>
+                </div>`;}).join('') : '<p class="py-20 text-center opacity-10 text-[10px] font-black uppercase italic">Vault Node Operational</p>';
             document.getElementById('ps-total-spent').innerText = `$${spent.toLocaleString()}`;
             document.getElementById('ps-total-balance').innerText = `$${(sent - spent).toLocaleString()}`;
+            if(document.getElementById('stat-liquidity')) document.getElementById('stat-liquidity').innerText = `$${(sent - spent).toLocaleString()}`;
         }
 
         window.injectFunds = () => {
-            const amt = parseFloat(document.getElementById('ps-fund-amt').value); if(!amt) return;
+            const amt = Number(document.getElementById('ps-fund-amt').value); if(!amt) return;
             const cIdx = state.crews.findIndex(x=>x.id===state.activeCrewId);
-            state.crews[cIdx].ledger.unshift({ id: Date.now().toString(), type: 'disbursement', amount: amt, date: new Date().toISOString().split('T')[0], time: new Date().toLocaleTimeString(), category: 'Funds Sent', vendor: 'Company Injection', address: 'Digital Liquidity Remittance', img: null });
+            state.crews[cIdx].ledger.unshift({ id: Date.now().toString(), type: 'disbursement', amount: amt, date: new Date().toISOString().split('T')[0], time: new Date().toLocaleTimeString(), category: 'Funds Sent', vendor: 'Company Injection', address: 'Digital Remittance', img: null });
             document.getElementById('ps-fund-amt').value = ''; renderCrewLedger(state.crews[cIdx]); showToast("FUNDS SENT");
         };
 
-        // --- 4. MARKET STORE & MATRIX ---
-        window.addGlobalItem = () => {
-            const n = document.getElementById('global-new-name').value; const v = parseFloat(document.getElementById('global-new-vol').value);
-            if(n && !isNaN(v)) { state.matrix.unshift({ cat: document.getElementById('global-new-cat').value, name: n, vol: v }); renderGlobalInventory(); showToast("ITEM INJECTED"); }
-        };
-        function renderGlobalInventory() {
-            const container = document.getElementById('global-inventory-list'); if(!container) return;
-            container.innerHTML = state.matrix.map(item => `
-                <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 text-center group hover:border-blue-500/40 transition-all">
-                    <h5 class="text-lg font-black italic mb-3 truncate uppercase">${item.name}</h5>
-                    <input type="number" class="!w-20 !p-2 !text-blue-500 !bg-black" value="${item.vol}" onchange="updateGlobalVol('${item.name}', this.value)">
-                </div>`).join('');
-        }
-        window.updateGlobalVol = (n, v) => { const idx = state.matrix.findIndex(i => i.name === n); if(idx !== -1) state.matrix[idx].vol = parseFloat(v) || 0; };
-        
-        function renderInventoryGrid() {
-            const container = document.getElementById('inventory-grid'); if (!container) return;
-            let currentCat = "";
-            container.innerHTML = state.matrix.map(item => {
-                let h = ""; if(item.cat !== currentCat) { currentCat = item.cat; h += `<div class="category-header">${currentCat}</div>`; }
-                h += `<div class="item-counter"><div class="text-left"><span class="item-name text-xs font-black uppercase italic">${item.name}</span></div><div class="qty-controls"><div class="qty-btn" onclick="updateQty('${item.name}', -1)">-</div><span class="qty-val">${state.inventory[item.name] || 0}</span><div class="qty-btn" onclick="updateQty('${item.name}', 1)">+</div></div></div>`;
-                return h;
-            }).join('');
-            updateTally();
-        }
-        window.updateQty = (n, d) => { state.inventory[n] = Math.max(0, (state.inventory[n] || 0) + d); renderInventoryGrid(); };
-        function updateTally() { let t = 0; state.matrix.forEach(i => t += (state.inventory[i.name] || 0) * i.vol); document.getElementById('calc-tally').innerText = t.toFixed(1) + ' ft³'; }
-
-        // --- 5. ASSET CONTROL ---
-        window.addFleet = () => {
-            const n = document.getElementById('fleet-new-name').value;
-            if(n) { state.fleet.unshift({ id: Date.now().toString(), name: n, size: document.getElementById('fleet-new-size').value, plate: 'PENDING', status: 'In-Port' }); renderFleet(); showToast("ASSET DEPLOYED"); }
-        };
-        function renderFleet() {
-            const grid = document.getElementById('fleet-list-grid'); if(!grid) return;
-            grid.innerHTML = state.fleet.map(f => `
-                <div class="asset-card">
-                    <span class="node-label">Asset Node</span>
-                    <h4 class="text-2xl font-black italic text-white mb-2 uppercase">${f.name}</h4>
-                    <p class="text-[10px] font-bold text-blue-400 mb-6 uppercase">${f.size} // ${f.plate}</p>
-                    <button onclick="openFleetModal('${f.id}')" class="w-full py-4 bg-white/5 border border-white/10 rounded-xl text-[9px] font-black uppercase italic">Manage Asset</button>
-                </div>`).join('');
-        }
-        window.openFleetModal = (id) => {
-            const f = state.fleet.find(x=>x.id===id); state.activeFleetId = id;
-            document.getElementById('fleet-modal-content').innerHTML = `
-                <div><label class="text-[8px] uppercase font-black text-zinc-500">ID</label><input type="text" id="fl-edit-name" value="${f.name}"></div>
-                <div><label class="text-[8px] uppercase font-black text-zinc-500">Plate</label><input type="text" id="fl-edit-plate" value="${f.plate}"></div>
-                <div><label class="text-[8px] uppercase font-black text-zinc-500">Status</label><select id="fl-edit-status"><option ${f.status==='In-Port'?'selected':''}>In-Port</option><option ${f.status==='Repair'?'selected':''}>Repair</option></select></div>`;
-            document.getElementById('fleet-modal').classList.remove('hidden');
-        };
-        window.saveFleetChanges = () => {
-            const i = state.fleet.findIndex(f=>f.id===state.activeFleetId);
-            state.fleet[i] = { ...state.fleet[i], name:document.getElementById('fl-edit-name').value, plate:document.getElementById('fl-edit-plate').value, status:document.getElementById('fl-edit-status').value };
-            closeFleetModal(); renderFleet(); showToast("ASSET SYNCED");
-        };
-
-        // --- 6. CORE UI & UTILS ---
+        // --- 4. ASSET UI ---
         window.addCrew = () => {
             const name = document.getElementById('crew-new-name').value;
-            if(name) { state.crews.unshift({ id: Date.now().toString(), name, phone: document.getElementById('crew-new-phone').value, email: document.getElementById('crew-new-email').value, address: '', ledger: [] }); renderCrews(); showToast("PERSONNEL ENLISTED"); }
+            if(name) { state.crews.unshift({ id: Date.now().toString(), name, phone: document.getElementById('crew-new-phone').value, email: document.getElementById('crew-new-email').value, address: '', ledger: [] }); renderCrews(); showToast("ENLISTED"); }
         };
         function renderCrews() {
             const grid = document.getElementById('crew-list-grid'); if(!grid) return;
             grid.innerHTML = state.crews.map(c => `
                 <div class="asset-card border-l-4 border-l-blue-600">
-                    <span class="text-[9px] font-black uppercase text-zinc-600 block mb-2 italic tracking-widest">Dossier Access</span>
+                    <span class="text-[9px] font-black uppercase text-zinc-600 block mb-2 italic">Dossier Control</span>
                     <h4 class="text-2xl font-black italic text-white mb-1 uppercase tracking-tighter">${c.name}</h4>
-                    <p class="text-[10px] font-bold text-blue-500 mb-6">${c.phone || '(No Identity Sync)'}</p>
+                    <p class="text-[10px] font-bold text-blue-500 mb-6">${c.phone || '(No Sync)'}</p>
                     <button onclick="openPersonnel('${c.id}')" class="w-full py-4 bg-blue-600 rounded-xl text-[9px] font-black uppercase italic shadow-lg">Manage Ledger & Audit</button>
                 </div>`).join('');
         }
@@ -538,12 +459,8 @@
             document.getElementById('ps-edit-address').value = c.address || '';
             renderCrewLedger(c); document.getElementById('personnel-modal').classList.remove('hidden');
         };
-        window.savePersonnelChanges = () => {
-            const i = state.crews.findIndex(x=>x.id===state.activeCrewId);
-            state.crews[i] = { ...state.crews[i], name:document.getElementById('ps-edit-name').value, phone:document.getElementById('ps-edit-phone').value, email:document.getElementById('ps-edit-email').value, address:document.getElementById('ps-edit-address').value };
-            closePersonnel(); renderCrews(); showToast("DOSSIER UPDATED");
-        };
 
+        // --- 5. HD CALENDAR ---
         window.renderCalendar = () => {
             const container = document.getElementById('calendar-container'); if(!container) return;
             const y = state.curMonth.getFullYear(); const m = state.curMonth.getMonth();
@@ -561,43 +478,67 @@
         };
         window.focusDay = (date) => { 
             state.selectedDate = date; renderCalendar(); const jobs = state.customers.filter(c => c.date === date);
-            document.getElementById('day-jobs-list').innerHTML = jobs.length ? jobs.map(j => `
-                <div class="bg-black p-5 border border-white/10 rounded-3xl flex justify-between items-center hover:border-blue-500 transition-all text-left">
-                    <div><span class="text-xl font-black italic text-white uppercase">${j.name}</span><p class="text-[10px] font-black uppercase text-zinc-500 mt-1">${j.time} // ${j.vol} FT³</p></div>
-                    <button onclick="openEditor('${j.id}')" class="px-5 py-2 bg-blue-600 rounded-full font-black uppercase text-[9px] italic shadow-lg">Edit</button>
-                </div>`).join('') : `<div class="py-10 text-center opacity-10 uppercase italic text-xs font-black">Void</div>`;
+            document.getElementById('day-jobs-list').innerHTML = jobs.length ? jobs.map(j => `<div class="bg-black p-5 border border-white/10 rounded-3xl flex justify-between items-center hover:border-blue-500 transition-all text-left"><div><span class="text-xl font-black italic text-white uppercase">${j.name}</span><p class="text-[10px] font-black uppercase text-zinc-500 mt-1">${j.time} // ${j.vol} FT³</p></div><button onclick="openEditor('${j.id}')" class="px-5 py-2 bg-blue-600 rounded-full font-black uppercase text-[9px] italic shadow-lg">Edit</button></div>`).join('') : `<div class="py-10 text-center opacity-10 uppercase italic text-xs font-black">Void</div>`;
             document.getElementById('day-node-title').innerText = date;
         };
 
-        function formatPhone(val) { if (!val) return val; const num = val.replace(/[^\d]/g, ''); if (num.length < 4) return num; if (num.length < 7) return `(${num.slice(0, 3)}) ${num.slice(3)}`; return `(${num.slice(0, 3)}) ${num.slice(3, 6)}-${num.slice(6, 10)}`; }
-        window.addEventListener('input', (e) => { if (e.target.classList.contains('phone-mask')) e.target.value = formatPhone(e.target.value); });
+        // --- 6. MARKET STORE ---
+        window.addGlobalItem = () => {
+            const n = document.getElementById('global-new-name').value; const v = parseFloat(document.getElementById('global-new-vol').value);
+            if(n && !isNaN(v)) { state.matrix.unshift({ cat: document.getElementById('global-new-cat').value, name: n, vol: v }); renderGlobalInventory(); showToast("ITEM INJECTED"); }
+        };
+        function renderGlobalInventory() {
+            const container = document.getElementById('global-inventory-list'); if(!container) return;
+            container.innerHTML = state.matrix.map(item => `<div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 text-center group hover:border-blue-500/40 transition-all"><h5 class="text-lg font-black italic mb-3 truncate uppercase">${item.name}</h5><input type="number" class="!w-20 !p-2 !text-blue-500 !bg-black text-center" value="${item.vol}" onchange="updateGlobalVol('${item.name}', this.value)"></div>`).join('');
+        }
+        window.updateGlobalVol = (n, v) => { const idx = state.matrix.findIndex(i => i.name === n); if(idx !== -1) state.matrix[idx].vol = Number(v) || 0; };
+
+        // --- 7. UTILS ---
+        window.addFleet = () => { const n = document.getElementById('fleet-new-name').value; if(n) { state.fleet.unshift({ id: Date.now().toString(), name: n, size: document.getElementById('fleet-new-size').value, plate: 'PENDING', status: 'In-Port' }); renderFleet(); showToast("ASSET DEPLOYED"); } };
+        function renderFleet() { const grid = document.getElementById('fleet-list-grid'); if(!grid) return; grid.innerHTML = state.fleet.map(f => `<div class="asset-card"><span class="node-label">Asset Node</span><h4 class="text-2xl font-black italic text-white mb-2 uppercase">${f.name}</h4><p class="text-[10px] font-bold text-blue-400 mb-6 uppercase">${f.size} // ${f.plate}</p><button onclick="openFleetModal('${f.id}')" class="w-full py-4 bg-white/5 border border-white/10 rounded-xl text-[9px] font-black uppercase italic">Manage Asset</button></div>`).join(''); }
+        window.openFleetModal = (id) => { const f = state.fleet.find(x=>x.id===id); state.activeFleetId = id; document.getElementById('fleet-modal-content').innerHTML = `<div><label class="text-[8px] font-black uppercase text-zinc-500">ID</label><input type="text" id="fl-edit-name" value="${f.name}"></div><div><label class="text-[8px] font-black uppercase text-zinc-500">Plate</label><input type="text" id="fl-edit-plate" value="${f.plate}"></div>`; document.getElementById('fleet-modal').classList.remove('hidden'); };
+        window.saveFleetChanges = () => { const i = state.fleet.findIndex(f=>f.id===state.activeFleetId); state.fleet[i] = { ...state.fleet[i], name:document.getElementById('fl-edit-name').value, plate:document.getElementById('fl-edit-plate').value }; closeFleetModal(); renderFleet(); showToast("ASSET SYNCED"); };
+        window.closeFleetModal = () => document.getElementById('fleet-modal').classList.add('hidden');
+        window.renderCRM = () => { const b = document.getElementById('crm-body'); b.innerHTML = state.customers.map(c => `<div class="p-8 flex justify-between items-center hover:bg-white/5" onclick="openEditor('${c.id}')"><p class="text-2xl font-black italic text-blue-500 uppercase">${c.name}</p><p class="text-[10px] font-bold text-zinc-600 uppercase">${c.date}</p></div>`).join('') || '<p class="p-20 text-center opacity-10">Archive Empty</p>'; };
+        
+        window.formatPhone = (val) => { if (!val) return val; const num = val.replace(/[^\d]/g, ''); if (num.length < 4) return num; if (num.length < 7) return `(${num.slice(0, 3)}) ${num.slice(3)}`; return `(${num.slice(0, 3)}) ${num.slice(3, 6)}-${num.slice(6, 10)}`; };
         window.saveDraft = (f,v) => state.draft[f] = v;
         window.commitNode = (n) => showToast(`${n} LOCKED`);
         window.closeAudit = () => document.getElementById('audit-modal').classList.add('hidden');
         window.closePersonnel = () => document.getElementById('personnel-modal').classList.add('hidden');
-        window.closeFleetModal = () => document.getElementById('fleet-modal').classList.add('hidden');
+        window.savePersonnelChanges = () => { const i = state.crews.findIndex(x=>x.id===state.activeCrewId); state.crews[i] = { ...state.crews[i], name:document.getElementById('ps-edit-name').value, phone:document.getElementById('ps-edit-phone').value, email:document.getElementById('ps-edit-email').value, address:document.getElementById('ps-edit-address').value }; closePersonnel(); renderCrews(); showToast("DOSSIER UPDATED"); };
         window.quickAdd = (date) => { state.draft.date = date; switchTab('Customer List'); showToast(`ADD CLIENT TO ${date}`); };
         window.changeMonth = (dir) => { state.curMonth.setMonth(state.curMonth.getMonth() + dir); renderCalendar(); };
         window.showToast = (m) => { const t = document.getElementById('toast-msg'); t.innerText = m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 2000); };
-        
-        window.openEditor = (id) => {
-            const job = state.customers.find(c => c.id === id); if(!job) return;
-            state.activeJobId = id; document.getElementById('editor-modal').classList.remove('hidden');
-            document.getElementById('editor-content').innerHTML = `<div class="node-card"><span class="node-label">Identity Sync</span><input type="text" id="edit-name" value="${job.name}"><input type="tel" id="edit-phone" value="${job.phone}" class="phone-mask"></div><div class="node-card lg:col-span-2"><span class="node-label">Mission Intelligence</span><textarea id="edit-notes" rows="10" class="!text-left">${job.notes || ''}</textarea><input type="number" id="edit-vol" value="${job.vol}" class="text-3xl font-black"></div>`;
-        };
         window.closeEditor = () => document.getElementById('editor-modal').classList.add('hidden');
-        window.saveJobChanges = () => {
-            const i = state.customers.findIndex(c => c.id === state.activeJobId);
-            state.customers[i] = { ...state.customers[i], name:document.getElementById('edit-name').value, phone:document.getElementById('edit-phone').value, notes:document.getElementById('edit-notes').value, vol:parseInt(document.getElementById('edit-vol').value)||0 };
-            closeEditor(); renderCalendar(); showToast("MISSION UPDATED");
-        };
-
+        window.openEditor = (id) => { const job = state.customers.find(c => c.id === id); if(!job) return; state.activeJobId = id; document.getElementById('editor-modal').classList.remove('hidden'); document.getElementById('editor-content').innerHTML = `<div class="node-card"><span class="node-label">Identity Sync</span><input type="text" id="edit-name" value="${job.name}"><input type="tel" id="edit-phone" value="${job.phone}" class="phone-mask"></div><div class="node-card lg:col-span-2"><span class="node-label">Mission Dossier</span><textarea id="edit-notes" rows="10" class="!text-left">${job.notes || ''}</textarea></div>`; };
+        window.saveJobChanges = () => { const i = state.customers.findIndex(c => c.id === state.activeJobId); state.customers[i] = { ...state.customers[i], name:document.getElementById('edit-name').value, phone:document.getElementById('edit-phone').value }; closeEditor(); renderCalendar(); showToast("MISSION UPDATED"); };
         window.handlePhotos = (input) => { Array.from(input.files).forEach(f => { const r = new FileReader(); r.onload = (e) => { state.images.push(e.target.result); const div = document.createElement('div'); div.className = 'gallery-item rounded-xl overflow-hidden aspect-square'; div.innerHTML = `<img src="${e.target.result}" class="w-full h-full object-cover">`; document.getElementById('photo-gallery').prepend(div); }; r.readAsDataURL(f); }); };
-        window.handleSynchronize = () => {
-            if(!state.draft.name || !state.draft.date) return showToast('DATA REQ: IDENTITY/DATE');
-            state.customers.unshift({ id: Date.now().toString(), ...state.draft, vol: 0, status: 'authorized' });
-            state.draft = { time: '08:20' }; switchTab('Dashboard');
-        };
+        window.handleSynchronize = () => { if(!state.draft.name || !state.draft.date) return showToast('DATA REQ: IDENTITY/DATE'); state.customers.unshift({ id: Date.now().toString(), ...state.draft, status: 'authorized' }); state.draft = { time: '08:20' }; switchTab('Dashboard'); };
+
+        async function runNeuralAudit() {
+            if (state.images.length === 0) return showToast('NO PHOTOS');
+            const loader = document.getElementById('neural-loader'); loader.classList.remove('hidden');
+            const compress = (b64) => new Promise((r) => { const img = new Image(); img.onload = () => { const c = document.createElement('canvas'); const s = Math.min(1, 600/Math.max(img.width, img.height)); c.width=img.width*s; c.height=img.height*s; c.getContext('2d').drawImage(img,0,0,c.width,c.height); r(c.toDataURL('image/jpeg',0.4).split(',')[1]); }; img.src = b64; });
+            try {
+                const clean = await Promise.all(state.images.slice(-3).map(compress));
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, { method: 'POST', body: JSON.stringify({ contents: [{ parts: [{ text: `Identify furniture. Map to: ${state.matrix.map(i=>i.name).join(', ')}. Return JSON {"items":{"Name":count}, "total_vol":number}.` }, ...clean.map(d => ({ inlineData: { mimeType: "image/jpeg", data: d } }))] }] }) });
+                const result = JSON.parse((await res.json()).candidates[0].content.parts[0].text.replace(/```json|```/g, '').trim());
+                Object.entries(result.items).forEach(([k, v]) => { if(state.matrix.find(i=>i.name===k)) state.inventory[k] = (state.inventory[k]||0)+v; });
+                document.getElementById('calc-tally').innerText = result.total_vol + ' ft³'; renderInventoryGrid(); showToast('QUANTUM SYNC COMPLETE');
+            } catch (err) { showToast('NEURAL DELAY'); } finally { loader.classList.add('hidden'); }
+        }
+
+        function renderInventoryGrid() {
+            const container = document.getElementById('inventory-grid'); if (!container) return;
+            let currentCat = "";
+            container.innerHTML = state.matrix.map(item => {
+                let h = ""; if(item.cat !== currentCat) { currentCat = item.cat; h += `<div class="category-header">${currentCat}</div>`; }
+                h += `<div class="item-counter"><div class="text-left"><span class="item-name text-xs font-black uppercase italic">${item.name}</span></div><div class="qty-controls"><div class="qty-btn" onclick="updateQty('${item.name}', -1)">-</div><span class="qty-val">${state.inventory[item.name] || 0}</span><div class="qty-btn" onclick="updateQty('${item.name}', 1)">+</div></div></div>`;
+                return h;
+            }).join('');
+        }
+        window.updateQty = (n, d) => { state.inventory[n] = Math.max(0, (state.inventory[n] || 0) + d); renderInventoryGrid(); };
 
         window.onload = () => switchTab('Dashboard');
     </script>
