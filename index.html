@@ -3,66 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>MoveMasters OS | Titan X-57</title>
+    <title>MoveMasters OS | Titan X-58</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
-        :root { --bg: #000; --sidebar: #050505; --accent: #3b82f6; --border: #ffffff; --card: #0a0a0a; }
         
+        :root {
+            --bg: #000000;
+            --sidebar: #050505;
+            --accent: #3b82f6;
+            --border: #ffffff;
+            --card: #0a0a0a;
+        }
+
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            background: var(--bg); color: #fff; margin: 0; 
-            display: flex; height: 100dvh; width: 100vw; overflow: hidden; 
+            background-color: var(--bg); 
+            color: #ffffff; 
+            margin: 0;
+            display: flex;
+            height: 100dvh;
+            width: 100vw;
+            overflow: hidden;
         }
 
-        /* SIDEBAR - THE FULL NINE */
+        /* SIDEBAR - THE FULL NINE NODES */
         .sidebar {
-            width: 260px; background: var(--sidebar); border-right: 2px solid var(--border);
-            display: flex; flex-direction: column; flex-shrink: 0; z-index: 1000;
+            width: 260px;
+            background-color: var(--sidebar);
+            border-right: 2px solid var(--border);
+            height: 100%;
+            flex-shrink: 0; 
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
         }
+
         .nav-btn {
-            padding: 16px 24px; font-size: 12px; font-weight: 800; color: #444;
-            cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.05);
-            text-transform: uppercase; letter-spacing: 0.1em; transition: 0.2s;
-            display: flex; align-items: center; gap: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 24px;
+            font-size: 12px;
+            font-weight: 800;
+            color: #444;
+            cursor: pointer;
+            transition: 0.2s;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
-        .nav-btn.active { background: rgba(255,255,255,0.05); color: #fff; border-left: 6px solid var(--accent); }
+
+        .nav-btn.active {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            border-left: 6px solid var(--accent);
+        }
 
         /* MAIN STAGE */
-        .main-stage { flex-grow: 1; overflow-y: auto; padding: 40px 60px; position: relative; }
-        .titan-title { font-size: clamp(30px, 5vw, 60px); font-weight: 900; font-style: italic; text-transform: uppercase; line-height: 1; margin-bottom: 30px; }
-        .titan-gradient { background: linear-gradient(to right, #fff, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .main-stage {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 40px 60px;
+            position: relative;
+            background: #000;
+        }
 
-        /* INDUSTRIAL NODES */
-        .node-card { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
-        .node-label { font-size: 9px; font-weight: 800; text-transform: uppercase; color: #000; background: #fff; padding: 4px 10px; border-radius: 4px; margin-bottom: 25px; display: inline-block; }
-        
-        input, select { background: #000 !important; border: 1px solid var(--border) !important; padding: 16px; border-radius: 12px; width: 100%; color: #fff !important; font-weight: 700; margin-bottom: 12px; outline: none; }
+        .titan-title {
+            font-size: clamp(30px, 5vw, 60px);
+            font-weight: 900;
+            font-style: italic;
+            text-transform: uppercase;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            margin-bottom: 30px;
+            background: linear-gradient(to right, #fff, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-        /* CALENDAR TABLE */
-        .calendar-table { width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 6px; }
+        /* INDUSTRIAL WHITE-BORDER NODES */
+        .node-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            margin-bottom: 25px;
+        }
+
+        .node-label {
+            font-size: 9px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #000;
+            background: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            display: inline-block;
+            letter-spacing: 0.2em;
+        }
+
+        input, select {
+            background: #000 !important;
+            border: 1px solid var(--border) !important;
+            padding: 16px;
+            border-radius: 12px;
+            width: 100%;
+            color: #fff !important;
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 12px;
+            outline: none;
+        }
+
+        /* 7-COLUMN TABLE */
+        .calendar-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: separate;
+            border-spacing: 6px;
+        }
+
         .calendar-table th { font-size: 10px; font-weight: 900; color: #333; text-transform: uppercase; padding: 10px 0; }
-        .date-tile { background: #080808; border: 1px solid #1a1a1a; border-radius: 14px; height: 105px; padding: 10px; vertical-align: top; cursor: pointer; }
-        .date-tile.active-focus { border: 2px solid var(--accent); background: rgba(59,130,246,0.05); }
-        .job-pill { background: #fff; color: #000; font-size: 8px; font-weight: 900; padding: 3px 6px; border-radius: 4px; margin-top: 4px; white-space: nowrap; overflow: hidden; }
 
-        /* BUTTONS */
-        .btn-sync { background: #fff; color: #000; padding: 22px; border-radius: 20px; font-weight: 900; text-transform: uppercase; width: 100%; border: 2px solid #fff; cursor: pointer; transition: 0.2s; }
+        .date-tile {
+            background: #080808;
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            height: 100px;
+            padding: 10px;
+            vertical-align: top;
+            cursor: pointer;
+        }
+
+        .date-tile.active-focus { border: 2px solid var(--accent); background: rgba(59,130,246,0.05); }
+
+        .job-pill {
+            background: #fff;
+            color: #000;
+            font-size: 8px;
+            font-weight: 900;
+            padding: 3px 6px;
+            border-radius: 4px;
+            margin-top: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .btn-sync {
+            background: #fff;
+            color: #000;
+            padding: 22px;
+            border-radius: 20px;
+            font-weight: 900;
+            text-transform: uppercase;
+            width: 100%;
+            border: 2px solid #fff;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 20px;
+        }
+
         .btn-sync:active { transform: scale(0.97); background: var(--accent); color: #fff; }
 
-        #loading-screen { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.5s ease-out;
+        }
+
         .hidden { display: none !important; }
+        .no-select { -webkit-user-select: none; user-select: none; }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-thumb { background: #fff; border-radius: 10px; }
-        .glow { position: fixed; top: 0; right: 0; width: 600px; height: 600px; background: radial-gradient(circle, rgba(59,130,246,0.05) 0%, transparent 70%); pointer-events: none; }
+        
+        .glow {
+            position: fixed;
+            top: 0; right: 0;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(59,130,246,0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
     </style>
 </head>
 <body class="no-select">
 
+    <!-- SELF-DESTRUCTING LOADER -->
     <div id="loading-screen">
         <div class="w-16 h-16 border-4 border-white border-t-transparent rounded-full animate-spin mb-6"></div>
-        <p class="text-[10px] font-black uppercase tracking-[0.5em] text-white">Titan OS // System Launch</p>
-        <button onclick="forceStart()" class="mt-10 text-[9px] text-zinc-700 underline uppercase tracking-widest">Manual Bypass</button>
+        <p class="text-[10px] font-black uppercase tracking-[0.5em] text-white">Titan OS // Zero-Block Launch</p>
     </div>
 
     <!-- SIDEBAR -->
@@ -82,14 +220,14 @@
             <div id="nav-Settings" class="nav-btn" onclick="switchTab('Settings')">Settings</div>
         </div>
         <div class="p-6 border-t-2 border-white bg-zinc-900">
-            <span class="text-[9px] font-black uppercase text-white tracking-widest italic">Fail-Safe Node Active</span>
+            <span class="text-[9px] font-black uppercase text-white tracking-widest italic">M5 Titan v58.0</span>
         </div>
     </aside>
 
     <!-- MAIN CONSOLE -->
     <main class="main-stage">
         <div class="glow"></div>
-        <h1 id="view-title" class="titan-title titan-gradient">Dashboard</h1>
+        <h1 id="view-title" class="titan-title">Dashboard</h1>
 
         <!-- VIEW: DASHBOARD -->
         <div id="DashboardView" class="view-panel animate-in fade-in">
@@ -106,56 +244,56 @@
                         <div class="p-6"><table class="calendar-table"><thead><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead><tbody id="calendar-body"></tbody></table></div>
                     </div>
                     <div class="grid grid-cols-2 gap-10">
-                        <div class="node-card"><p class="text-zinc-500 uppercase font-black text-[10px] mb-4 tracking-widest">Market Load</p><div id="city-analytics" class="space-y-2"></div></div>
-                        <div class="node-card"><p class="text-zinc-500 uppercase font-black text-[10px] mb-4 tracking-widest">Gross Projection</p><h4 class="text-7xl font-black italic" id="stat-rev">$142,850</h4></div>
+                        <div class="node-card"><p class="text-zinc-500 uppercase font-black text-[10px] mb-4 tracking-widest">Market load node</p><div id="city-analytics" class="space-y-2"></div></div>
+                        <div class="node-card"><p class="text-zinc-500 uppercase font-black text-[10px] mb-4 tracking-widest">Gross cycle sync</p><h4 class="text-7xl font-black italic" id="stat-rev">$142,850</h4></div>
                     </div>
                 </div>
                 <div class="node-card h-fit sticky top-0 border-2 border-white">
-                    <h4 id="day-node-title" class="text-2xl font-black uppercase italic text-white mb-6">Day Node</h4>
+                    <h4 id="day-node-title" class="text-2xl font-black uppercase italic text-white mb-6 tracking-tighter">Day Node</h4>
                     <div id="day-jobs-list" class="space-y-6"></div>
                 </div>
             </div>
         </div>
 
-        <!-- VIEW: CUSTOMER LIST (WIDE OPEN) -->
+        <!-- VIEW: CUSTOMER LIST (3-COLUMN OPEN ARCHITECTURE) -->
         <div id="CustomerListView" class="view-panel hidden">
             <div class="grid grid-cols-1 xl:grid-cols-3 gap-10">
                 <div class="node-card space-y-4">
-                    <span class="node-label">01 // Identity</span>
-                    <input type="text" id="cap-name" placeholder="Legal Name">
-                    <input type="tel" id="cap-phone" placeholder="Mobile Sync">
-                    <input type="email" id="cap-email" placeholder="Email Sync">
+                    <span class="node-label">01 // Identity Node</span>
+                    <input type="text" id="cap-name" placeholder="Legal Full Name">
+                    <input type="tel" id="cap-phone" placeholder="Mobile Node">
+                    <input type="email" id="cap-email" placeholder="Email Channel">
                 </div>
                 <div class="node-card space-y-4">
-                    <span class="node-label">02 // Route</span>
+                    <span class="node-label">02 // Route Sync</span>
                     <input type="text" id="cap-from-city" placeholder="Origin City">
                     <input type="text" id="cap-to-city" placeholder="Destination City">
                     <input type="text" id="cap-zip" placeholder="Zip Node">
                 </div>
                 <div class="node-card space-y-4">
-                    <span class="node-label">03 // Sync</span>
+                    <span class="node-label">03 // Dispatch Node</span>
                     <input type="date" id="cap-date">
-                    <select id="cap-crew"><option>Marcus T. (Foreman)</option><option>James R. (Foreman)</option></select>
-                    <button onclick="handleSynchronize()" class="btn-sync mt-4">⚡ Synchronize command</button>
+                    <select id="cap-crew"><option>Marcus T. (Foreman)</option><option>James R. (Foreman)</option><option>David L. (Foreman)</option></select>
+                    <button onclick="handleSynchronize()" class="btn-sync">⚡ Synchronize command</button>
                 </div>
             </div>
             <!-- PHOTO DUMP -->
             <div class="node-card mt-10">
-                <span class="node-label">04 // Survey Dossier</span>
+                <span class="node-label">04 // Survey dossier gallery</span>
                 <div id="photo-dump-gallery" class="grid grid-cols-2 md:grid-cols-5 gap-6 mt-6">
                     <div class="aspect-square bg-black border-4 border-dashed border-white flex flex-col items-center justify-center cursor-pointer relative">
-                        <div class="text-white font-black text-[10px] uppercase">Snap Photo</div>
+                        <div class="text-white font-black text-[10px] uppercase">Snap Node</div>
                         <input type="file" multiple accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="handlePhotoUpload(this)">
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Placeholder Panels -->
-        <div id="CRMView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">CRM Database</h3><div id="crm-body" class="mt-10 divide-y-2 divide-white"></div></div></div>
+        <!-- PLACEHOLDER PANELS -->
+        <div id="CRMView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic">CRM ACTIVE</h3><div id="crm-body" class="mt-10 divide-y-2 divide-white"></div></div></div>
         <div id="CrewHubView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Crew Hub</h3></div></div>
-        <div id="AuditView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Audit Hub</h3></div></div>
-        <div id="FleetView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Fleet View</h3></div></div>
+        <div id="AuditView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Audit Node</h3></div></div>
+        <div id="FleetView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Fleet Master</h3></div></div>
         <div id="InventoryView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Inventory Master</h3></div></div>
         <div id="FinancialsView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Financial Hub</h3></div></div>
         <div id="SettingsView" class="view-panel hidden"><div class="node-card"><h3 class="text-4xl font-black italic uppercase">Settings</h3></div></div>
@@ -167,16 +305,15 @@
         import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // SAFETY PARSE
         const firebaseConfig = JSON.parse(__firebase_config || "{}");
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'titan-x58';
         let app, auth, db;
+        
         if(firebaseConfig.apiKey) {
             app = initializeApp(firebaseConfig);
             auth = getAuth(app);
             db = getFirestore(app);
         }
-        
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'titan-x57';
         
         let state = {
             user: null, activeTab: 'Dashboard', customers: [],
@@ -184,61 +321,62 @@
             images: [], vol: 0
         };
 
-        // FAIL-SAFE BYPASS (If Firebase hangs for > 5s)
-        window.forceStart = () => {
-            document.getElementById('loading-screen').classList.add('hidden');
-            window.switchTab('Dashboard');
+        // --- 1. INSTANT BYPASS (THE UNLOCKER) ---
+        function forceUnlock() {
+            const loader = document.getElementById('loading-screen');
+            if(loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.classList.add('hidden'), 500);
+            }
+            window.switchTab(state.activeTab);
             window.renderCalendar();
-        };
-        setTimeout(forceStart, 5000);
+        }
+        setTimeout(forceUnlock, 3000); // 3-second safety bypass
 
+        // --- 2. AUTH & CLOUD ---
         async function init() {
-            if(!auth) return forceStart();
-            const initAuth = async () => {
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else { await signInAnonymously(auth); }
-            };
-            await initAuth();
+            if(!auth) return;
+            const token = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+            if(token) await signInWithCustomToken(auth, token);
+            else await signInAnonymously(auth);
 
             onAuthStateChanged(auth, async (user) => {
-                if (user) {
+                if(user) {
                     state.user = user;
                     const stateRef = doc(db, 'artifacts', appId, 'users', user.uid, 'system', 'state');
                     const snap = await getDoc(stateRef);
-                    if (snap.exists()) {
+                    if(snap.exists()) {
                         const data = snap.data();
                         state.activeTab = data.activeTab || 'Dashboard';
                         state.customers = data.customers || [];
                     }
-                    window.switchTab(state.activeTab);
-                    window.renderCalendar();
-                    document.getElementById('loading-screen').classList.add('hidden');
+                    forceUnlock();
                 }
             });
         }
 
         window.saveState = async () => {
-            if (!state.user || !db) return;
+            if(!state.user || !db) return;
             const stateRef = doc(db, 'artifacts', appId, 'users', state.user.uid, 'system', 'state');
             await setDoc(stateRef, { activeTab: state.activeTab, customers: state.customers, timestamp: Date.now() }, { merge: true });
         };
 
+        // --- 3. NAVIGATION ---
         window.switchTab = (id) => {
             state.activeTab = id;
+            document.getElementById('view-title').innerText = id;
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
-                if (btn.innerText.includes(id)) btn.classList.add('active');
+                if(btn.innerText.includes(id)) btn.classList.add('active');
             });
             document.querySelectorAll('.view-panel').forEach(p => p.classList.add('hidden'));
             const panel = document.getElementById(id.replace(' ', '') + 'View');
-            if (panel) panel.classList.remove('hidden');
-            document.getElementById('view-title').innerText = id;
-            if (id === 'CRM') renderCRM();
-            if (id === 'Dashboard') updateDashboardIntelligence();
+            if(panel) panel.classList.remove('hidden');
+            if(id === 'Dashboard') updateDashboardStats();
             window.saveState();
         };
 
+        // --- 4. CALENDAR ENGINE ---
         window.renderCalendar = () => {
             const body = document.getElementById('calendar-body');
             const year = state.currentMonth.getFullYear();
@@ -248,25 +386,25 @@
             document.getElementById('month-label').innerText = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(state.currentMonth);
             body.innerHTML = '';
             let date = 1;
-            for (let i = 0; i < 6; i++) {
+            for(let i=0; i<6; i++) {
                 let row = document.createElement('tr');
-                for (let j = 0; j < 7; j++) {
+                for(let j=0; j<7; j++) {
                     let cell = document.createElement('td'); cell.className = 'date-tile';
-                    if (i === 0 && j < firstDay || date > daysInMonth) {
+                    if(i===0 && j<firstDay || date > daysInMonth) {
                         cell.style.background = 'transparent'; cell.style.border = 'none';
                     } else {
                         const dKey = `${year}-${String(month+1).padStart(2,'0')}-${String(date).padStart(2,'0')}`;
                         const dayJobs = state.customers.filter(c => c.date === dKey);
-                        cell.innerHTML = `<span class="tile-num ${dayJobs.length?'text-blue-500':'text-zinc-800'}">${date}</span>`;
+                        cell.innerHTML = `<span style="font-size:12px; font-weight:900; color:${dayJobs.length?'#3b82f6':'#333'}">${date}</span>`;
                         dayJobs.slice(0,2).forEach(j => { cell.innerHTML += `<div class="job-pill">${j.name.split(' ')[0]}</div>`; });
                         const currentD = dKey; cell.onclick = () => focusDay(currentD);
-                        if (state.selectedDate === dKey) cell.classList.add('active-focus');
+                        if(state.selectedDate === dKey) cell.classList.add('active-focus');
                         date++;
                     }
                     row.appendChild(cell);
                 }
                 body.appendChild(row);
-                if (date > daysInMonth) break;
+                if(date > daysInMonth) break;
             }
         };
 
@@ -274,11 +412,11 @@
             state.selectedDate = date; window.renderCalendar();
             const list = document.getElementById('day-jobs-list');
             const jobs = state.customers.filter(c => c.date === date);
-            document.getElementById('day-node-title').innerText = "Day Node: " + new Date(date + "T00:00:00").toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-            list.innerHTML = jobs.length ? jobs.map(j => `<div class="bg-black p-6 rounded-3xl border-2 border-white mb-6"><span class="text-xl font-black italic text-white">${j.name}</span><div class="text-[10px] font-black uppercase text-zinc-500 mt-2">${j.time || '08:00'} // ${j.fromCity} ➔ ${j.toCity}</div></div>`).join('') : `<div class="py-20 text-center opacity-10 italic text-xs uppercase">No Nodes Active</div>`;
+            document.getElementById('day-node-title').innerText = "Nodes: " + new Date(date + "T00:00:00").toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            list.innerHTML = jobs.length ? jobs.map(j => `<div class="bg-black p-6 rounded-2xl border-2 border-white mb-4"><span class="text-xl font-black italic text-white">${j.name}</span><div class="text-[10px] font-black uppercase text-zinc-500 mt-2">${j.time || '08:00'} // ${j.fromCity || 'Local'} ➔ ${j.toCity || 'Local'}</div></div>`).join('') : `<div class="py-20 text-center opacity-10 italic text-xs">No Active Nodes</div>`;
         }
 
-        function updateDashboardIntelligence() {
+        function updateDashboardStats() {
             const cities = {}; let totalVol = 0;
             state.customers.forEach(c => {
                 const v = parseInt(c.vol) || 0; totalVol += v;
@@ -304,25 +442,31 @@
             });
         };
 
-        window.handleSynchronize = async () => {
+        window.handleSynchronize = () => {
             const name = document.getElementById('cap-name').value;
             const date = document.getElementById('cap-date').value;
-            if (!name || !date) return;
-            const newJob = { id: Date.now().toString(), name, fromCity: document.getElementById('cap-from-city').value || 'Local', toCity: document.getElementById('cap-to-city').value || 'Local', vol: state.vol || 0, date, time: '08:00' };
+            if(!name || !date) return;
+
+            const newJob = { 
+                id: Date.now().toString(), name, 
+                fromCity: document.getElementById('cap-from-city').value, 
+                toCity: document.getElementById('cap-to-city').value, 
+                date, vol: state.vol || 0, time: '08:00', images: [...state.images] 
+            };
+            
+            // INSTANT UI SYNC
             state.customers.unshift(newJob);
             window.switchTab('Dashboard');
+            window.renderCalendar();
+
+            // Background Cleanup
             state.images = []; state.vol = 0;
-            document.getElementById('customer-form').reset();
+            document.getElementById('cap-name').value = '';
             document.querySelectorAll('#photo-dump-gallery .aspect-square:not(:last-child)').forEach(el => el.remove());
-            await window.saveState();
+            window.saveState();
         };
 
         window.changeMonth = (dir) => { state.currentMonth.setMonth(state.currentMonth.getMonth() + dir); window.renderCalendar(); };
-
-        function renderCRM() {
-            const body = document.getElementById('crm-body');
-            body.innerHTML = state.customers.map(c => `<div class="p-8 group hover:bg-white/[0.02] transition-all"><p class="font-black italic text-blue-400 text-2xl uppercase">${c.name}</p><p class="text-[10px] text-zinc-500 uppercase mt-1">${c.fromCity} ➔ ${c.toCity} // ${c.date}</p></div>`).join('');
-        }
 
         init();
     </script>
