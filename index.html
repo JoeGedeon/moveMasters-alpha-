@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>MoveMasters OS | Titan X-83</title>
+    <title>MoveMasters OS | Titan X-84</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- STABLE SDK CLUSTER -->
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore-compat.js"></script>
@@ -27,34 +26,39 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* --- SIDEBAR SENTINEL --- */
+        /* --- THE SENTINEL SIDEBAR --- */
         .sidebar {
             width: 260px; background-color: var(--sidebar); border-right: 2px solid var(--border-white);
             height: 100%; flex-shrink: 0; display: flex; flex-direction: column; z-index: 1000;
         }
+        .sidebar-header { padding: 40px 20px; border-bottom: 2px solid var(--border-white); text-align: center; }
         .nav-btn {
             display: flex; align-items: center; gap: 12px; padding: 22px 24px;
-            font-size: 11px; font-weight: 800; color: #444; cursor: pointer;
-            transition: 0.3s; border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 11px; font-weight: 800; color: #333; cursor: pointer;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
             text-transform: uppercase; letter-spacing: 0.15em;
         }
+        /* INTENSIFIED SENTINEL HIGHLIGHT */
         .nav-btn.active {
-            background-color: rgba(59, 130, 246, 0.15); color: #ffffff;
-            border-left: 8px solid var(--accent);
-            box-shadow: inset 20px 0 35px -15px rgba(59, 130, 246, 0.5);
+            background-color: rgba(59, 130, 246, 0.15);
+            color: #ffffff;
+            border-left: 10px solid var(--accent);
+            box-shadow: inset 25px 0 40px -20px rgba(59, 130, 246, 0.6);
         }
 
-        /* --- MAIN STAGE --- */
+        /* --- THE MAIN CONSOLE --- */
         .main-stage { flex-grow: 1; overflow-y: auto; padding: 40px; background: #000; position: relative; }
         .titan-title { font-size: 40px; font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: -0.04em; margin-bottom: 30px; text-align: center; }
         .titan-gradient { background: linear-gradient(to right, #fff, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* --- PERFECT CENTER NESTING NODE --- */
+        /* --- THE PERFECT CENTERED NODE --- */
         .node-card {
             background: var(--card-bg); border: 2.5px solid var(--border-white); border-radius: 30px;
-            padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,1); margin-bottom: 25px;
-            overflow: hidden; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; /* THE NESTING CORE */
+            padding: 45px; box-shadow: 0 20px 60px rgba(0,0,0,1); margin-bottom: 25px;
+            overflow: hidden; 
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center; /* NESTED CENTERING */
             text-align: center; min-height: 280px; position: relative;
         }
         .node-label {
@@ -63,13 +67,13 @@
             display: inline-block; letter-spacing: 0.25em;
             position: absolute; top: 25px; left: 50%; transform: translateX(-50%);
         }
-
-        /* --- SYMMETRIC INPUTS --- */
+        
+        /* Centered Input Systems */
         input, select, textarea {
             background: #000 !important; border: 1.5px solid var(--border-white) !important;
             padding: 18px; border-radius: 12px; width: 100%; color: #fff !important; 
             font-weight: 700; font-size: 15px; margin-bottom: 12px; outline: none;
-            text-align: center;
+            text-align: center; /* CENTERED DATA */
         }
         ::placeholder { color: #333; }
 
@@ -89,8 +93,8 @@
         .date-tile.active-focus { border: 3px solid var(--accent); background: rgba(59, 130, 246, 0.1); }
         .tile-plus { 
             position: absolute; top: 8px; right: 8px; opacity: 0; color: #fff; background: var(--accent); 
-            border-radius: 4px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;
-            font-size: 16px; font-weight: 900; transition: 0.2s;
+            border-radius: 4px; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
+            font-size: 18px; font-weight: 900; transition: 0.2s;
         }
         .date-tile:hover .tile-plus { opacity: 1; }
         .job-pill { 
@@ -100,7 +104,7 @@
             display: block; width: 100%; text-align: center;
         }
 
-        /* --- LOGISTICS INVENTORY MATRIX --- */
+        /* --- LOGISTICS INVENTORY GRID --- */
         .inventory-scroll {
             width: 100%; max-height: 480px; overflow-y: auto; padding-right: 15px;
             display: grid; grid-template-cols: repeat(2, 1fr); gap: 15px; margin-top: 60px;
@@ -111,7 +115,7 @@
         }
         .qty-controls { display: flex; align-items: center; gap: 18px; }
         .qty-btn {
-            width: 40px; height: 40px; border-radius: 12px; border: 1.5px solid rgba(255,255,255,0.2);
+            width: 42px; height: 42px; border-radius: 12px; border: 1.5px solid rgba(255,255,255,0.2);
             display: flex; align-items: center; justify-content: center; font-weight: 900;
             color: #fff; cursor: pointer; font-size: 18px;
         }
@@ -137,7 +141,7 @@
             position: fixed; bottom: 40px; right: 40px; background: #fff; color: #000;
             padding: 22px 45px; border-radius: 24px; font-weight: 900; uppercase;
             box-shadow: 0 25px 60px rgba(0,0,0,0.6); z-index: 5000; transform: translateY(180%);
-            transition: 0.4s;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         #toast-msg.show { transform: translateY(0); }
 
@@ -151,14 +155,14 @@
 
     <div id="toast-msg">DATA SYNCHRONIZED</div>
 
-    <!-- COMMAND SIDEBAR (SOVEREIGN ENGINE) -->
+    <!-- COMMAND SIDEBAR (DEPLOYMENT-SAFE) -->
     <aside class="sidebar">
-        <div class="p-10 border-b-2 border-white text-center">
-            <h2 class="text-[18px] font-black uppercase tracking-[0.4em] text-white italic">Titan OS</h2>
+        <div class="sidebar-header">
+            <h2 class="text-[18px] font-black uppercase tracking-[0.4em] text-white italic">MoveMasters</h2>
         </div>
         <div id="sidebar-nav" class="flex-grow py-6 overflow-y-auto">
             <div id="nav-Dashboard" class="nav-btn active" onclick="switchTab('Dashboard')">Dashboard</div>
-            <div id="nav-CustomerList" class="nav-btn" onclick="switchTab('CustomerList')">Customer List</div>
+            <div id="nav-CustomerList" class="nav-btn" onclick="switchTab('Customer List')">Customer List</div>
             <div id="nav-CRM" class="nav-btn" onclick="switchTab('CRM')">CRM Database</div>
             <div id="nav-CrewHub" class="nav-btn" onclick="switchTab('CrewHub')">Crew Hub</div>
             <div id="nav-Audit" class="nav-btn" onclick="switchTab('Audit')">Referral Audit</div>
@@ -168,7 +172,7 @@
             <div id="nav-Settings" class="nav-btn" onclick="switchTab('Settings')">Settings</div>
         </div>
         <div class="p-8 border-t-2 border-white bg-zinc-900 text-center">
-            <span class="text-[9px] font-black uppercase text-white tracking-widest italic block">X-83 Universal Command</span>
+            <span class="text-[9px] font-black uppercase text-white tracking-widest italic block text-blue-400">Titan X-84 Deployment</span>
         </div>
     </aside>
 
@@ -184,8 +188,8 @@
                         <div class="p-8 flex justify-between items-center border-b-2 border-white bg-white/[0.01]">
                             <h3 class="text-3xl font-black italic uppercase text-white" id="month-label">December 2025</h3>
                             <div class="flex gap-4">
-                                <button onclick="changeMonth(-1)" class="w-16 h-16 border-2 border-white rounded-2xl flex items-center justify-center hover:bg-white hover:text-black transition-all font-bold">◀</button>
-                                <button onclick="changeMonth(1)" class="w-16 h-16 border-2 border-white rounded-2xl flex items-center justify-center hover:bg-white hover:text-black transition-all font-bold">▶</button>
+                                <button onclick="changeMonth(-1)" class="w-16 h-16 border-2 border-white rounded-2xl flex items-center justify-center hover:bg-white hover:text-black transition-all font-bold font-bold">◀</button>
+                                <button onclick="changeMonth(1)" class="w-16 h-16 border-2 border-white rounded-2xl flex items-center justify-center hover:bg-white hover:text-black transition-all font-bold font-bold">▶</button>
                             </div>
                         </div>
                         <div class="p-6"><table class="calendar-table"><thead><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead><tbody id="calendar-body"></tbody></table></div>
@@ -208,7 +212,7 @@
             <form id="customer-form">
                 <div class="grid grid-cols-1 xl:grid-cols-3 gap-10">
                     <div class="node-card">
-                        <span class="node-label">01 // Identity Node</span>
+                        <span class="node-label">01 // Identity Sync</span>
                         <div class="w-full mt-12 space-y-4">
                             <input type="text" id="cap-name" placeholder="Legal Full Name">
                             <input type="tel" id="cap-phone" placeholder="Primary Mobile">
@@ -274,14 +278,14 @@
                 <span class="node-label">BMCR // Command Database</span>
                 <div class="w-full mt-16 overflow-x-auto">
                     <table class="w-full text-left">
-                        <thead><tr class="text-[11px] font-black uppercase text-zinc-600 border-b-2 border-white/10"><th class="pb-8 text-center">Identity</th><th class="pb-8 text-center">Route Sync</th><th class="pb-8 text-right">Dossier</th></tr></thead>
+                        <thead><tr class="text-[11px] font-black uppercase text-zinc-600 border-b-2 border-white/10"><th class="pb-8 text-center">Identity</th><th class="pb-8 text-center">Route Node</th><th class="pb-8 text-right">Dossier Access</th></tr></thead>
                         <tbody id="crm-body" class="divide-y divide-white/5"></tbody>
                     </table>
                 </div>
             </div>
         </div>
 
-        <!-- DOSSIER MASTER MODAL -->
+        <!-- MASTER DOSSIER MODAL -->
         <div id="dossier-modal" class="fixed inset-0 bg-black/95 backdrop-blur-3xl z-[2000] hidden overflow-y-auto p-10">
             <div class="bg-zinc-900 border-4 border-white rounded-[60px] p-16 max-w-6xl w-full mx-auto shadow-2xl animate-in zoom-in-95 flex flex-col items-center">
                 <h4 class="text-5xl font-black italic uppercase titan-gradient mb-16" id="dos-title">Client Dossier</h4>
@@ -295,7 +299,7 @@
                         </div>
                     </div>
                     <div class="space-y-10">
-                        <div class="bg-black/50 p-10 rounded-[40px] border-2 border-white/10 text-center"><p class="text-[10px] font-black text-zinc-500 uppercase mb-5">Intelligence Notes</p><p id="dos-notes" class="text-sm italic text-zinc-300 leading-relaxed"></p></div>
+                        <div class="bg-black/50 p-10 rounded-[40px] border-2 border-white/10 text-center"><p class="text-[10px] font-black text-zinc-500 uppercase mb-4">Intelligence Notes</p><p id="dos-notes" class="text-sm italic text-zinc-300 leading-relaxed"></p></div>
                         <div class="bg-black p-10 rounded-[40px] border-4 border-white text-center"><p class="text-[10px] font-black text-blue-500 uppercase mb-8 text-center">Multi-Vision Collection</p><div id="dos-gallery" class="grid grid-cols-3 gap-5"></div></div>
                     </div>
                 </div>
@@ -306,7 +310,7 @@
     </main>
 
     <script>
-        // --- 1. SAFE-BOOT NAVIGATION (LOADS FIRST) ---
+        // --- 1. SOVEREIGN ENGINE (INDIVIDUALLY BOOTSTRAPPED FOR GITHUB) ---
         let state = {
             activeTab: 'Dashboard', customers: [],
             currentMonth: new Date(2025, 11, 1),
@@ -317,18 +321,20 @@
         const MASTER_ITEMS = [
             { name: 'Small Box', vol: 1.5 }, { name: 'Medium Box', vol: 3 }, { name: 'Large Box', vol: 4.5 }, { name: 'Dish Pack', vol: 5.2 },
             { name: 'King Bed', vol: 60 }, { name: 'Queen Bed', vol: 50 }, { name: 'Twin Bed', vol: 25 }, { name: 'Dresser', vol: 25 },
-            { name: 'Chest of Drawers', vol: 20 }, { name: 'Nightstand', vol: 5 }, { name: 'Sofa (3-Seat)', vol: 50 }, { name: 'Loveseat', vol: 35 },
-            { name: 'Sectional (Pc)', vol: 30 }, { name: 'Dining Table', vol: 25 }, { name: 'Dining Chair', vol: 5 }, { name: 'Desk', vol: 20 }
+            { name: 'Chest Drawers', vol: 20 }, { name: 'Sofa (3-Seat)', vol: 50 }, { name: 'Sectional (Pc)', vol: 30 }, { name: 'Desk', vol: 20 }
         ];
 
         window.switchTab = (id) => {
             state.activeTab = id;
             document.getElementById('view-title').innerText = id;
             
-            // Hard-ID Sentinel Highlight
+            // Hard-ID Sentinel Toggle
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
-                if(btn.id === 'nav-' + id.replace(/\s+/g, '')) btn.classList.add('active');
+                const target = id.replace(/\s+/g, '');
+                if (btn.id === 'nav-' + target || btn.innerText.replace(/\s+/g, '') === target) {
+                    btn.classList.add('active');
+                }
             });
 
             document.querySelectorAll('.view-panel').forEach(p => p.classList.add('hidden'));
@@ -336,10 +342,10 @@
             if(panel) panel.classList.remove('hidden');
             
             if(id === 'Dashboard') window.renderCalendar();
-            if(id === 'CustomerList') renderInventoryGrid();
+            if(id === 'Customer List') renderInventoryGrid();
             if(id === 'CRM') renderCRM();
             
-            if(window.saveState) window.saveState();
+            if(window.MM_CloudSync) window.MM_CloudSync();
         };
 
         // --- 2. LOGISTICS LOGIC ---
@@ -408,11 +414,11 @@
             const list = document.getElementById('day-jobs-list');
             const jobs = state.customers.filter(c => c.date === date).sort((a,b)=>(a.time||'').localeCompare(b.time||''));
             document.getElementById('day-node-title').innerText = "Nodes: " + new Date(date + "T00:00:00").toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-            list.innerHTML = jobs.length ? jobs.map(j => `<div onclick="openDossier('${j.id}')" class="bg-black p-5 rounded-3xl border-2 border-white mb-3 cursor-pointer hover:border-blue-500 text-center"><span class="text-xl font-black italic text-white">${j.name}</span><div class="text-[10px] font-black uppercase text-zinc-500 mt-2">${j.time} // ${j.fromCity} ➔ ${j.toCity}</div></div>`).join('') : `<div class="py-12 text-center opacity-10 uppercase text-xs">No Active Sync</div>`;
+            list.innerHTML = jobs.length ? jobs.map(j => `<div onclick="openDossier('${j.id}')" class="bg-black p-5 rounded-3xl border-2 border-white mb-3 cursor-pointer hover:border-blue-500 text-center shadow-lg"><span class="text-xl font-black italic text-white">${j.name}</span><div class="text-[10px] font-black uppercase text-zinc-500 mt-2">${j.time} // ${j.fromCity} ➔ ${j.toCity}</div></div>`).join('') : `<div class="py-12 text-center opacity-10 uppercase text-xs">No Active Sync</div>`;
         };
 
         window.quickAdd = (e, d) => { e.stopPropagation(); document.getElementById('cap-date').value = d; switchTab('Customer List'); };
-        window.showToast = (msg) => { const toast = document.getElementById('toast-msg'); toast.innerText = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2000); };
+        window.showToast = (msg) => { const t = document.getElementById('toast-msg'); t.innerText = msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 2000); };
         window.handlePhotoUpload = (input) => { Array.from(input.files).forEach(f => { const r = new FileReader(); r.onload = (e) => { state.images.push(e.target.result); const div = document.createElement('div'); div.className = 'gallery-item'; div.innerHTML = `<img src="${e.target.result}">`; document.getElementById('photo-gallery').prepend(div); }; r.readAsDataURL(f); }); };
         window.storeCurrentVision = () => { showToast('DOSSIER LOCKED'); };
 
@@ -421,25 +427,25 @@
             const date = document.getElementById('cap-date').value;
             if(!name || !date) return;
             const newJob = { 
-                id: Date.now().toString(), name, 
-                fromCity: document.getElementById('cap-from-city').value, toCity: document.getElementById('cap-to-city').value, 
-                date, time: document.getElementById('cap-time').value, vol: parseInt(document.getElementById('cap-vol').value) || 0, 
-                notes: document.getElementById('cap-notes').value, images: [...state.images], inventory: {...state.inventory}
+                id: Date.now().toString(), name, fromCity: document.getElementById('cap-from-city').value,
+                toCity: document.getElementById('cap-to-city').value, date, time: document.getElementById('cap-time').value,
+                vol: parseInt(document.getElementById('cap-vol').value) || 0, notes: document.getElementById('cap-notes').value,
+                images: [...state.images], inventory: {...state.inventory}
             };
-            state.customers.unshift(newJob); switchTab('Dashboard'); document.getElementById('customer-form').reset(); state.images = []; state.inventory = {}; if(window.saveState) window.saveState();
+            state.customers.unshift(newJob); switchTab('Dashboard'); document.getElementById('customer-form').reset(); state.images = []; state.inventory = {}; if(window.MM_CloudSync) window.MM_CloudSync();
         };
 
         window.renderCRM = () => {
             const body = document.getElementById('crm-body');
-            body.innerHTML = state.customers.map(c => `<tr class="hover:bg-white/[0.02]"><td class="py-12 text-center"><p class="font-black italic text-blue-400 text-3xl uppercase">${c.name}</p></td><td class="py-12 text-center font-bold text-zinc-500 uppercase">${c.fromCity} ➔ ${c.toCity}</td><td class="py-12 text-right"><button onclick="openDossier('${c.id}')" class="px-10 py-4 border-2 border-white rounded-full text-[11px] font-black uppercase hover:bg-white hover:text-black">Open Archive</button></td></tr>`).join('');
+            body.innerHTML = state.customers.map(c => `<tr class="hover:bg-white/[0.02]"><td class="py-12 text-center"><p class="font-black italic text-blue-400 text-3xl uppercase">${c.name}</p></td><td class="py-12 text-center font-bold text-zinc-500 uppercase">${c.fromCity} ➔ ${c.toCity}</td><td class="py-12 text-right"><button onclick="openDossier('${c.id}')" class="px-10 py-4 border-2 border-white rounded-full text-[11px] font-black uppercase hover:bg-white hover:text-black">Dossier</button></td></tr>`).join('');
         };
 
         window.openDossier = (id) => {
             const j = state.customers.find(c => c.id === id); if(!j) return;
-            document.getElementById('dos-title').innerText = j.name + " // Dossier";
+            document.getElementById('dos-title').innerText = j.name + " // Archive";
             document.getElementById('dos-route').innerText = `${j.fromCity} ➔ ${j.toCity}`;
             document.getElementById('dos-vol').innerText = `${j.vol} ft³`;
-            document.getElementById('dos-notes').innerText = j.notes || "No operational intelligence logged.";
+            document.getElementById('dos-notes').innerText = j.notes || "No site intel logged.";
             document.getElementById('dos-gallery').innerHTML = (j.images || []).map(img => `<img src="${img}" class="w-full aspect-square object-cover rounded-2xl border-2 border-white/20">`).join('');
             document.getElementById('dos-inventory').innerHTML = Object.entries(j.inventory || {}).filter(([_,v])=>v>0).map(([k,v]) => `<div class="flex justify-between p-4 bg-white/5 rounded-2xl border border-white/5"><span class="text-[11px] font-bold text-zinc-400 uppercase">${k}</span><span class="text-sm font-black text-blue-400">${v}x</span></div>`).join('');
             document.getElementById('dossier-modal').classList.remove('hidden');
@@ -455,18 +461,23 @@
                 const city = (c.toCity || 'LOCAL').toUpperCase().trim();
                 cities[city] = (cities[city] || 0) + v;
             });
-            document.getElementById('stat-rev').innerText = '$' + (totalVol * 4.5 + 142850).toLocaleString();
+            const revEl = document.getElementById('stat-rev');
+            if(revEl) revEl.innerText = '$' + (totalVol * 4.5 + 142850).toLocaleString();
         }
 
-        // --- 3. CLOUD ENGINE (CONNECTS AFTER UI IS LIVE) ---
+        // --- 3. CLOUD LAYER (DEPLOYMENT SHIELD) ---
         try {
-            const firebaseConfig = JSON.parse(__firebase_config || "{}");
+            // DEFENSIVE CHECK FOR GITHUB DEPLOYMENT
+            const configString = typeof __firebase_config !== 'undefined' ? __firebase_config : "{}";
+            const firebaseConfig = JSON.parse(configString);
+            
             if (firebaseConfig.apiKey) {
                 firebase.initializeApp(firebaseConfig);
                 const db = firebase.firestore();
                 const auth = firebase.auth();
+                const appId = typeof __app_id !== 'undefined' ? __app_id : 'MM-Titan-X84';
 
-                window.saveState = async () => {
+                window.MM_CloudSync = async () => {
                     if(!auth.currentUser) return;
                     await db.collection('artifacts').doc(appId).collection('users').doc(auth.currentUser.uid).collection('system').doc('state').set({
                         activeTab: state.activeTab, customers: state.customers, timestamp: Date.now()
@@ -475,8 +486,7 @@
 
                 window.onload = async () => {
                     const token = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-                    if(token) await auth.signInWithCustomToken(token);
-                    else await auth.signInAnonymously();
+                    if(token) await auth.signInWithCustomToken(token); else await auth.signInAnonymously();
                     auth.onAuthStateChanged(async (u) => {
                         if(u) {
                             const snap = await db.collection('artifacts').doc(appId).collection('users').doc(u.uid).collection('system').doc('state').get();
@@ -489,10 +499,10 @@
                     });
                 };
             }
-        } catch (e) { console.log("Cloud Engine Delay - Operating in Sovereign Mode"); }
+        } catch (e) { console.warn("Cloud Sync Guard Active: Browser is in Sovereign Mode."); }
 
-        // Final UI Trigger
-        window.onload = () => switchTab(state.activeTab);
+        // Final UI Force Trigger (Ensures buttons always work)
+        window.addEventListener('load', () => switchTab(state.activeTab));
     </script>
 </body>
 </html>
