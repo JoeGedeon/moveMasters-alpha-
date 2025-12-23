@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>MoveMasters OS | Titan X-103 Master Command</title>
+    <title>MoveMasters OS | Titan X-104 Sentinel</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
@@ -26,7 +26,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* --- THE SENTINEL SIDEBAR --- */
+        /* --- THE SENTINEL SIDEBAR (RESTORED HIGHLIGHTS) --- */
         .sidebar {
             width: 260px; background-color: var(--sidebar); border-right: 2px solid var(--border-white);
             height: 100%; flex-shrink: 0; display: flex; flex-direction: column; z-index: 1000;
@@ -36,16 +36,18 @@
         .nav-btn {
             display: flex; align-items: center; gap: 12px; padding: 22px 24px;
             font-size: 11px; font-weight: 800; color: #444; cursor: pointer;
-            transition: 0.3s; border-bottom: 1px solid rgba(255,255,255,0.05);
-            text-transform: uppercase; letter-spacing: 0.15em;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); border-bottom: 1px solid rgba(255,255,255,0.05);
+            text-transform: uppercase; letter-spacing: 0.15em; border-left: 0px solid var(--accent);
         }
+        /* HIGH-INTENSITY SENTINEL HIGHLIGHT */
         .nav-btn.active {
-            background-color: rgba(59, 130, 246, 0.15); color: #ffffff;
-            border-left: 10px solid var(--accent);
-            box-shadow: inset 25px 0 40px -20px rgba(59, 130, 246, 0.6);
+            background-color: rgba(59, 130, 246, 0.15);
+            color: #ffffff;
+            border-left: 12px solid var(--accent) !important;
+            box-shadow: inset 30px 0 50px -25px rgba(59, 130, 246, 0.7);
         }
 
-        /* --- MAIN STAGE (ORBITAL SCROLL) --- */
+        /* --- THE MAIN CONSOLE (SCROLLABLE) --- */
         .main-stage { 
             flex-grow: 1; height: 100vh; overflow-y: auto; padding: 40px; 
             background: #000; position: relative; -webkit-overflow-scrolling: touch;
@@ -74,7 +76,7 @@
             font-weight: 700; font-size: 15px; margin-bottom: 12px; outline: none; text-align: center;
         }
 
-        /* --- LOGISTICS MATRIX SCROLLER --- */
+        /* --- MATRIX SCROLLER --- */
         .category-header {
             font-size: 10px; font-weight: 900; color: var(--accent); text-transform: uppercase;
             letter-spacing: 0.4em; margin: 30px 0 15px 0; border-bottom: 1px solid rgba(59, 130, 246, 0.3);
@@ -94,7 +96,6 @@
             display: flex; align-items: center; justify-content: center; font-weight: 900; color: #fff; cursor: pointer;
         }
         .qty-btn:active { background: var(--accent); transform: scale(0.9); }
-        .qty-val { font-size: 18px; font-weight: 900; color: var(--accent); min-width: 30px; text-align: center; }
 
         /* --- HD CALENDAR MATRIX --- */
         .calendar-card {
@@ -108,31 +109,25 @@
             border-radius: 14px; height: 115px; padding: 10px; vertical-align: top; 
             cursor: pointer; transition: 0.15s; position: relative; overflow: hidden;
         }
-        .date-tile:hover { border-color: #fff; }
+        .date-tile:hover { border-color: #fff; background: #080808; }
         .date-tile.active-focus { border: 3px solid var(--accent); background: rgba(59, 130, 246, 0.1); }
         .tile-plus { 
             position: absolute; top: 8px; right: 8px; opacity: 0; color: #fff; background: var(--accent); 
-            border-radius: 4px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;
-            font-size: 16px; font-weight: 900; transition: 0.2s;
+            border-radius: 4px; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
+            font-size: 16px; font-weight: 900;
         }
         .date-tile:hover .tile-plus { opacity: 1; }
         .job-pill { 
             background: #ffffff; color: #000; font-size: 8px; font-weight: 900; 
-            padding: 5px 8px; border-radius: 6px; margin-top: 4px; 
+            padding: 4px 6px; border-radius: 6px; margin-top: 4px; 
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
             display: block; width: 100%; text-align: center; border-left: 4px solid var(--accent);
             cursor: pointer;
         }
-        .job-pill:hover { filter: brightness(0.9); transform: scale(1.02); }
 
         /* --- UI UTILITIES --- */
         .btn-sync { background: #fff; color: #000; padding: 24px; border-radius: 24px; font-weight: 900; text-transform: uppercase; width: 100%; border: 3px solid #fff; cursor: pointer; }
-        .btn-sync:active { transform: scale(0.97); background: var(--accent); color: #fff; }
         .store-btn { background: var(--accent); color: #fff; padding: 22px; border-radius: 20px; font-weight: 900; text-transform: uppercase; width: 100%; border: 2.5px solid var(--accent); cursor: pointer; }
-
-        .photo-gallery { display: grid; grid-template-cols: repeat(auto-fill, minmax(110px, 1fr)); gap: 15px; width: 100%; }
-        .gallery-item { aspect-ratio: 1; border-radius: 18px; overflow: hidden; border: 2.5px solid var(--border-white); background: #000; position: relative; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
         #toast-msg {
             position: fixed; bottom: 40px; right: 40px; background: #fff; color: #000;
@@ -147,29 +142,24 @@
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-thumb { background: #fff; border-radius: 10px; }
 
-        #neural-loader {
-            position: absolute; inset: 0; background: rgba(0,0,0,0.95); z-index: 5000;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            border-radius: 30px;
-        }
-        
-        /* --- EDITOR MODAL --- */
+        /* --- MODAL ENGINE --- */
         .modal-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
-            z-index: 2000; overflow-y: auto; padding: 40px;
+            position: fixed; inset: 0; background: rgba(0,0,0,0.98); backdrop-filter: blur(30px);
+            z-index: 5000; overflow-y: auto; padding: 40px;
         }
+        #neural-loader { position: absolute; inset: 0; background: rgba(0,0,0,0.95); z-index: 6000; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 30px; }
     </style>
 </head>
 <body>
 
     <div id="toast-msg">DATA SYNCHRONIZED</div>
 
-    <!-- COMMAND SIDEBAR (SOVEREIGN ENGINE) -->
+    <!-- COMMAND SIDEBAR (SOVEREIGN HIGHLIGHTS) -->
     <aside class="sidebar">
         <div class="sidebar-header"><h2 class="text-[18px] font-black uppercase tracking-[0.4em] text-white italic">MoveMasters</h2></div>
         <div id="sidebar-nav" class="flex-grow py-6 overflow-y-auto">
             <div id="nav-Dashboard" class="nav-btn active" onclick="switchTab('Dashboard')">Dashboard</div>
-            <div id="nav-LeadMagnet" class="nav-btn" onclick="switchTab('Lead Magnet')">Lead Magnet</div>
+            <div id="nav-LeadMagnet" class="nav-btn" style="color: #f59e0b;" onclick="switchTab('Lead Magnet')">★ Lead Magnet</div>
             <div id="nav-CustomerList" class="nav-btn" onclick="switchTab('Customer List')">Customer List</div>
             <div id="nav-CRM" class="nav-btn" onclick="switchTab('CRM')">CRM Database</div>
             <div id="nav-CrewHub" class="nav-btn" onclick="switchTab('Crew Hub')">Crew Hub</div>
@@ -179,7 +169,7 @@
             <div id="nav-Settings" class="nav-btn" onclick="switchTab('Settings')">Settings</div>
         </div>
         <div class="p-8 border-t-2 border-white bg-zinc-900 text-center">
-            <span class="text-[9px] font-black uppercase text-white tracking-widest italic block text-blue-400">Titan X-103 Master</span>
+            <span class="text-[9px] font-black uppercase text-white tracking-widest italic block text-blue-400">Titan X-104 Sentinel</span>
         </div>
     </aside>
 
@@ -196,23 +186,14 @@
                             <h3 class="text-3xl font-black italic uppercase text-white" id="month-label">December 2025</h3>
                             <div class="flex gap-4"><button onclick="changeMonth(-1)" class="w-16 h-16 border-2 border-white rounded-2xl flex items-center justify-center hover:bg-white hover:text-black font-bold">◀</button><button onclick="changeMonth(1)" class="w-16 h-16 border-2 border-white rounded-2xl flex items-center justify-center hover:bg-white hover:text-black font-bold">▶</button></div>
                         </div>
-                        <div class="p-6">
-                            <table class="calendar-table">
-                                <thead><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead>
-                                <tbody id="calendar-body"></tbody>
-                            </table>
-                        </div>
+                        <div class="p-6"><table class="calendar-table"><thead><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead><tbody id="calendar-body"></tbody></table></div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                        <div class="node-card"><span class="node-label">Projected Revenue</span><div class="stat-value text-5xl font-black italic" id="stat-rev">$0</div></div>
-                        <div class="node-card"><span class="node-label">Command Accuracy</span><div class="text-5xl font-black italic text-blue-400">99.1%</div></div>
+                        <div class="node-card"><span class="node-label">Command Revenue</span><div class="stat-value text-5xl font-black italic" id="stat-rev">$0</div></div>
+                        <div class="node-card"><span class="node-label">Mission Capacity</span><div class="text-5xl font-black italic text-blue-400">99.1%</div></div>
                     </div>
                 </div>
-                <div class="node-card h-fit sticky top-0 !min-height-0">
-                    <span class="node-label">Active Manifest</span>
-                    <h4 id="day-node-title" class="text-2xl font-black uppercase italic text-white mt-12 mb-8">Day Node</h4>
-                    <div id="day-jobs-list" class="space-y-5 w-full"></div>
-                </div>
+                <div class="node-card h-fit sticky top-0 !min-height-0"><span class="node-label">Active Day Node</span><h4 id="day-node-title" class="text-2xl font-black uppercase italic text-white mt-12 mb-8">Day Node</h4><div id="day-jobs-list" class="space-y-5 w-full"></div></div>
             </div>
         </div>
 
@@ -225,32 +206,32 @@
                         <input type="tel" id="cap-phone" placeholder="Primary (000) 000-0000" class="phone-mask" oninput="saveDraft('phone', this.value)">
                         <input type="email" id="cap-email" placeholder="Email Channel" oninput="saveDraft('email', this.value)">
                     </div></div>
-                    <div class="node-card"><span class="node-label">02 // Pickup Nodes</span><div class="w-full mt-12 space-y-4">
+                    <div class="node-card"><span class="node-label">02 // Route Nodes</span><div class="w-full mt-12 space-y-4">
                         <div class="p-5 border-2 border-white/5 rounded-2xl">
                             <input type="text" id="cap-pickup-street" placeholder="Street" oninput="saveDraft('pickupStreet', this.value)">
                             <div class="grid grid-cols-3 gap-2"><input type="text" id="cap-pickup-city" placeholder="City" oninput="saveDraft('pickupCity', this.value)"><input type="text" id="cap-pickup-state" placeholder="ST" oninput="saveDraft('pickupState', this.value)"><input type="tel" id="cap-pickup-zip" placeholder="Zip" maxlength="5" oninput="saveDraft('pickupZip', this.value)"></div>
                         </div>
                     </div></div>
-                    <div class="node-card"><span class="node-label">03 // Precision Schedule</span><div class="w-full mt-12 space-y-4"><div class="grid grid-cols-2 gap-4"><input type="date" id="cap-date" oninput="saveDraft('date', this.value)"><input type="time" id="cap-time" value="08:20" oninput="saveDraft('time', this.value)"></div><button type="button" onclick="handleSynchronize()" class="btn-sync mt-4 shadow-2xl">⚡ Sync mission node</button></div></div>
+                    <div class="node-card"><span class="node-label">03 // Schedule Node</span><div class="w-full mt-12 space-y-4"><div class="grid grid-cols-2 gap-4"><input type="date" id="cap-date" oninput="saveDraft('date', this.value)"><input type="time" id="cap-time" value="08:20" oninput="saveDraft('time', this.value)"></div><button type="button" onclick="handleSynchronize()" class="btn-sync mt-4 shadow-xl">⚡ Sync mission node</button></div></div>
                 </div>
 
                 <div class="node-card relative mt-5 !min-height-0 overflow-hidden">
-                    <span class="node-label">04 // Neural Vision Dossier & Dynamic Matrix</span>
+                    <span class="node-label">04 // Neural Dossier & Dynamic Matrix</span>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mt-20 w-full">
                         <div class="space-y-10 flex flex-col items-center">
                             <div class="w-full">
-                                <p class="text-[10px] font-black uppercase text-zinc-500 tracking-[0.4em] mb-4 text-center">Site Intelligence & Notes</p>
-                                <textarea id="cap-notes" rows="12" placeholder="LOG SITE ACCESS AND OPERATIONAL NOTES HERE..." class="!text-left !text-xs font-bold border-blue-500/20" oninput="saveDraft('notes', this.value)"></textarea>
+                                <p class="text-[10px] font-black uppercase text-zinc-500 tracking-[0.4em] mb-4 text-center">Intelligence & Notes</p>
+                                <textarea id="cap-notes" rows="12" placeholder="LOG SITE INTELLIGENCE HERE..." class="!text-left border-blue-500/20" oninput="saveDraft('notes', this.value)"></textarea>
                             </div>
                             <div id="photo-gallery" class="photo-gallery grid grid-cols-4 gap-4">
-                                <div class="gallery-item border-4 border-dashed border-white/30 flex flex-col items-center justify-center cursor-pointer relative hover:border-white transition-all"><div class="text-white font-black text-[10px] uppercase text-center">Snap<br>Room</div><input type="file" multiple accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="handlePhotoUpload(this)"></div>
+                                <div class="gallery-item border-4 border-dashed border-white/30 flex flex-col items-center justify-center cursor-pointer relative"><div class="text-white font-black text-[10px] uppercase text-center">Snap<br>Room</div><input type="file" multiple accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="handlePhotoUpload(this)"></div>
                             </div>
-                            <button type="button" onclick="runNeuralAudit()" id="ai-btn" class="w-full py-5 bg-blue-600 rounded-3xl text-white font-black uppercase italic tracking-widest text-sm shadow-2xl hover:scale-[1.01] transition-all">Run Neural Inventory Audit</button>
+                            <button type="button" onclick="runNeuralAudit()" id="ai-btn" class="w-full py-5 bg-blue-600 rounded-3xl text-white font-black uppercase italic text-sm shadow-2xl">Run Neural Inventory Audit</button>
                         </div>
                         <div class="space-y-8 flex flex-col items-center">
                             <div class="p-10 bg-black border-2 border-white/10 rounded-[50px] shadow-inner text-center w-full">
                                 <div class="text-7xl font-black italic text-blue-500 mt-3 mb-8" id="calc-tally">0 ft³</div>
-                                <div class="p-4 bg-zinc-900 rounded-3xl mb-6 border border-blue-500/20 flex gap-3"><input type="text" id="custom-name" placeholder="New Item" class="!mb-0 !p-3 !text-xs !bg-black"><input type="number" id="custom-vol" placeholder="ft³" class="!mb-0 !p-3 !text-xs !bg-black !w-24"><button type="button" onclick="addCustomItem()" class="px-5 bg-blue-600 rounded-xl font-black text-xs uppercase">Add</button></div>
+                                <div class="p-4 bg-zinc-900 rounded-3xl mb-6 flex gap-3"><input type="text" id="custom-name" placeholder="Item" class="!mb-0 !p-2 !text-xs"><input type="number" id="custom-vol" placeholder="ft³" class="!mb-0 !p-2 !text-xs !w-20"><button type="button" onclick="addCustomItem()" class="px-5 bg-blue-600 rounded-xl font-black text-xs uppercase">Add</button></div>
                                 <div id="inventory-grid" class="inventory-scroll custom-scrollbar"></div>
                                 <button type="button" onclick="applyCalcToLoad()" class="w-full mt-10 py-5 bg-white text-black rounded-2xl font-black uppercase text-[11px]">Sync Matrix Volume</button>
                             </div>
@@ -261,31 +242,19 @@
             </form>
         </div>
 
-        <!-- VIEW: CRM -->
-        <div id="CRMView" class="view-panel hidden">
-            <div class="node-card relative !min-height-0"><span class="node-label">BMCR // Command Database</span><div id="crm-body" class="w-full mt-16 divide-y divide-white/5"></div></div>
-        </div>
+        <div id="LeadMagnetView" class="view-panel hidden pb-40"><div class="node-card"><h3>LEAD MAGNET ACTIVE</h3></div></div>
+        <div id="CRMView" class="view-panel hidden"><div class="node-card relative !min-height-0"><span class="node-label">BMCR // Command Archive</span><div id="crm-body" class="w-full mt-16 divide-y divide-white/5"></div></div></div>
 
-        <!-- MASTER COMMAND EDITOR MODAL -->
+        <!-- MASTER COMMAND EDITOR -->
         <div id="editor-modal" class="modal-overlay hidden">
             <div class="max-w-6xl mx-auto">
-                <div class="flex justify-between items-center mb-10">
-                    <h2 class="text-5xl font-black italic uppercase titan-gradient tracking-tighter">Edit Command Node</h2>
-                    <button onclick="closeEditor()" class="p-5 bg-white/5 rounded-full hover:bg-rose-500 transition-all">✕</button>
-                </div>
-                <div id="editor-content" class="grid grid-cols-1 lg:grid-cols-2 gap-10 pb-40">
-                    <!-- Dynamic fields populated via JS -->
-                </div>
-                <div class="fixed bottom-10 left-1/2 -translate-x-1/2 w-full max-w-4xl px-10">
-                    <button onclick="saveJobChanges()" class="w-full py-8 bg-blue-600 rounded-[40px] font-black uppercase italic tracking-widest text-xl shadow-2xl hover:scale-[1.02] transition-all">Finalize Mission Update</button>
-                </div>
+                <div class="flex justify-between items-center mb-10"><h2 class="text-5xl font-black italic uppercase titan-gradient tracking-tighter">Edit Command Node</h2><button onclick="closeEditor()" class="p-5 bg-white/5 rounded-full hover:bg-rose-500">✕</button></div>
+                <div id="editor-content" class="grid grid-cols-1 lg:grid-cols-2 gap-10 pb-40"></div>
+                <div class="fixed bottom-10 left-1/2 -translate-x-1/2 w-full max-w-4xl px-10"><button onclick="saveJobChanges()" class="w-full py-8 bg-blue-600 rounded-[40px] font-black uppercase italic tracking-widest text-xl shadow-2xl">Finalize Mission Update</button></div>
             </div>
         </div>
 
-        <div id="neural-loader" class="hidden">
-            <div class="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-6"></div>
-            <p class="text-[10px] font-black uppercase text-blue-500 tracking-[0.4em]">Processing Neural Dossier</p>
-        </div>
+        <div id="neural-loader" class="hidden"><div class="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-6"></div><p class="text-[10px] font-black uppercase text-blue-500 tracking-[0.4em]">Executing AI Audit</p></div>
 
     </main>
 
@@ -313,70 +282,66 @@
                 { cat: 'Living', name: 'Sofa (3-Seat)', vol: 50 }, { cat: 'Living', name: 'Sectional (Pc)', vol: 30 }, { cat: 'Living', name: 'Armchair', vol: 12 },
                 { cat: 'Boxes', name: 'Small Box', vol: 1.5 }, { cat: 'Boxes', name: 'Medium Box', vol: 3 }, { cat: 'Boxes', name: 'Large Box', vol: 4.5 }
             ],
-            draft: { time: '08:20', notes: '', images: [], inventory: {} },
+            draft: { time: '08:20', notes: '', inventory: {} },
             activeJobId: null
         };
 
         window.saveDraft = (f, v) => { state.draft[f] = v; };
 
-        // --- 3. THE MASTER COMMAND EDITOR ---
+        // --- 3. THE SENTINEL NAVIGATION (RESTORED HIGHLIGHTS) ---
+        window.switchTab = (id) => {
+            state.activeTab = id;
+            document.getElementById('view-title').innerText = id;
+            
+            // Highlight Restoration Logic
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+                // Cross-check button text for match
+                if (btn.innerText.includes(id) || btn.id === 'nav-' + id.replace(/\s+/g, '')) {
+                    btn.classList.add('active');
+                }
+            });
+
+            document.querySelectorAll('.view-panel').forEach(p => p.classList.add('hidden'));
+            const pId = id.replace(/\s+/g, '') + 'View';
+            if(document.getElementById(pId)) document.getElementById(pId).classList.remove('hidden');
+            
+            if(id === 'Dashboard') renderCalendar();
+            if(id === 'Customer List') {
+                Object.entries(state.draft).forEach(([k,v]) => {
+                    const el = document.getElementById('cap-' + k.replace(/[A-Z]/g, l => `-${l.toLowerCase()}`));
+                    if(el) el.value = v;
+                });
+                renderInventoryGrid();
+            }
+            if(id === 'CRM') renderCRM();
+        };
+
+        // --- 4. MASTER COMMAND EDITOR ---
         window.openEditor = (id) => {
             const job = state.customers.find(c => c.id === id);
             if(!job) return;
             state.activeJobId = id;
             const editor = document.getElementById('editor-modal');
             const content = document.getElementById('editor-content');
-            
-            // Hydrate Editor with Job Data
             content.innerHTML = `
-                <div class="node-card"><span class="node-label">Identity Sync</span>
-                    <input type="text" id="edit-name" value="${job.name}" placeholder="Name">
-                    <input type="tel" id="edit-phone" value="${job.phone}" class="phone-mask" placeholder="Phone">
-                    <input type="email" id="edit-email" value="${job.email || ''}" placeholder="Email">
-                </div>
-                <div class="node-card"><span class="node-label">Schedule Sync</span>
-                    <input type="date" id="edit-date" value="${job.date}">
-                    <input type="time" id="edit-time" value="${job.time}">
-                </div>
-                <div class="node-card lg:col-span-2 relative !min-height-0">
-                    <span class="node-label">Operational Dossier</span>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 w-full p-10 mt-10">
-                        <textarea id="edit-notes" rows="10" placeholder="Site intelligence...">${job.notes || ''}</textarea>
-                        <div class="bg-black/50 p-8 rounded-[40px] border border-white/5">
-                            <p class="text-7xl font-black italic text-blue-500 mb-6">${job.vol} ft³</p>
-                            <input type="number" id="edit-vol" value="${job.vol}" placeholder="Final volume">
-                        </div>
-                    </div>
-                </div>
+                <div class="node-card"><span class="node-label">Identity Sync</span><input type="text" id="edit-name" value="${job.name}"><input type="tel" id="edit-phone" value="${job.phone}" class="phone-mask"></div>
+                <div class="node-card"><span class="node-label">Schedule Sync</span><input type="date" id="edit-date" value="${job.date}"><input type="time" id="edit-time" value="${job.time}"></div>
+                <div class="node-card lg:col-span-2"><span class="node-label">Operational Intelligence</span><textarea id="edit-notes" rows="10" class="!text-left">${job.notes || ''}</textarea><input type="number" id="edit-vol" value="${job.vol}" class="text-3xl font-black"></div>
             `;
             editor.classList.remove('hidden');
         };
 
         window.closeEditor = () => document.getElementById('editor-modal').classList.add('hidden');
-
         window.saveJobChanges = () => {
             const id = state.activeJobId;
             const idx = state.customers.findIndex(c => c.id === id);
             if(idx === -1) return;
-            
-            state.customers[idx] = {
-                ...state.customers[idx],
-                name: document.getElementById('edit-name').value,
-                phone: document.getElementById('edit-phone').value,
-                email: document.getElementById('edit-email').value,
-                date: document.getElementById('edit-date').value,
-                time: document.getElementById('edit-time').value,
-                notes: document.getElementById('edit-notes').value,
-                vol: parseInt(document.getElementById('edit-vol').value) || 0
-            };
-            
-            showToast('MISSION DATA UPDATED');
-            closeEditor();
-            renderCalendar();
-            if(state.activeTab === 'CRM') renderCRM();
+            state.customers[idx] = { ...state.customers[idx], name: document.getElementById('edit-name').value, phone: document.getElementById('edit-phone').value, date: document.getElementById('edit-date').value, time: document.getElementById('edit-time').value, notes: document.getElementById('edit-notes').value, vol: parseInt(document.getElementById('edit-vol').value) || 0 };
+            showToast('DATA UPDATED'); closeEditor(); renderCalendar();
         };
 
-        // --- 4. DYNAMIC MATRIX & AI CORE ---
+        // --- 5. DYNAMIC MATRIX & AI ---
         window.addCustomItem = () => {
             const name = document.getElementById('custom-name').value;
             const vol = parseFloat(document.getElementById('custom-vol').value);
@@ -389,18 +354,15 @@
             if (state.images.length === 0) return showToast('NO PHOTOS DETECTED');
             const loader = document.getElementById('neural-loader');
             loader.classList.remove('hidden');
-
-            const prompt = `Identify moving items. Map to: ${state.customMatrix.map(i=>i.name).join(',')}. Return JSON {"items": {"Name": count}, "total_vol": number}.`;
+            const prompt = `Identify physical furniture. Map to: ${state.customMatrix.map(i=>i.name).join(', ')}. Return JSON {"items": {"Name": count}, "total_vol": number}.`;
             const contents = [{ parts: [{ text: prompt }, ...state.images.slice(-5).map(b => ({ inlineData: { mimeType: "image/png", data: b.split(',')[1] } }))] }];
-
             try {
                 const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, { method: 'POST', body: JSON.stringify({ contents }) });
                 const json = JSON.parse((await res.json()).candidates[0].content.parts[0].text.replace(/```json|```/g, '').trim());
                 Object.entries(json.items).forEach(([k, v]) => state.inventory[k] = (state.inventory[k] || 0) + v);
                 const vol = Math.ceil(json.total_vol);
                 document.getElementById('cap-vol').value = vol;
-                saveDraft('vol', vol);
-                renderInventoryGrid(); showToast('AI AUDIT COMPLETE');
+                saveDraft('vol', vol); renderInventoryGrid(); showToast('AI AUDIT COMPLETE');
             } catch (err) { showToast('AI SYNC DELAY'); } finally { loader.classList.add('hidden'); }
         }
 
@@ -421,22 +383,7 @@
         function updateTally() { let t = 0; state.customMatrix.forEach(i => t += (state.inventory[i.name] || 0) * i.vol); document.getElementById('calc-tally').innerText = t.toFixed(1) + ' ft³'; }
         window.applyCalcToLoad = () => { let t = 0; state.customMatrix.forEach(i => t += (state.inventory[i.name] || 0) * i.vol); const v = Math.ceil(t); document.getElementById('cap-vol').value = v; saveDraft('vol', v); };
 
-        // --- 5. NAVIGATION & RENDER ---
-        window.switchTab = (id) => {
-            state.activeTab = id;
-            document.getElementById('view-title').innerText = id;
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.innerText.includes(id)) btn.classList.add('active');
-            });
-            document.querySelectorAll('.view-panel').forEach(p => p.classList.add('hidden'));
-            const pId = id.replace(/\s+/g, '') + 'View';
-            if(document.getElementById(pId)) document.getElementById(pId).classList.remove('hidden');
-            if(id === 'Dashboard') renderCalendar();
-            if(id === 'Customer List') renderInventoryGrid();
-            if(id === 'CRM') renderCRM();
-        };
-
+        // --- 6. RENDER CALENDAR ---
         window.renderCalendar = () => {
             const body = document.getElementById('calendar-body'); if (!body) return;
             const year = state.currentMonth.getFullYear(); const month = state.currentMonth.getMonth();
@@ -447,7 +394,7 @@
                 let row = document.createElement('tr');
                 for (let j = 0; j < 7; j++) {
                     let cell = document.createElement('td');
-                    if (i === 0 && j < firstDay || date > daysInMonth) { cell.innerHTML = '<div></div>'; }
+                    if (i === 0 && j < firstDay || date > daysInMonth) { cell.innerHTML = '<div style="height:115px;"></div>'; }
                     else {
                         const dKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(date).padStart(2, '0')}`;
                         const dayJobs = state.customers.filter(c => c.date === dKey).sort((a,b)=>a.time.localeCompare(b.time));
@@ -458,29 +405,28 @@
                 }
                 body.appendChild(row); if (date > daysInMonth) break;
             }
-            updateDashboardStats();
+            let tRev = 0; state.customers.forEach(c => tRev += (c.vol * 2.5 + 250)); document.getElementById('stat-rev').innerText = '$' + tRev.toLocaleString();
         };
 
         window.focusDay = (date) => { state.selectedDate = date; renderCalendar(); 
             const list = document.getElementById('day-jobs-list'); const jobs = state.customers.filter(c => c.date === date).sort((a,b)=>a.time.localeCompare(b.time));
-            list.innerHTML = jobs.length ? jobs.map(j => `<div onclick="openEditor('${j.id}')" class="bg-black p-5 rounded-3xl border-2 border-white mb-3 text-center shadow-lg cursor-pointer"><span class="text-xl font-black italic text-white">${j.name}</span><div class="text-[10px] font-black uppercase text-zinc-500 mt-2">${j.time} // ${j.vol} FT³</div></div>`).join('') : `<div class="py-12 text-center opacity-10 uppercase text-xs font-black italic">Manifest Void</div>`;
+            list.innerHTML = jobs.length ? jobs.map(j => `<div onclick="openEditor('${j.id}')" class="bg-black p-5 rounded-3xl border-2 border-white mb-3 text-center shadow-lg cursor-pointer"><span class="text-xl font-black italic text-white">${j.name}</span><div class="text-[10px] font-black uppercase text-zinc-500 mt-1">${j.time} // ${j.vol} FT³</div></div>`) : `<div class="py-12 text-center opacity-10 uppercase text-xs">Void</div>`;
         };
 
-        window.renderCRM = () => { const b = document.getElementById('crm-body'); b.innerHTML = state.customers.map(c => `<div class="py-10 px-10 flex justify-between items-center cursor-pointer hover:bg-white/5 transition-all" onclick="openEditor('${c.id}')"><p class="text-3xl font-black italic text-blue-400 uppercase">${c.name}</p><p class="font-bold text-zinc-500 uppercase">${c.vol} FT³ // ${c.date}</p></div>`).join(''); };
         window.handlePhotoUpload = (input) => { Array.from(input.files).forEach(f => { const r = new FileReader(); r.onload = (e) => { state.images.push(e.target.result); const div = document.createElement('div'); div.className = 'gallery-item shadow-2xl'; div.innerHTML = `<img src="${e.target.result}">`; document.getElementById('photo-gallery').prepend(div); }; r.readAsDataURL(f); }); };
         window.handleSynchronize = () => {
             const name = state.draft.name; if(!name || !state.draft.date) return showToast('DATA REQ: NAME/DATE');
-            state.customers.unshift({ id: Date.now().toString(), name, phone: state.draft.phone, email: state.draft.email, date: state.draft.date, time: state.draft.time, vol: state.draft.vol || 0, notes: state.draft.notes });
+            state.customers.unshift({ id: Date.now().toString(), name, phone: state.draft.phone, date: state.draft.date, time: state.draft.time, vol: state.draft.vol || 0, notes: state.draft.notes });
             state.draft = { time: '08:20', notes: '' }; state.images = []; document.getElementById('customer-form').reset();
             switchTab('Dashboard');
         };
 
-        function updateDashboardStats() { let tRev = 0; state.customers.forEach(c => tRev += (c.vol * 2.5 + 250)); document.getElementById('stat-rev').innerText = '$' + tRev.toLocaleString(undefined, {maximumFractionDigits:0}); }
+        window.renderCRM = () => { const b = document.getElementById('crm-body'); b.innerHTML = state.customers.map(c => `<div class="py-10 px-10 flex justify-between items-center cursor-pointer hover:bg-white/5 transition-all" onclick="openEditor('${c.id}')"><p class="text-3xl font-black italic text-blue-400 uppercase">${c.name}</p><p class="font-bold text-zinc-500 uppercase">${c.vol} FT³ // ${c.date}</p></div>`).join(''); };
         window.quickAdd = (e, d) => { e.stopPropagation(); saveDraft('date', d); switchTab('Customer List'); };
         window.changeMonth = (dir) => { state.currentMonth.setMonth(state.currentMonth.getMonth() + dir); renderCalendar(); };
         window.showToast = (m) => { const t = document.getElementById('toast-msg'); t.innerText = m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 2000); };
         
-        window.onload = () => switchTab('Dashboard');
+        window.addEventListener('load', () => switchTab('Dashboard'));
     </script>
 </body>
 </html>
