@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>MoveMasters OS | Titan X-106 Sentinel AI</title>
+    <title>MoveMasters OS | Titan X-107 Quantum</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
@@ -17,7 +17,6 @@
             --accent: #3b82f6;
             --border-white: #ffffff;
             --card-bg: #0a0a0a;
-            --gold: #f59e0b;
         }
 
         body { 
@@ -27,21 +26,20 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* --- THE BLUE SENTINEL SIDEBAR (GH-PROOVED) --- */
+        /* --- THE INDESTRUCTIBLE BLUE SENTINEL --- */
         .sidebar {
             width: 260px; background-color: var(--sidebar); border-right: 2px solid var(--border-white);
             height: 100%; flex-shrink: 0; display: flex; flex-direction: column; z-index: 1000;
             overflow-y: auto;
         }
-        .sidebar-header { padding: 40px 20px; border-bottom: 2px solid var(--border-white); text-align: center; }
         .nav-btn {
             display: flex; align-items: center; gap: 12px; padding: 22px 24px;
-            font-size: 11px; font-weight: 800; color: #555; cursor: pointer;
-            transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1); border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 11px; font-weight: 800; color: #444; cursor: pointer;
+            transition: 0.2s; border-bottom: 1px solid rgba(255,255,255,0.05);
             text-transform: uppercase; letter-spacing: 0.15em; border-left: 0px solid transparent;
         }
-        /* REINFORCED SENTINEL HIGHLIGHT */
-        .nav-btn.active {
+        /* PRIORITY OVERRIDE FOR GITHUB */
+        .nav-btn[data-active="true"] {
             background-color: rgba(59, 130, 246, 0.2) !important;
             color: #ffffff !important;
             border-left: 12px solid var(--accent) !important;
@@ -91,17 +89,9 @@
             background: rgba(255,255,255,0.03); border: 1.5px solid rgba(255,255,255,0.1);
             border-radius: 20px; padding: 15px 25px; display: flex; align-items: center; justify-content: space-between;
         }
-        .qty-btn {
-            width: 42px; height: 42px; border-radius: 12px; border: 1.5px solid rgba(255,255,255,0.2);
-            display: flex; align-items: center; justify-content: center; font-weight: 900; color: #fff; cursor: pointer;
-        }
         .qty-val { font-size: 18px; font-weight: 900; color: var(--accent); min-width: 30px; text-align: center; }
 
         /* --- CALENDAR --- */
-        .calendar-card {
-            background: #050505; border: 2px solid var(--border-white); border-radius: 35px;
-            overflow: hidden; box-shadow: 0 0 40px rgba(255,255,255,0.05); margin-bottom: 30px;
-        }
         .calendar-table { width: 96%; margin: 0 auto; table-layout: fixed; border-collapse: separate; border-spacing: 8px; }
         .calendar-table th { font-size: 11px; font-weight: 900; color: #ffffff; text-transform: uppercase; padding: 15px 0; }
         .date-tile { 
@@ -109,8 +99,6 @@
             border-radius: 14px; height: 115px; padding: 10px; vertical-align: top; 
             cursor: pointer; transition: 0.15s; position: relative; overflow: hidden;
         }
-        .date-tile:hover { border-color: #fff; }
-        .date-tile.active-focus { border: 3px solid var(--accent); background: rgba(59, 130, 246, 0.1); }
         .job-pill { 
             background: #ffffff; color: #000; font-size: 8px; font-weight: 900; 
             padding: 4px 6px; border-radius: 6px; margin-top: 4px; 
@@ -122,7 +110,7 @@
         /* --- UI UTILITIES --- */
         .btn-sync { background: #fff; color: #000; padding: 24px; border-radius: 24px; font-weight: 900; text-transform: uppercase; width: 100%; border: 3px solid #fff; cursor: pointer; }
         .store-btn { background: var(--accent); color: #fff; padding: 22px; border-radius: 20px; font-weight: 900; text-transform: uppercase; width: 100%; border: 2.5px solid var(--accent); cursor: pointer; }
-
+        
         .photo-gallery { display: grid; grid-template-cols: repeat(auto-fill, minmax(110px, 1fr)); gap: 15px; width: 100%; }
         .gallery-item { aspect-ratio: 1; border-radius: 18px; overflow: hidden; border: 2.5px solid var(--border-white); background: #000; position: relative; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
@@ -137,37 +125,30 @@
 
         .hidden { display: none !important; }
         .glow { position: fixed; top: 0; right: 0; width: 600px; height: 600px; background: radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 70%); pointer-events: none; }
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-thumb { background: #fff; border-radius: 10px; }
-
-        /* --- MODAL ENGINE --- */
-        .modal-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.98); backdrop-filter: blur(30px);
-            z-index: 5000; overflow-y: auto; padding: 40px;
-        }
+        
         #neural-loader { position: absolute; inset: 0; background: rgba(0,0,0,0.95); z-index: 6000; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 30px; }
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.98); backdrop-filter: blur(30px); z-index: 5000; overflow-y: auto; padding: 40px; }
     </style>
 </head>
 <body>
 
     <div id="toast-msg">DATA SYNCHRONIZED</div>
 
-    <!-- SIDEBAR -->
+    <!-- COMMAND SIDEBAR -->
     <aside class="sidebar">
         <div class="sidebar-header"><h2 class="text-[18px] font-black uppercase tracking-[0.4em] text-white italic">MoveMasters</h2></div>
-        <div id="sidebar-nav" class="flex-grow py-6 overflow-y-auto">
-            <div id="nav-Dashboard" class="nav-btn active" onclick="switchTab('Dashboard')">Dashboard</div>
+        <div id="sidebar-nav" class="flex-grow py-6">
+            <div id="nav-Dashboard" class="nav-btn" data-active="true" onclick="switchTab('Dashboard')">Dashboard</div>
             <div id="nav-LeadMagnet" class="nav-btn" style="color: #f59e0b;" onclick="switchTab('Lead Magnet')">★ Lead Magnet</div>
             <div id="nav-CustomerList" class="nav-btn" onclick="switchTab('Customer List')">Customer List</div>
             <div id="nav-CRM" class="nav-btn" onclick="switchTab('CRM')">CRM Database</div>
             <div id="nav-CrewHub" class="nav-btn" onclick="switchTab('Crew Hub')">Crew Hub</div>
-            <div id="nav-Fleet" class="nav-btn" onclick="switchTab('Fleet')">Fleet Master</div>
             <div id="nav-Inventory" class="nav-btn" onclick="switchTab('Inventory')">Inventory Master</div>
             <div id="nav-Financials" class="nav-btn" onclick="switchTab('Financials')">Financial Hub</div>
             <div id="nav-Settings" class="nav-btn" onclick="switchTab('Settings')">Settings</div>
         </div>
         <div class="p-8 border-t-2 border-white bg-zinc-900 text-center">
-            <span class="text-[9px] font-black uppercase text-white tracking-widest italic block text-blue-400">Titan X-106 Sentinel AI</span>
+            <span class="text-[9px] font-black uppercase text-white tracking-widest italic block text-blue-400">Titan X-107 Quantum</span>
         </div>
     </aside>
 
@@ -175,7 +156,7 @@
         <div class="glow"></div>
         <h1 id="view-title" class="titan-title titan-gradient">Dashboard</h1>
 
-        <!-- DASHBOARD -->
+        <!-- VIEW: DASHBOARD -->
         <div id="DashboardView" class="view-panel">
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
                 <div class="lg:col-span-3 space-y-10">
@@ -187,15 +168,15 @@
                         <div class="p-6"><table class="calendar-table"><thead><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead><tbody id="calendar-body"></tbody></table></div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                        <div class="node-card"><span class="node-label">Command Revenue</span><div class="stat-value text-5xl font-black italic" id="stat-rev">$0</div></div>
-                        <div class="node-card"><span class="node-label">Mission Capacity</span><div class="text-5xl font-black italic text-blue-400">99.1%</div></div>
+                        <div class="node-card"><span class="node-label">Projected Revenue Pool</span><div class="stat-value text-5xl font-black italic" id="stat-rev">$0</div></div>
+                        <div class="node-card"><span class="node-label">System Node Status</span><div class="text-5xl font-black italic text-blue-400">READY</div></div>
                     </div>
                 </div>
                 <div class="node-card h-fit sticky top-0 !min-height-0"><span class="node-label">Active Day Node</span><h4 id="day-node-title" class="text-2xl font-black uppercase italic text-white mt-12 mb-8">Day Node</h4><div id="day-jobs-list" class="space-y-5 w-full"></div></div>
             </div>
         </div>
 
-        <!-- CUSTOMER LIST -->
+        <!-- VIEW: CUSTOMER LIST (PRECISION INTAKE) -->
         <div id="CustomerListView" class="view-panel hidden pb-40">
             <form id="customer-form">
                 <div class="grid grid-cols-1 xl:grid-cols-3 gap-10">
@@ -209,12 +190,16 @@
                             <input type="text" id="cap-pickup-street" placeholder="Pickup Street" oninput="saveDraft('pickupStreet', this.value)">
                             <div class="grid grid-cols-3 gap-2"><input type="text" id="cap-pickup-city" placeholder="City" oninput="saveDraft('pickupCity', this.value)"><input type="text" id="cap-pickup-state" placeholder="ST" oninput="saveDraft('pickupState', this.value)"><input type="tel" id="cap-pickup-zip" placeholder="Zip" maxlength="5" oninput="saveDraft('pickupZip', this.value)"></div>
                         </div>
+                        <div class="p-5 border-2 border-white/5 rounded-2xl">
+                            <input type="text" id="cap-delivery-street" placeholder="Dest Street" oninput="saveDraft('deliveryStreet', this.value)">
+                            <div class="grid grid-cols-3 gap-2"><input type="text" id="cap-delivery-city" placeholder="City" oninput="saveDraft('deliveryCity', this.value)"><input type="text" id="cap-delivery-state" placeholder="ST" oninput="saveDraft('deliveryState', this.value)"><input type="tel" id="cap-delivery-zip" placeholder="Zip" maxlength="5" oninput="saveDraft('deliveryZip', this.value)"></div>
+                        </div>
                     </div></div>
                     <div class="node-card"><span class="node-label">03 // Schedule Node</span><div class="w-full mt-12 space-y-4"><div class="grid grid-cols-2 gap-4"><input type="date" id="cap-date" oninput="saveDraft('date', this.value)"><input type="time" id="cap-time" value="08:20" oninput="saveDraft('time', this.value)"></div><button type="button" onclick="handleSynchronize()" class="btn-sync mt-4 shadow-xl">⚡ Sync mission node</button></div></div>
                 </div>
 
                 <div class="node-card relative mt-5 !min-height-0 overflow-hidden">
-                    <span class="node-label">04 // Neural Vision Auditor & Dynamic Matrix</span>
+                    <span class="node-label">04 // Neural Quantum Vision & Matrix</span>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mt-20 w-full">
                         <div class="space-y-10 flex flex-col items-center">
                             <div class="w-full">
@@ -224,7 +209,7 @@
                             <div id="photo-gallery" class="photo-gallery grid grid-cols-4 gap-4">
                                 <div class="gallery-item border-4 border-dashed border-white/30 flex flex-col items-center justify-center cursor-pointer relative hover:border-white transition-all"><div class="text-white font-black text-[10px] uppercase text-center">Snap<br>Room</div><input type="file" multiple accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="handlePhotoUpload(this)"></div>
                             </div>
-                            <button type="button" onclick="runNeuralAudit()" id="ai-btn" class="w-full py-5 bg-blue-600 rounded-3xl text-white font-black uppercase italic text-sm shadow-2xl">Run AI Inventory Audit</button>
+                            <button type="button" onclick="runNeuralAudit()" id="ai-btn" class="w-full py-5 bg-blue-600 rounded-3xl text-white font-black uppercase italic text-sm shadow-2xl">Run Quantum AI Audit</button>
                         </div>
                         <div class="space-y-8 flex flex-col items-center">
                             <div class="p-10 bg-black border-2 border-white/10 rounded-[50px] shadow-inner text-center w-full">
@@ -240,10 +225,12 @@
             </form>
         </div>
 
-        <div id="CRMView" class="view-panel hidden"><div class="node-card relative !min-height-0"><span class="node-label">BMCR // Command Database</span><div id="crm-body" class="w-full mt-16 divide-y divide-white/5"></div></div></div>
-        <div id="LeadMagnetView" class="view-panel hidden pb-40"><div class="node-card"><h3>LEAD MAGNET ACTIVE</h3><p class="text-zinc-500 mt-4 uppercase font-black italic">Conversion portal operational.</p></div></div>
+        <!-- VIEW: CRM -->
+        <div id="CRMView" class="view-panel hidden">
+            <div class="node-card relative !min-height-0"><span class="node-label">BMCR // Command Database</span><div id="crm-body" class="w-full mt-16 divide-y divide-white/5"></div></div>
+        </div>
 
-        <!-- MASTER EDITOR -->
+        <!-- MASTER COMMAND EDITOR -->
         <div id="editor-modal" class="modal-overlay hidden">
             <div class="max-w-6xl mx-auto">
                 <div class="flex justify-between items-center mb-10"><h2 class="text-5xl font-black italic uppercase titan-gradient tracking-tighter">Edit Command Node</h2><button onclick="closeEditor()" class="p-5 bg-white/5 rounded-full hover:bg-rose-500">✕</button></div>
@@ -252,14 +239,14 @@
             </div>
         </div>
 
-        <div id="neural-loader" class="hidden"><div class="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-6"></div><p class="text-[10px] font-black uppercase text-blue-500 tracking-[0.4em]">Executing AI Audit</p></div>
+        <div id="neural-loader" class="hidden"><div class="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-6"></div><p class="text-[10px] font-black uppercase text-blue-500 tracking-[0.4em]">Executing Quantum Scan</p></div>
 
     </main>
 
     <script>
         const apiKey = ""; 
 
-        // --- 1. PRECISION FORMATTING (SOVEREIGN) ---
+        // --- 1. PRECISION FORMATTING ---
         function formatPhone(val) {
             if (!val) return val;
             const num = val.replace(/[^\d]/g, '');
@@ -286,15 +273,16 @@
 
         window.saveDraft = (f, v) => { state.draft[f] = v; };
 
-        // --- 3. THE SENTINEL NAVIGATION (RESTORED HIGHLIGHTS) ---
+        // --- 3. THE BLUE SENTINEL NAVIGATION (INDESTRUCTIBLE) ---
         window.switchTab = (id) => {
             state.activeTab = id;
             document.getElementById('view-title').innerText = id;
             
+            // Hard-ID Linkage using Attribute system for GitHub reliability
             document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active');
+                btn.setAttribute('data-active', 'false');
                 if (btn.innerText.includes(id) || btn.id === 'nav-' + id.replace(/\s+/g, '')) {
-                    btn.classList.add('active');
+                    btn.setAttribute('data-active', 'true');
                 }
             });
 
@@ -313,47 +301,31 @@
             if(id === 'CRM') renderCRM();
         };
 
-        // --- 4. MASTER COMMAND EDITOR ---
-        window.openEditor = (id) => {
-            const job = state.customers.find(c => c.id === id);
-            if(!job) return;
-            state.activeJobId = id;
-            const editor = document.getElementById('editor-modal');
-            const content = document.getElementById('editor-content');
-            content.innerHTML = `
-                <div class="node-card"><span class="node-label">Identity Sync</span><input type="text" id="edit-name" value="${job.name}"><input type="tel" id="edit-phone" value="${job.phone}" class="phone-mask"></div>
-                <div class="node-card"><span class="node-label">Schedule Sync</span><input type="date" id="edit-date" value="${job.date}"><input type="time" id="edit-time" value="${job.time}"></div>
-                <div class="node-card lg:col-span-2"><span class="node-label">Operational Intelligence</span><textarea id="edit-notes" rows="10" class="!text-left">${job.notes || ''}</textarea><input type="number" id="edit-vol" value="${job.vol}" class="text-3xl font-black"></div>
-            `;
-            editor.classList.remove('hidden');
-        };
-        window.closeEditor = () => document.getElementById('editor-modal').classList.add('hidden');
-        window.saveJobChanges = () => {
-            const id = state.activeJobId;
-            const idx = state.customers.findIndex(c => c.id === id);
-            if(idx === -1) return;
-            state.customers[idx] = { ...state.customers[idx], name: document.getElementById('edit-name').value, phone: document.getElementById('edit-phone').value, date: document.getElementById('edit-date').value, time: document.getElementById('edit-time').value, notes: document.getElementById('edit-notes').value, vol: parseInt(document.getElementById('edit-vol').value) || 0 };
-            showToast('DATA UPDATED'); closeEditor(); renderCalendar();
-        };
-
-        // --- 5. DYNAMIC MATRIX & OPTIMIZED AI ---
-        window.addCustomItem = () => {
-            const name = document.getElementById('custom-name').value;
-            const vol = parseFloat(document.getElementById('custom-vol').value);
-            if(!name || isNaN(vol)) return;
-            state.customMatrix.unshift({ cat: 'Custom', name, vol });
-            renderInventoryGrid(); showToast('CUSTOM NODE ADDED');
-        };
-
+        // --- 4. QUANTUM AI SCANNER (LATENCY FIXED) ---
         async function runNeuralAudit() {
             if (state.images.length === 0) return showToast('NO PHOTOS DETECTED');
             const loader = document.getElementById('neural-loader');
             loader.classList.remove('hidden');
 
-            // Payload Optimization: Only last 3 photos, stripped to raw Base64
-            const cleanImages = state.images.slice(-3).map(b => b.split(',')[1]);
-            const prompt = `Move Auditor: Identify items. Map to: ${state.customMatrix.map(i=>i.name).join(', ')}. Return valid JSON ONLY: {"items": {"Name": count}, "total_vol": number}.`;
-            const contents = [{ parts: [{ text: prompt }, ...cleanImages.map(data => ({ inlineData: { mimeType: "image/png", data } }))] }];
+            // Quantum Compression: Resize images to 800px max before sending
+            const compressedImages = await Promise.all(state.images.slice(-3).map(base64 => {
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        const scale = Math.min(1, 800 / Math.max(img.width, img.height));
+                        canvas.width = img.width * scale;
+                        canvas.height = img.height * scale;
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        resolve(canvas.toDataURL('image/jpeg', 0.7).split(',')[1]);
+                    };
+                    img.src = base64;
+                });
+            }));
+
+            const prompt = `Identify physical furniture. Map to: ${state.customMatrix.map(i=>i.name).join(', ')}. Return JSON {"items": {"Name": count}, "total_vol": number}.`;
+            const contents = [{ parts: [{ text: prompt }, ...compressedImages.map(data => ({ inlineData: { mimeType: "image/jpeg", data } }))] }];
 
             try {
                 const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, { 
@@ -371,10 +343,11 @@
                 
                 const volVal = Math.ceil(result.total_vol);
                 document.getElementById('cap-vol').value = volVal;
-                saveDraft('vol', volVal); renderInventoryGrid(); showToast('AI AUDIT COMPLETE');
+                saveDraft('vol', volVal); renderInventoryGrid(); showToast('QUANTUM AUDIT COMPLETE');
             } catch (err) { showToast('AI NODE DELAY'); } finally { loader.classList.add('hidden'); }
         }
 
+        // --- 5. LOGISTICS & EDITOR ---
         function renderInventoryGrid() {
             const container = document.getElementById('inventory-grid'); if (!container) return;
             let currentCat = "";
@@ -392,7 +365,29 @@
         function updateTally() { let t = 0; state.customMatrix.forEach(i => t += (state.inventory[i.name] || 0) * i.vol); document.getElementById('calc-tally').innerText = t.toFixed(1) + ' ft³'; }
         window.applyCalcToLoad = () => { let t = 0; state.customMatrix.forEach(i => t += (state.inventory[i.name] || 0) * i.vol); const v = Math.ceil(t); document.getElementById('cap-vol').value = v; saveDraft('vol', v); };
 
-        // --- 6. RENDER CALENDAR ---
+        window.openEditor = (id) => {
+            const job = state.customers.find(c => c.id === id);
+            if(!job) return;
+            state.activeJobId = id;
+            const editor = document.getElementById('editor-modal');
+            const content = document.getElementById('editor-content');
+            content.innerHTML = `
+                <div class="node-card"><span class="node-label">Identity Sync</span><input type="text" id="edit-name" value="${job.name}"><input type="tel" id="edit-phone" value="${job.phone}" class="phone-mask"></div>
+                <div class="node-card"><span class="node-label">Schedule Sync</span><input type="date" id="edit-date" value="${job.date}"><input type="time" id="edit-time" value="${job.time}"></div>
+                <div class="node-card lg:col-span-2"><span class="node-label">Audit Result</span><textarea id="edit-notes" rows="8" class="!text-left">${job.notes || ''}</textarea><input type="number" id="edit-vol" value="${job.vol}" class="text-3xl font-black"></div>
+            `;
+            editor.classList.remove('hidden');
+        };
+        window.closeEditor = () => document.getElementById('editor-modal').classList.add('hidden');
+        window.saveJobChanges = () => {
+            const id = state.activeJobId;
+            const idx = state.customers.findIndex(c => c.id === id);
+            if(idx === -1) return;
+            state.customers[idx] = { ...state.customers[idx], name: document.getElementById('edit-name').value, phone: document.getElementById('edit-phone').value, date: document.getElementById('edit-date').value, time: document.getElementById('edit-time').value, notes: document.getElementById('edit-notes').value, vol: parseInt(document.getElementById('edit-vol').value) || 0 };
+            showToast('DATA UPDATED'); closeEditor(); renderCalendar();
+        };
+
+        // --- 6. CORE NAVIGATION ---
         window.renderCalendar = () => {
             const body = document.getElementById('calendar-body'); if (!body) return;
             const year = state.currentMonth.getFullYear(); const month = state.currentMonth.getMonth();
@@ -419,7 +414,7 @@
 
         window.focusDay = (date) => { state.selectedDate = date; renderCalendar(); 
             const list = document.getElementById('day-jobs-list'); const jobs = state.customers.filter(c => c.date === date).sort((a,b)=>a.time.localeCompare(b.time));
-            list.innerHTML = jobs.length ? jobs.map(j => `<div onclick="openEditor('${j.id}')" class="bg-black p-5 rounded-3xl border-2 border-white mb-3 text-center shadow-lg cursor-pointer"><span class="text-xl font-black italic text-white">${j.name}</span><div class="text-[10px] font-black uppercase text-zinc-500 mt-1">${j.time} // ${j.vol} FT³</div></div>`) : `<div class="py-12 text-center opacity-10 uppercase text-xs">Void</div>`;
+            list.innerHTML = jobs.length ? jobs.map(j => `<div onclick="openEditor('${j.id}')" class="bg-black p-5 rounded-3xl border-2 border-white mb-3 text-center shadow-lg cursor-pointer"><span class="text-xl font-black italic text-white">${j.name}</span><div class="text-[10px] font-black uppercase text-zinc-500 mt-1">${j.time} // ${j.vol} FT³</div></div>`) : `<div class="py-12 text-center opacity-10 uppercase text-xs font-black">Manifest Void</div>`;
         };
 
         window.handlePhotoUpload = (input) => { Array.from(input.files).forEach(f => { const r = new FileReader(); r.onload = (e) => { state.images.push(e.target.result); const div = document.createElement('div'); div.className = 'gallery-item shadow-2xl'; div.innerHTML = `<img src="${e.target.result}">`; document.getElementById('photo-gallery').prepend(div); }; r.readAsDataURL(f); }); };
