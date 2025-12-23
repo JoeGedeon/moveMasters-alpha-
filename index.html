@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>MoveMasters OS | Titan X-118 Matrix</title>
+    <title>MoveMasters OS | Titan X-119 Architect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
@@ -41,7 +40,7 @@
             transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1); border-bottom: 1px solid rgba(255,255,255,0.05);
             text-transform: uppercase; letter-spacing: 0.15em; border-left: 0px solid transparent;
         }
-        /* HIGH-PRIORITY SENTINEL LOCK */
+        /* REINFORCED SENTINEL LOCK */
         .nav-btn.sentinel-active {
             background-color: rgba(59, 130, 246, 0.2) !important;
             color: #ffffff !important;
@@ -155,7 +154,7 @@
             <div id="nav-Financials" class="nav-btn" onclick="switchTab('Financials')">Financial Hub</div>
         </div>
         <div class="p-8 border-t-2 border-white bg-zinc-900 text-center">
-            <span class="text-[9px] font-black uppercase text-white tracking-widest italic block text-blue-400">Titan X-118 Matrix</span>
+            <span class="text-[9px] font-black uppercase text-white tracking-widest italic block text-blue-400">Titan X-119 Architect</span>
         </div>
     </aside>
 
@@ -170,7 +169,7 @@
                     <div class="node-card !min-height-0 !p-8 bg-zinc-950">
                         <div class="flex justify-between items-center w-full mb-8">
                             <h3 class="text-3xl font-black italic uppercase text-white" id="month-label">December 2025</h3>
-                            <div class="flex gap-4"><button onclick="changeMonth(-1)" class="w-14 h-14 border border-white/20 rounded-xl flex items-center justify-center font-bold">◀</button><button onclick="changeMonth(1)" class="w-14 h-14 border border-white/20 rounded-xl flex items-center justify-center font-bold">▶</button></div>
+                            <div class="flex gap-4"><button onclick="changeMonth(-1)" class="w-14 h-14 border border-white/20 rounded-xl flex items-center justify-center font-bold font-bold">◀</button><button onclick="changeMonth(1)" class="w-14 h-14 border border-white/20 rounded-xl flex items-center justify-center font-bold font-bold">▶</button></div>
                         </div>
                         <table class="calendar-table">
                             <thead><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead>
@@ -186,13 +185,14 @@
             </div>
         </div>
 
-        <!-- VIEW: CUSTOMER LIST (INTAKE) -->
+        <!-- VIEW: CUSTOMER LIST (INTAKE HUB) -->
         <div id="CustomerListView" class="view-panel hidden pb-40">
             <form id="customer-form">
                 <div class="grid grid-cols-1 xl:grid-cols-3 gap-10">
                     <div class="node-card"><span class="node-label">01 // Identity Hub</span><div class="w-full mt-12 space-y-4">
                         <input type="text" id="cap-name" placeholder="Legal Full Name" oninput="saveDraft('name', this.value)">
                         <input type="tel" id="cap-phone" placeholder="Primary (000) 000-0000" class="phone-mask" oninput="saveDraft('phone', this.value)">
+                        <input type="tel" id="cap-phone2" placeholder="Secondary Line" class="phone-mask" oninput="saveDraft('phone2', this.value)">
                         <input type="email" id="cap-email" placeholder="Email Channel" oninput="saveDraft('email', this.value)">
                     </div></div>
                     <div class="node-card"><span class="node-label">02 // Pickup Node</span><div class="w-full mt-12 space-y-4">
@@ -210,12 +210,12 @@
                         <div class="space-y-10 flex flex-col items-center">
                             <div class="w-full">
                                 <p class="text-[10px] font-black uppercase text-zinc-500 tracking-[0.4em] mb-4 text-center">Site Intelligence & Notes</p>
-                                <textarea id="cap-notes" rows="12" placeholder="LOG SITE FRAGILES, ACCESS CODES, AND DETAILS..." class="!text-left border-blue-500/20" oninput="saveDraft('notes', this.value)"></textarea>
+                                <textarea id="cap-notes" rows="12" placeholder="LOG FRAGILES, GATE CODES, AND ACCESS..." class="!text-left border-blue-500/20" oninput="saveDraft('notes', this.value)"></textarea>
                             </div>
                             <div id="photo-gallery" class="grid grid-cols-4 gap-4 w-full">
                                 <div class="aspect-square border-4 border-dashed border-white/30 flex flex-col items-center justify-center cursor-pointer relative rounded-2xl hover:border-white transition-all"><div class="text-white font-black text-[10px] uppercase text-center">Snap<br>Room</div><input type="file" multiple accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="handlePhotos(this)"></div>
                             </div>
-                            <button type="button" onclick="runNeuralAudit()" id="ai-btn" class="w-full py-5 bg-blue-600 rounded-3xl text-white font-black uppercase italic text-sm shadow-2xl">Run Neural Inventory Audit</button>
+                            <button type="button" onclick="runNeuralAudit()" id="ai-btn" class="w-full py-5 bg-blue-600 rounded-3xl text-white font-black uppercase italic text-sm shadow-2xl hover:scale-[1.01] transition-all">Run Neural Inventory Audit</button>
                         </div>
                         <div class="space-y-8 flex flex-col items-center">
                             <div class="p-10 bg-black border-2 border-white/10 rounded-[50px] shadow-inner text-center w-full">
@@ -229,18 +229,41 @@
             </form>
         </div>
 
-        <!-- VIEW: INVENTORY MASTER (GLOBAL STANDARDS) -->
+        <!-- VIEW: INVENTORY MASTER (GLOBAL ARCHITECT) -->
         <div id="InventoryMasterView" class="view-panel hidden pb-40">
-            <div class="grid grid-cols-1 gap-12">
-                <div class="node-card !min-height-0 overflow-hidden">
-                    <span class="node-label">Global Matrix Standards</span>
-                    <div id="global-inventory-list" class="w-full mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"></div>
+            <div class="grid grid-cols-1 gap-12 max-w-7xl mx-auto">
+                <div class="node-card relative !min-height-0 overflow-hidden">
+                    <span class="node-label">Global Matrix Architect</span>
+                    
+                    <!-- MASTER ADD BAR -->
+                    <div class="w-full mt-20 p-8 bg-zinc-900 border border-blue-500/20 rounded-[40px] shadow-2xl flex flex-wrap gap-4 items-end">
+                        <div class="flex-1 min-w-[200px] text-left">
+                            <label class="text-[9px] font-black uppercase text-zinc-600 ml-4 mb-2 block">Item Identity</label>
+                            <input type="text" id="global-new-name" placeholder="Item Name (e.g. Wardrobe Box)" class="!mb-0 !bg-black !text-sm">
+                        </div>
+                        <div class="w-48 text-left">
+                            <label class="text-[9px] font-black uppercase text-zinc-600 ml-4 mb-2 block">Room Node</label>
+                            <select id="global-new-cat" class="!mb-0 !bg-black !text-sm">
+                                <option>Living Room</option><option>Bedroom</option><option>Kitchen</option>
+                                <option>Bathroom</option><option>Office</option><option>Boxes</option>
+                            </select>
+                        </div>
+                        <div class="w-32 text-left">
+                            <label class="text-[9px] font-black uppercase text-zinc-600 ml-4 mb-2 block">Cubic ft</label>
+                            <input type="number" id="global-new-vol" placeholder="Vol" class="!mb-0 !bg-black !text-sm">
+                        </div>
+                        <button onclick="addGlobalItem()" class="h-[58px] px-10 bg-blue-600 text-white rounded-2xl font-black uppercase italic shadow-lg hover:bg-blue-500">Inject Item</button>
+                    </div>
+
+                    <div id="global-inventory-list" class="w-full mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
                 </div>
             </div>
         </div>
 
-        <!-- CRM & PLACEHOLDERS -->
+        <!-- CRM VIEW -->
         <div id="CRMView" class="view-panel hidden"><div class="node-card relative !min-height-0"><span class="node-label">BMCR // Command Archive</span><div id="crm-body" class="w-full mt-16 divide-y divide-white/5"></div></div></div>
+        
+        <!-- PLACEHOLDERS -->
         <div id="FleetMasterView" class="view-panel hidden pb-40"><div class="node-card"><h3>FLEET MASTER ACTIVE</h3></div></div>
         <div id="CrewHubView" class="view-panel hidden pb-40"><div class="node-card"><h3>CREW HUB ACTIVE</h3></div></div>
         <div id="LeadMagnetView" class="view-panel hidden pb-40"><div class="node-card"><h3>LEAD MAGNET ACTIVE</h3></div></div>
@@ -254,7 +277,7 @@
             </div>
         </div>
 
-        <div id="neural-loader" class="hidden"><div class="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-6"></div><p class="text-[10px] font-black uppercase text-blue-500 tracking-[0.4em]">Executing AI Audit</p></div>
+        <div id="neural-loader" class="hidden"><div class="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-6"></div><p class="text-[10px] font-black uppercase text-blue-500 tracking-[0.4em]">Executing Quantum Scan</p></div>
 
     </main>
 
@@ -271,7 +294,7 @@
         }
         window.addEventListener('input', (e) => { if (e.target.classList.contains('phone-mask')) e.target.value = formatPhone(e.target.value); });
 
-        // --- 2. SOVEREIGN ENGINE STATE ---
+        // --- 2. ENGINE STATE ---
         let state = {
             activeTab: 'Dashboard', customers: [], curMonth: new Date(2025, 11, 1), selDate: '2025-12-23',
             images: [], inventory: {}, 
@@ -287,85 +310,43 @@
 
         window.saveDraft = (f, v) => { state.draft[f] = v; };
 
-        // --- 3. THE BLUE SENTINEL NAVIGATION ---
+        // --- 3. THE BLUE SENTINEL NAVIGATION (INDESTRUCTIBLE) ---
         window.switchTab = (id) => {
             state.activeTab = id;
             document.getElementById('view-title').innerText = id;
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('sentinel-active');
-                const target = id.replace(/\s+/g, '');
-                if (btn.innerText.includes(id) || btn.id === 'nav-' + target) btn.classList.add('sentinel-active');
+                if (btn.innerText.includes(id) || btn.id === 'nav-' + id.replace(/\s+/g, '')) btn.classList.add('sentinel-active');
             });
             document.querySelectorAll('.view-panel').forEach(p => p.classList.add('hidden'));
-            const pId = id.replace(/\s+/g, '') + 'View';
-            const panel = document.getElementById(pId);
+            const panel = document.getElementById(id.replace(/\s+/g, '') + 'View');
             if(panel) panel.classList.remove('hidden');
-            
             if(id === 'Dashboard') renderCalendar();
-            if(id === 'Customer List') {
-                Object.entries(state.draft).forEach(([k,v]) => { const el = document.getElementById('cap-' + k); if(el) el.value = v; });
-                renderInventoryGrid();
-            }
+            if(id === 'Customer List') renderInventoryGrid();
             if(id === 'Inventory Master') renderGlobalInventory();
             if(id === 'CRM') renderCRM();
         };
 
-        // --- 4. MASTER COMMAND EDITOR ---
-        window.openEditor = (id) => {
-            const job = state.customers.find(c => c.id === id); if(!job) return;
-            state.activeJobId = id;
-            const content = document.getElementById('editor-content');
-            content.innerHTML = `
-                <div class="node-card"><span class="node-label">Identity Sync</span><input type="text" id="edit-name" value="${job.name}"><input type="tel" id="edit-phone" value="${job.phone}" class="phone-mask"></div>
-                <div class="node-card"><span class="node-label">Schedule Sync</span><input type="date" id="edit-date" value="${job.date}"><input type="time" id="edit-time" value="${job.time}"></div>
-                <div class="node-card lg:col-span-2"><span class="node-label">Mission Dossier</span><textarea id="edit-notes" rows="10" class="!text-left">${job.notes || ''}</textarea><input type="number" id="edit-vol" value="${job.vol}" class="text-3xl font-black"></div>
-            `;
-            document.getElementById('editor-modal').classList.remove('hidden');
-        };
-        window.closeEditor = () => document.getElementById('editor-modal').classList.add('hidden');
-        window.saveJobChanges = () => {
-            const idx = state.customers.findIndex(c => c.id === state.activeJobId);
-            state.customers[idx] = { ...state.customers[idx], name: document.getElementById('edit-name').value, phone: document.getElementById('edit-phone').value, date: document.getElementById('edit-date').value, time: document.getElementById('edit-time').value, notes: document.getElementById('edit-notes').value, vol: parseInt(document.getElementById('edit-vol').value) || 0 };
-            showToast('DATA UPDATED'); closeEditor(); renderCalendar();
+        // --- 4. GLOBAL INVENTORY MASTER (ARCHITECT LOGIC) ---
+        window.addGlobalItem = () => {
+            const name = document.getElementById('global-new-name').value;
+            const cat = document.getElementById('global-new-cat').value;
+            const vol = parseFloat(document.getElementById('global-new-vol').value);
+            if(!name || isNaN(vol)) return showToast("DATA VOID: IDENTITY/VOL REQ");
+            state.customMatrix.unshift({ cat, name, vol });
+            document.getElementById('global-new-name').value = '';
+            document.getElementById('global-new-vol').value = '';
+            renderGlobalInventory();
+            showToast("ITEM INJECTED INTO MASTER");
         };
 
-        // --- 5. QUANTUM AI OVERDRIVE (SPEED FIX) ---
-        async function runNeuralAudit() {
-            if (state.images.length === 0) return showToast('NO PHOTOS DETECTED');
-            const loader = document.getElementById('neural-loader'); loader.classList.remove('hidden');
-
-            const compressed = await Promise.all(state.images.slice(-3).map(base64 => {
-                return new Promise((resolve) => {
-                    const img = new Image();
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        const s = Math.min(1, 600 / Math.max(img.width, img.height));
-                        canvas.width = img.width * s; canvas.height = img.height * s;
-                        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
-                        resolve(canvas.toDataURL('image/jpeg', 0.4).split(',')[1]);
-                    };
-                    img.src = base64;
-                });
-            }));
-
-            const prompt = `Act as surveyor. Map items to: ${state.customMatrix.map(i=>i.name).join(', ')}. Return JSON {"items":{"Name":count}, "total_vol":number}.`;
-            try {
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, { 
-                    method: 'POST', body: JSON.stringify({ contents: [{ parts: [{ text: prompt }, ...compressed.map(data => ({ inlineData: { mimeType: "image/jpeg", data } }))] }] }) 
-                });
-                const result = JSON.parse((await res.json()).candidates[0].content.parts[0].text.replace(/```json|```/g, '').trim());
-                Object.entries(result.items).forEach(([k, v]) => { if(state.customMatrix.find(i=>i.name===k)) state.inventory[k] = (state.inventory[k]||0)+v; });
-                document.getElementById('cap-vol').value = Math.ceil(result.total_vol); renderInventoryGrid(); showToast('AI AUDIT COMPLETE');
-            } catch (err) { showToast('NEURAL DELAY'); } finally { loader.classList.add('hidden'); }
-        }
-
-        // --- 6. GLOBAL INVENTORY MASTER LOGIC ---
         function renderGlobalInventory() {
             const container = document.getElementById('global-inventory-list');
+            if(!container) return;
             let currentCat = "";
             container.innerHTML = state.customMatrix.map(item => {
                 let h = "";
-                if(item.cat !== currentCat) { currentCat = item.cat; h += `<div class="col-span-full border-b border-white/10 pb-4 mt-8"><p class="text-blue-500 font-black uppercase text-[10px] tracking-widest">${currentCat} Node</p></div>`; }
+                if(item.cat !== currentCat) { currentCat = item.cat; h += `<div class="col-span-full border-b border-white/10 pb-4 mt-8"><p class="text-blue-500 font-black uppercase text-[10px] tracking-widest">${currentCat}</p></div>`; }
                 h += `
                     <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 text-center group hover:border-blue-500/40 transition-all">
                         <h5 class="text-lg font-black italic mb-3 truncate">${item.name}</h5>
@@ -384,7 +365,7 @@
             showToast('GLOBAL MATRIX UPDATED');
         };
 
-        // --- 7. LOGISTICS MATRIX ---
+        // --- 5. LOGISTICS MATRIX (FOR CUSTOMER) ---
         function renderInventoryGrid() {
             const container = document.getElementById('inventory-grid'); if (!container) return;
             let currentCat = "";
@@ -400,7 +381,26 @@
         function updateTally() { let t = 0; state.customMatrix.forEach(i => t += (state.inventory[i.name] || 0) * i.vol); document.getElementById('calc-tally').innerText = t.toFixed(1) + ' ft³'; }
         window.applyCalcToLoad = () => { let t = 0; state.customMatrix.forEach(i => t += (state.inventory[i.name] || 0) * i.vol); const v = Math.ceil(t); document.getElementById('cap-vol').value = v; saveDraft('vol', v); };
 
-        // --- 8. CALENDAR GRID ---
+        // --- 6. MASTER COMMAND EDITOR ---
+        window.openEditor = (id) => {
+            const job = state.customers.find(c => c.id === id); if(!job) return;
+            state.activeJobId = id;
+            const content = document.getElementById('editor-content');
+            content.innerHTML = `
+                <div class="node-card"><span class="node-label">Identity Sync</span><input type="text" id="edit-name" value="${job.name}"><input type="tel" id="edit-phone" value="${job.phone}" class="phone-mask"></div>
+                <div class="node-card"><span class="node-label">Schedule Sync</span><input type="date" id="edit-date" value="${job.date}"><input type="time" id="edit-time" value="${job.time}"></div>
+                <div class="node-card lg:col-span-2"><span class="node-label">Mission Dossier</span><textarea id="edit-notes" rows="10" class="!text-left">${job.notes || ''}</textarea><input type="number" id="edit-vol" value="${job.vol}" class="text-3xl font-black"></div>
+            `;
+            document.getElementById('editor-modal').classList.remove('hidden');
+        };
+        window.closeEditor = () => document.getElementById('editor-modal').classList.add('hidden');
+        window.saveJobChanges = () => {
+            const idx = state.customers.findIndex(c => c.id === state.activeJobId);
+            state.customers[idx] = { ...state.customers[idx], name: document.getElementById('edit-name').value, phone: document.getElementById('edit-phone').value, date: document.getElementById('edit-date').value, time: document.getElementById('edit-time').value, notes: document.getElementById('edit-notes').value, vol: parseInt(document.getElementById('edit-vol').value) || 0 };
+            showToast('DATA UPDATED'); closeEditor(); renderCalendar();
+        };
+
+        // --- 7. CALENDAR & UI ENGINE ---
         window.renderCalendar = () => {
             const body = document.getElementById('calendar-body'); if (!body) return;
             const y = state.curMonth.getFullYear(); const m = state.curMonth.getMonth();
@@ -429,8 +429,7 @@
             list.innerHTML = jobs.length ? jobs.map(j => `<div onclick="openEditor('${j.id}')" class="bg-black p-5 rounded-3xl border-2 border-white mb-3 text-center shadow-lg cursor-pointer hover:border-blue-500 transition-all"><span class="text-xl font-black italic text-white">${j.name}</span><div class="text-[10px] font-black uppercase text-zinc-500 mt-1">${j.time} // ${j.vol} FT³</div></div>`) : `<div class="py-12 text-center opacity-10 uppercase text-xs font-black italic tracking-widest">Void</div>`;
         };
 
-        // --- 9. UI SYNC ---
-        window.handlePhotos = (input) => { Array.from(input.files).forEach(f => { const r = new FileReader(); r.onload = (e) => { state.images.push(e.target.result); const div = document.createElement('div'); div.className = 'w-full aspect-square rounded-xl overflow-hidden border border-white/10'; div.innerHTML = `<img src="${e.target.result}" class="w-full h-full object-cover">`; document.getElementById('photo-gallery').prepend(div); }; r.readAsDataURL(f); }); };
+        window.handlePhotos = (input) => { Array.from(input.files).forEach(f => { const r = new FileReader(); r.onload = (e) => { state.images.push(e.target.result); const div = document.createElement('div'); div.className = 'gallery-item shadow-2xl rounded-2xl overflow-hidden'; div.innerHTML = `<img src="${e.target.result}">`; document.getElementById('photo-gallery').prepend(div); }; r.readAsDataURL(f); }); };
         window.handleSynchronize = () => {
             const name = state.draft.name; if(!name || !state.draft.date) return showToast('DATA REQ: NAME/DATE');
             state.customers.unshift({ id: Date.now().toString(), name, phone: state.draft.phone, date: state.draft.date, time: state.draft.time, vol: document.getElementById('cap-vol').value || 0, notes: state.draft.notes, route: `${state.draft.pCity || 'Local'}` });
@@ -442,6 +441,34 @@
         window.showToast = (m) => { const t = document.getElementById('toast-msg'); t.innerText = m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 2000); };
         
         window.onload = () => switchTab('Dashboard');
+
+        // --- 8. AI QUANTUM SPEED SCAN ---
+        async function runNeuralAudit() {
+            if (state.images.length === 0) return showToast('NO PHOTOS DETECTED');
+            const loader = document.getElementById('neural-loader'); loader.classList.remove('hidden');
+            const compressed = await Promise.all(state.images.slice(-3).map(base64 => {
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        const s = Math.min(1, 600 / Math.max(img.width, img.height));
+                        canvas.width = img.width * s; canvas.height = img.height * s;
+                        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+                        resolve(canvas.toDataURL('image/jpeg', 0.4).split(',')[1]);
+                    };
+                    img.src = base64;
+                });
+            }));
+            const prompt = `Act as surveyor. Map items to: ${state.customMatrix.map(i=>i.name).join(',')}. Return JSON {"items":{"Name":count}, "total_vol":number}.`;
+            try {
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, { 
+                    method: 'POST', body: JSON.stringify({ contents: [{ parts: [{ text: prompt }, ...compressed.map(data => ({ inlineData: { mimeType: "image/jpeg", data } }))] }] }) 
+                });
+                const result = JSON.parse((await res.json()).candidates[0].content.parts[0].text.replace(/```json|```/g, '').trim());
+                Object.entries(result.items).forEach(([k, v]) => { if(state.customMatrix.find(i=>i.name===k)) state.inventory[k] = (state.inventory[k]||0)+v; });
+                document.getElementById('cap-vol').value = Math.ceil(result.total_vol); renderInventoryGrid(); showToast("AI ARCHITECT SYNC COMPLETE");
+            } catch (err) { showToast("NEURAL DELAY"); } finally { loader.classList.add('hidden'); }
+        }
     </script>
 </body>
 </html>
