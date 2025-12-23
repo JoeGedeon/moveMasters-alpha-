@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>MoveMasters OS | Titan X-104 Sentinel</title>
+    <title>MoveMasters OS | Titan X-106 Sentinel AI</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
@@ -17,6 +17,7 @@
             --accent: #3b82f6;
             --border-white: #ffffff;
             --card-bg: #0a0a0a;
+            --gold: #f59e0b;
         }
 
         body { 
@@ -26,7 +27,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* --- THE SENTINEL SIDEBAR (RESTORED HIGHLIGHTS) --- */
+        /* --- THE BLUE SENTINEL SIDEBAR (GH-PROOVED) --- */
         .sidebar {
             width: 260px; background-color: var(--sidebar); border-right: 2px solid var(--border-white);
             height: 100%; flex-shrink: 0; display: flex; flex-direction: column; z-index: 1000;
@@ -35,19 +36,19 @@
         .sidebar-header { padding: 40px 20px; border-bottom: 2px solid var(--border-white); text-align: center; }
         .nav-btn {
             display: flex; align-items: center; gap: 12px; padding: 22px 24px;
-            font-size: 11px; font-weight: 800; color: #444; cursor: pointer;
-            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); border-bottom: 1px solid rgba(255,255,255,0.05);
-            text-transform: uppercase; letter-spacing: 0.15em; border-left: 0px solid var(--accent);
+            font-size: 11px; font-weight: 800; color: #555; cursor: pointer;
+            transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1); border-bottom: 1px solid rgba(255,255,255,0.05);
+            text-transform: uppercase; letter-spacing: 0.15em; border-left: 0px solid transparent;
         }
-        /* HIGH-INTENSITY SENTINEL HIGHLIGHT */
+        /* REINFORCED SENTINEL HIGHLIGHT */
         .nav-btn.active {
-            background-color: rgba(59, 130, 246, 0.15);
-            color: #ffffff;
+            background-color: rgba(59, 130, 246, 0.2) !important;
+            color: #ffffff !important;
             border-left: 12px solid var(--accent) !important;
-            box-shadow: inset 30px 0 50px -25px rgba(59, 130, 246, 0.7);
+            box-shadow: inset 30px 0 50px -20px rgba(59, 130, 246, 0.8) !important;
         }
 
-        /* --- THE MAIN CONSOLE (SCROLLABLE) --- */
+        /* --- MAIN STAGE --- */
         .main-stage { 
             flex-grow: 1; height: 100vh; overflow-y: auto; padding: 40px; 
             background: #000; position: relative; -webkit-overflow-scrolling: touch;
@@ -76,7 +77,7 @@
             font-weight: 700; font-size: 15px; margin-bottom: 12px; outline: none; text-align: center;
         }
 
-        /* --- MATRIX SCROLLER --- */
+        /* --- LOGISTICS MATRIX --- */
         .category-header {
             font-size: 10px; font-weight: 900; color: var(--accent); text-transform: uppercase;
             letter-spacing: 0.4em; margin: 30px 0 15px 0; border-bottom: 1px solid rgba(59, 130, 246, 0.3);
@@ -90,14 +91,13 @@
             background: rgba(255,255,255,0.03); border: 1.5px solid rgba(255,255,255,0.1);
             border-radius: 20px; padding: 15px 25px; display: flex; align-items: center; justify-content: space-between;
         }
-        .qty-controls { display: flex; align-items: center; gap: 15px; }
         .qty-btn {
-            width: 38px; height: 38px; border-radius: 10px; border: 1.5px solid rgba(255,255,255,0.2);
+            width: 42px; height: 42px; border-radius: 12px; border: 1.5px solid rgba(255,255,255,0.2);
             display: flex; align-items: center; justify-content: center; font-weight: 900; color: #fff; cursor: pointer;
         }
-        .qty-btn:active { background: var(--accent); transform: scale(0.9); }
+        .qty-val { font-size: 18px; font-weight: 900; color: var(--accent); min-width: 30px; text-align: center; }
 
-        /* --- HD CALENDAR MATRIX --- */
+        /* --- CALENDAR --- */
         .calendar-card {
             background: #050505; border: 2px solid var(--border-white); border-radius: 35px;
             overflow: hidden; box-shadow: 0 0 40px rgba(255,255,255,0.05); margin-bottom: 30px;
@@ -109,14 +109,8 @@
             border-radius: 14px; height: 115px; padding: 10px; vertical-align: top; 
             cursor: pointer; transition: 0.15s; position: relative; overflow: hidden;
         }
-        .date-tile:hover { border-color: #fff; background: #080808; }
+        .date-tile:hover { border-color: #fff; }
         .date-tile.active-focus { border: 3px solid var(--accent); background: rgba(59, 130, 246, 0.1); }
-        .tile-plus { 
-            position: absolute; top: 8px; right: 8px; opacity: 0; color: #fff; background: var(--accent); 
-            border-radius: 4px; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
-            font-size: 16px; font-weight: 900;
-        }
-        .date-tile:hover .tile-plus { opacity: 1; }
         .job-pill { 
             background: #ffffff; color: #000; font-size: 8px; font-weight: 900; 
             padding: 4px 6px; border-radius: 6px; margin-top: 4px; 
@@ -128,6 +122,10 @@
         /* --- UI UTILITIES --- */
         .btn-sync { background: #fff; color: #000; padding: 24px; border-radius: 24px; font-weight: 900; text-transform: uppercase; width: 100%; border: 3px solid #fff; cursor: pointer; }
         .store-btn { background: var(--accent); color: #fff; padding: 22px; border-radius: 20px; font-weight: 900; text-transform: uppercase; width: 100%; border: 2.5px solid var(--accent); cursor: pointer; }
+
+        .photo-gallery { display: grid; grid-template-cols: repeat(auto-fill, minmax(110px, 1fr)); gap: 15px; width: 100%; }
+        .gallery-item { aspect-ratio: 1; border-radius: 18px; overflow: hidden; border: 2.5px solid var(--border-white); background: #000; position: relative; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
         #toast-msg {
             position: fixed; bottom: 40px; right: 40px; background: #fff; color: #000;
@@ -154,7 +152,7 @@
 
     <div id="toast-msg">DATA SYNCHRONIZED</div>
 
-    <!-- COMMAND SIDEBAR (SOVEREIGN HIGHLIGHTS) -->
+    <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="sidebar-header"><h2 class="text-[18px] font-black uppercase tracking-[0.4em] text-white italic">MoveMasters</h2></div>
         <div id="sidebar-nav" class="flex-grow py-6 overflow-y-auto">
@@ -169,7 +167,7 @@
             <div id="nav-Settings" class="nav-btn" onclick="switchTab('Settings')">Settings</div>
         </div>
         <div class="p-8 border-t-2 border-white bg-zinc-900 text-center">
-            <span class="text-[9px] font-black uppercase text-white tracking-widest italic block text-blue-400">Titan X-104 Sentinel</span>
+            <span class="text-[9px] font-black uppercase text-white tracking-widest italic block text-blue-400">Titan X-106 Sentinel AI</span>
         </div>
     </aside>
 
@@ -177,7 +175,7 @@
         <div class="glow"></div>
         <h1 id="view-title" class="titan-title titan-gradient">Dashboard</h1>
 
-        <!-- VIEW: DASHBOARD -->
+        <!-- DASHBOARD -->
         <div id="DashboardView" class="view-panel">
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
                 <div class="lg:col-span-3 space-y-10">
@@ -197,7 +195,7 @@
             </div>
         </div>
 
-        <!-- VIEW: CUSTOMER LIST (INTAKE HUB) -->
+        <!-- CUSTOMER LIST -->
         <div id="CustomerListView" class="view-panel hidden pb-40">
             <form id="customer-form">
                 <div class="grid grid-cols-1 xl:grid-cols-3 gap-10">
@@ -208,7 +206,7 @@
                     </div></div>
                     <div class="node-card"><span class="node-label">02 // Route Nodes</span><div class="w-full mt-12 space-y-4">
                         <div class="p-5 border-2 border-white/5 rounded-2xl">
-                            <input type="text" id="cap-pickup-street" placeholder="Street" oninput="saveDraft('pickupStreet', this.value)">
+                            <input type="text" id="cap-pickup-street" placeholder="Pickup Street" oninput="saveDraft('pickupStreet', this.value)">
                             <div class="grid grid-cols-3 gap-2"><input type="text" id="cap-pickup-city" placeholder="City" oninput="saveDraft('pickupCity', this.value)"><input type="text" id="cap-pickup-state" placeholder="ST" oninput="saveDraft('pickupState', this.value)"><input type="tel" id="cap-pickup-zip" placeholder="Zip" maxlength="5" oninput="saveDraft('pickupZip', this.value)"></div>
                         </div>
                     </div></div>
@@ -216,7 +214,7 @@
                 </div>
 
                 <div class="node-card relative mt-5 !min-height-0 overflow-hidden">
-                    <span class="node-label">04 // Neural Dossier & Dynamic Matrix</span>
+                    <span class="node-label">04 // Neural Vision Auditor & Dynamic Matrix</span>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mt-20 w-full">
                         <div class="space-y-10 flex flex-col items-center">
                             <div class="w-full">
@@ -224,9 +222,9 @@
                                 <textarea id="cap-notes" rows="12" placeholder="LOG SITE INTELLIGENCE HERE..." class="!text-left border-blue-500/20" oninput="saveDraft('notes', this.value)"></textarea>
                             </div>
                             <div id="photo-gallery" class="photo-gallery grid grid-cols-4 gap-4">
-                                <div class="gallery-item border-4 border-dashed border-white/30 flex flex-col items-center justify-center cursor-pointer relative"><div class="text-white font-black text-[10px] uppercase text-center">Snap<br>Room</div><input type="file" multiple accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="handlePhotoUpload(this)"></div>
+                                <div class="gallery-item border-4 border-dashed border-white/30 flex flex-col items-center justify-center cursor-pointer relative hover:border-white transition-all"><div class="text-white font-black text-[10px] uppercase text-center">Snap<br>Room</div><input type="file" multiple accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="handlePhotoUpload(this)"></div>
                             </div>
-                            <button type="button" onclick="runNeuralAudit()" id="ai-btn" class="w-full py-5 bg-blue-600 rounded-3xl text-white font-black uppercase italic text-sm shadow-2xl">Run Neural Inventory Audit</button>
+                            <button type="button" onclick="runNeuralAudit()" id="ai-btn" class="w-full py-5 bg-blue-600 rounded-3xl text-white font-black uppercase italic text-sm shadow-2xl">Run AI Inventory Audit</button>
                         </div>
                         <div class="space-y-8 flex flex-col items-center">
                             <div class="p-10 bg-black border-2 border-white/10 rounded-[50px] shadow-inner text-center w-full">
@@ -242,10 +240,10 @@
             </form>
         </div>
 
-        <div id="LeadMagnetView" class="view-panel hidden pb-40"><div class="node-card"><h3>LEAD MAGNET ACTIVE</h3></div></div>
-        <div id="CRMView" class="view-panel hidden"><div class="node-card relative !min-height-0"><span class="node-label">BMCR // Command Archive</span><div id="crm-body" class="w-full mt-16 divide-y divide-white/5"></div></div></div>
+        <div id="CRMView" class="view-panel hidden"><div class="node-card relative !min-height-0"><span class="node-label">BMCR // Command Database</span><div id="crm-body" class="w-full mt-16 divide-y divide-white/5"></div></div></div>
+        <div id="LeadMagnetView" class="view-panel hidden pb-40"><div class="node-card"><h3>LEAD MAGNET ACTIVE</h3><p class="text-zinc-500 mt-4 uppercase font-black italic">Conversion portal operational.</p></div></div>
 
-        <!-- MASTER COMMAND EDITOR -->
+        <!-- MASTER EDITOR -->
         <div id="editor-modal" class="modal-overlay hidden">
             <div class="max-w-6xl mx-auto">
                 <div class="flex justify-between items-center mb-10"><h2 class="text-5xl font-black italic uppercase titan-gradient tracking-tighter">Edit Command Node</h2><button onclick="closeEditor()" class="p-5 bg-white/5 rounded-full hover:bg-rose-500">✕</button></div>
@@ -261,7 +259,7 @@
     <script>
         const apiKey = ""; 
 
-        // --- 1. PRECISION FORMATTING ---
+        // --- 1. PRECISION FORMATTING (SOVEREIGN) ---
         function formatPhone(val) {
             if (!val) return val;
             const num = val.replace(/[^\d]/g, '');
@@ -293,10 +291,8 @@
             state.activeTab = id;
             document.getElementById('view-title').innerText = id;
             
-            // Highlight Restoration Logic
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
-                // Cross-check button text for match
                 if (btn.innerText.includes(id) || btn.id === 'nav-' + id.replace(/\s+/g, '')) {
                     btn.classList.add('active');
                 }
@@ -331,7 +327,6 @@
             `;
             editor.classList.remove('hidden');
         };
-
         window.closeEditor = () => document.getElementById('editor-modal').classList.add('hidden');
         window.saveJobChanges = () => {
             const id = state.activeJobId;
@@ -341,7 +336,7 @@
             showToast('DATA UPDATED'); closeEditor(); renderCalendar();
         };
 
-        // --- 5. DYNAMIC MATRIX & AI ---
+        // --- 5. DYNAMIC MATRIX & OPTIMIZED AI ---
         window.addCustomItem = () => {
             const name = document.getElementById('custom-name').value;
             const vol = parseFloat(document.getElementById('custom-vol').value);
@@ -354,16 +349,30 @@
             if (state.images.length === 0) return showToast('NO PHOTOS DETECTED');
             const loader = document.getElementById('neural-loader');
             loader.classList.remove('hidden');
-            const prompt = `Identify physical furniture. Map to: ${state.customMatrix.map(i=>i.name).join(', ')}. Return JSON {"items": {"Name": count}, "total_vol": number}.`;
-            const contents = [{ parts: [{ text: prompt }, ...state.images.slice(-5).map(b => ({ inlineData: { mimeType: "image/png", data: b.split(',')[1] } }))] }];
+
+            // Payload Optimization: Only last 3 photos, stripped to raw Base64
+            const cleanImages = state.images.slice(-3).map(b => b.split(',')[1]);
+            const prompt = `Move Auditor: Identify items. Map to: ${state.customMatrix.map(i=>i.name).join(', ')}. Return valid JSON ONLY: {"items": {"Name": count}, "total_vol": number}.`;
+            const contents = [{ parts: [{ text: prompt }, ...cleanImages.map(data => ({ inlineData: { mimeType: "image/png", data } }))] }];
+
             try {
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, { method: 'POST', body: JSON.stringify({ contents }) });
-                const json = JSON.parse((await res.json()).candidates[0].content.parts[0].text.replace(/```json|```/g, '').trim());
-                Object.entries(json.items).forEach(([k, v]) => state.inventory[k] = (state.inventory[k] || 0) + v);
-                const vol = Math.ceil(json.total_vol);
-                document.getElementById('cap-vol').value = vol;
-                saveDraft('vol', vol); renderInventoryGrid(); showToast('AI AUDIT COMPLETE');
-            } catch (err) { showToast('AI SYNC DELAY'); } finally { loader.classList.add('hidden'); }
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, { 
+                    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ contents }) 
+                });
+                const resultData = await res.json();
+                const jsonText = resultData.candidates[0].content.parts[0].text.replace(/```json|```/g, '').trim();
+                const result = JSON.parse(jsonText);
+
+                Object.entries(result.items).forEach(([name, count]) => {
+                    if (state.customMatrix.find(i => i.name === name)) {
+                        state.inventory[name] = (state.inventory[name] || 0) + count;
+                    }
+                });
+                
+                const volVal = Math.ceil(result.total_vol);
+                document.getElementById('cap-vol').value = volVal;
+                saveDraft('vol', volVal); renderInventoryGrid(); showToast('AI AUDIT COMPLETE');
+            } catch (err) { showToast('AI NODE DELAY'); } finally { loader.classList.add('hidden'); }
         }
 
         function renderInventoryGrid() {
@@ -372,7 +381,7 @@
             container.innerHTML = state.customMatrix.map(item => {
                 let h = "";
                 if(item.cat !== currentCat) { currentCat = item.cat; h += `<div class="category-header">${currentCat} Matrix</div>`; }
-                h += `<div class="item-counter"><div class="text-left"><span class="item-name">${item.name}</span><div class="flex items-center gap-1 mt-1"><span class="text-[8px] text-zinc-600 font-bold uppercase">Vol:</span><input type="number" class="!p-1 !text-[9px] !bg-transparent !border-none !w-12 !mb-0 !text-blue-500 font-black" value="${item.vol}" onchange="updateItemVol('${item.name}', this.value)"></div></div><div class="qty-controls"><div class="qty-btn" onclick="updateQty('${item.name}', -1)">-</div><span class="qty-val">${state.inventory[item.name] || 0}</span><div class="qty-btn" onclick="updateQty('${item.name}', 1)">+</div></div></div>`;
+                h += `<div class="item-counter"><div class="text-left"><span class="item-name">${item.name}</span><div class="flex items-center gap-1 mt-1"><span class="text-[8px] text-zinc-600 font-bold">Vol:</span><input type="number" class="!p-1 !text-[9px] !bg-transparent !border-none !w-12 !mb-0 !text-blue-500 font-black" value="${item.vol}" onchange="updateItemVol('${item.name}', this.value)"></div></div><div class="qty-controls"><div class="qty-btn" onclick="updateQty('${item.name}', -1)">-</div><span class="qty-val">${state.inventory[item.name] || 0}</span><div class="qty-btn" onclick="updateQty('${item.name}', 1)">+</div></div></div>`;
                 return h;
             }).join('');
             updateTally();
@@ -394,7 +403,7 @@
                 let row = document.createElement('tr');
                 for (let j = 0; j < 7; j++) {
                     let cell = document.createElement('td');
-                    if (i === 0 && j < firstDay || date > daysInMonth) { cell.innerHTML = '<div style="height:115px;"></div>'; }
+                    if (i === 0 && j < firstDay || date > daysInMonth) { cell.innerHTML = '<div></div>'; }
                     else {
                         const dKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(date).padStart(2, '0')}`;
                         const dayJobs = state.customers.filter(c => c.date === dKey).sort((a,b)=>a.time.localeCompare(b.time));
@@ -426,7 +435,7 @@
         window.changeMonth = (dir) => { state.currentMonth.setMonth(state.currentMonth.getMonth() + dir); renderCalendar(); };
         window.showToast = (m) => { const t = document.getElementById('toast-msg'); t.innerText = m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 2000); };
         
-        window.addEventListener('load', () => switchTab('Dashboard'));
+        window.onload = () => switchTab('Dashboard');
     </script>
 </body>
 </html>
